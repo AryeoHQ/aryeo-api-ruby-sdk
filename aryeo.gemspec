@@ -21,9 +21,9 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Jarrod Parkes"]
   s.email       = ["jarrod@aryeo.com"]
-  s.homepage    = "https://openapi-generator.tech"
-  s.summary     = "Ruby SDK for Aryeo API"
-  s.description = "Ruby SDK for Aryeo API"
+  s.homepage    = "https://github.com/AryeoHQ/aryeo-api-ruby-sdk"
+  s.summary     = "Ruby SDK for Aryeo API."
+  s.description = "Ruby SDK for Aryeo API."
   s.license     = "Apache 2.0"
   s.required_ruby_version = ">= 2.4"
 
