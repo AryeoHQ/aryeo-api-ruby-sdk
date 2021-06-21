@@ -14,6 +14,9 @@ module Aryeo
     # ID of the image.
     attr_accessor :id
 
+    # The UUID of the image.
+    attr_accessor :uuid
+
     # A URL for a thumbnail-sized version of the image.
     attr_accessor :thumbnail_url
 
@@ -36,6 +39,7 @@ module Aryeo
     def self.attribute_map
       {
         :'id' => :'id',
+        :'uuid' => :'uuid',
         :'thumbnail_url' => :'thumbnail_url',
         :'large_url' => :'large_url',
         :'original_url' => :'original_url',
@@ -54,6 +58,7 @@ module Aryeo
     def self.openapi_types
       {
         :'id' => :'Integer',
+        :'uuid' => :'String',
         :'thumbnail_url' => :'String',
         :'large_url' => :'String',
         :'original_url' => :'String',
@@ -66,6 +71,7 @@ module Aryeo
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'uuid',
         :'index',
         :'caption',
       ])
@@ -88,6 +94,10 @@ module Aryeo
 
       if attributes.key?(:'id')
         self.id = attributes[:'id']
+      end
+
+      if attributes.key?(:'uuid')
+        self.uuid = attributes[:'uuid']
       end
 
       if attributes.key?(:'thumbnail_url')
@@ -121,6 +131,14 @@ module Aryeo
       invalid_properties = Array.new
       if @id.nil?
         invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
+      if !@uuid.nil? && @uuid.to_s.length > 255
+        invalid_properties.push('invalid value for "uuid", the character length must be smaller than or equal to 255.')
+      end
+
+      if !@uuid.nil? && @uuid.to_s.length < 0
+        invalid_properties.push('invalid value for "uuid", the character length must be great than or equal to 0.')
       end
 
       if @thumbnail_url.nil?
@@ -178,6 +196,8 @@ module Aryeo
     # @return true if the model is valid
     def valid?
       return false if @id.nil?
+      return false if !@uuid.nil? && @uuid.to_s.length > 255
+      return false if !@uuid.nil? && @uuid.to_s.length < 0
       return false if @thumbnail_url.nil?
       return false if @thumbnail_url.to_s.length > 65535
       return false if @thumbnail_url.to_s.length < 1
@@ -191,6 +211,20 @@ module Aryeo
       return false if !@caption.nil? && @caption.to_s.length < 1
       return false if @display_in_gallery.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] uuid Value to be assigned
+    def uuid=(uuid)
+      if !uuid.nil? && uuid.to_s.length > 255
+        fail ArgumentError, 'invalid value for "uuid", the character length must be smaller than or equal to 255.'
+      end
+
+      if !uuid.nil? && uuid.to_s.length < 0
+        fail ArgumentError, 'invalid value for "uuid", the character length must be great than or equal to 0.'
+      end
+
+      @uuid = uuid
     end
 
     # Custom attribute writer method with validation
@@ -267,6 +301,7 @@ module Aryeo
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
+          uuid == o.uuid &&
           thumbnail_url == o.thumbnail_url &&
           large_url == o.large_url &&
           original_url == o.original_url &&
@@ -284,7 +319,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, thumbnail_url, large_url, original_url, index, caption, display_in_gallery].hash
+      [id, uuid, thumbnail_url, large_url, original_url, index, caption, display_in_gallery].hash
     end
 
     # Builds the object from hash

@@ -33,6 +33,9 @@ module Aryeo
     # The fulfillment status of the order.
     attr_accessor :fulfillment_status
 
+    # A URL to see the order's status.
+    attr_accessor :status_url
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -65,7 +68,8 @@ module Aryeo
         :'payment_status' => :'payment_status',
         :'payment_url' => :'payment_url',
         :'listing' => :'listing',
-        :'fulfillment_status' => :'fulfillment_status'
+        :'fulfillment_status' => :'fulfillment_status',
+        :'status_url' => :'status_url'
       }
     end
 
@@ -84,7 +88,8 @@ module Aryeo
         :'payment_status' => :'String',
         :'payment_url' => :'String',
         :'listing' => :'PartialListing',
-        :'fulfillment_status' => :'String'
+        :'fulfillment_status' => :'String',
+        :'status_url' => :'String'
       }
     end
 
@@ -92,6 +97,7 @@ module Aryeo
     def self.openapi_nullable
       Set.new([
         :'payment_url',
+        :'status_url'
       ])
     end
 
@@ -140,6 +146,10 @@ module Aryeo
 
       if attributes.key?(:'fulfillment_status')
         self.fulfillment_status = attributes[:'fulfillment_status']
+      end
+
+      if attributes.key?(:'status_url')
+        self.status_url = attributes[:'status_url']
       end
     end
 
@@ -203,6 +213,14 @@ module Aryeo
         invalid_properties.push('invalid value for "fulfillment_status", the character length must be great than or equal to 0.')
       end
 
+      if !@status_url.nil? && @status_url.to_s.length > 65535
+        invalid_properties.push('invalid value for "status_url", the character length must be smaller than or equal to 65535.')
+      end
+
+      if !@status_url.nil? && @status_url.to_s.length < 0
+        invalid_properties.push('invalid value for "status_url", the character length must be great than or equal to 0.')
+      end
+
       invalid_properties
     end
 
@@ -227,6 +245,8 @@ module Aryeo
       return false unless fulfillment_status_validator.valid?(@fulfillment_status)
       return false if @fulfillment_status.to_s.length > 255
       return false if @fulfillment_status.to_s.length < 0
+      return false if !@status_url.nil? && @status_url.to_s.length > 65535
+      return false if !@status_url.nil? && @status_url.to_s.length < 0
       true
     end
 
@@ -282,6 +302,20 @@ module Aryeo
       @fulfillment_status = fulfillment_status
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] status_url Value to be assigned
+    def status_url=(status_url)
+      if !status_url.nil? && status_url.to_s.length > 65535
+        fail ArgumentError, 'invalid value for "status_url", the character length must be smaller than or equal to 65535.'
+      end
+
+      if !status_url.nil? && status_url.to_s.length < 0
+        fail ArgumentError, 'invalid value for "status_url", the character length must be great than or equal to 0.'
+      end
+
+      @status_url = status_url
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -294,7 +328,8 @@ module Aryeo
           payment_status == o.payment_status &&
           payment_url == o.payment_url &&
           listing == o.listing &&
-          fulfillment_status == o.fulfillment_status
+          fulfillment_status == o.fulfillment_status &&
+          status_url == o.status_url
     end
 
     # @see the `==` method
@@ -306,7 +341,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, display_id, total_price_cents, currency, payment_status, payment_url, listing, fulfillment_status].hash
+      [id, display_id, total_price_cents, currency, payment_status, payment_url, listing, fulfillment_status, status_url].hash
     end
 
     # Builds the object from hash

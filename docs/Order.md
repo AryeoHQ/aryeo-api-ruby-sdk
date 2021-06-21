@@ -12,6 +12,7 @@
 | **payment_url** | **String** | A URL for to pay for the order. | [optional] |
 | **listing** | [**PartialListing**](PartialListing.md) |  | [optional] |
 | **fulfillment_status** | **String** | The fulfillment status of the order. |  |
+| **status_url** | **String** | A URL to see the order&#39;s status. | [optional] |
 
 ## Example
 
@@ -26,7 +27,8 @@ instance = Aryeo::Order.new(
   payment_status: paid,
   payment_url: https://www.aryeo.com/v2/stripe/checkout/order/00000000-0000-0000-0000-000000000000?pageType&#x3D;order,
   listing: null,
-  fulfillment_status: fulfilled
+  fulfillment_status: fulfilled,
+  status_url: https://www.aryeo.com/v2/orders/92b714d7-4a95-4707-8f25-16e6ae077d1f/status/public
 )
 ```
 
