@@ -14,6 +14,81 @@ module Aryeo
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
+    # Publish a marketing material template.
+    # Publish a marketing material template.
+    # @param uuid [String] UUID of the marketing material template record.
+    # @param [Hash] opts the optional parameters
+    # @option opts [MarketingMaterialTemplatePublishPayload] :marketing_material_template_publish_payload 
+    # @return [nil]
+    def put_marketing_materials_templates_uuid_publish(uuid, opts = {})
+      put_marketing_materials_templates_uuid_publish_with_http_info(uuid, opts)
+      nil
+    end
+
+    # Publish a marketing material template.
+    # Publish a marketing material template.
+    # @param uuid [String] UUID of the marketing material template record.
+    # @param [Hash] opts the optional parameters
+    # @option opts [MarketingMaterialTemplatePublishPayload] :marketing_material_template_publish_payload 
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def put_marketing_materials_templates_uuid_publish_with_http_info(uuid, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: MarketingMaterialsApi.put_marketing_materials_templates_uuid_publish ...'
+      end
+      # verify the required parameter 'uuid' is set
+      if @api_client.config.client_side_validation && uuid.nil?
+        fail ArgumentError, "Missing the required parameter 'uuid' when calling MarketingMaterialsApi.put_marketing_materials_templates_uuid_publish"
+      end
+      if @api_client.config.client_side_validation && uuid.to_s.length > 255
+        fail ArgumentError, 'invalid value for "uuid" when calling MarketingMaterialsApi.put_marketing_materials_templates_uuid_publish, the character length must be smaller than or equal to 255.'
+      end
+
+      if @api_client.config.client_side_validation && uuid.to_s.length < 0
+        fail ArgumentError, 'invalid value for "uuid" when calling MarketingMaterialsApi.put_marketing_materials_templates_uuid_publish, the character length must be great than or equal to 0.'
+      end
+
+      # resource path
+      local_var_path = '/marketing-materials/templates/{uuid}/publish'.sub('{' + 'uuid' + '}', CGI.escape(uuid.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'marketing_material_template_publish_payload'])
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['JWT']
+
+      new_options = opts.merge(
+        :operation => :"MarketingMaterialsApi.put_marketing_materials_templates_uuid_publish",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PUT, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: MarketingMaterialsApi#put_marketing_materials_templates_uuid_publish\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Publish a marketing material.
     # Publish a marketing material.
     # @param uuid [String] UUID of the marketing material record.

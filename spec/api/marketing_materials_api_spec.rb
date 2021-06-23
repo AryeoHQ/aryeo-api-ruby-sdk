@@ -27,6 +27,19 @@ describe 'MarketingMaterialsApi' do
     end
   end
 
+  # unit tests for put_marketing_materials_templates_uuid_publish
+  # Publish a marketing material template.
+  # Publish a marketing material template.
+  # @param uuid UUID of the marketing material template record.
+  # @param [Hash] opts the optional parameters
+  # @option opts [MarketingMaterialTemplatePublishPayload] :marketing_material_template_publish_payload 
+  # @return [nil]
+  describe 'put_marketing_materials_templates_uuid_publish test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for put_marketing_materials_uuid_publish
   # Publish a marketing material.
   # Publish a marketing material.

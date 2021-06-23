@@ -49,6 +49,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *Aryeo::ListingsApi* | [**get_listings**](docs/ListingsApi.md#get_listings) | **GET** /listings | Get the listings available to a group.
 *Aryeo::ListingsApi* | [**get_listings_id**](docs/ListingsApi.md#get_listings_id) | **GET** /listings/{id} | Get information about a listing.
+*Aryeo::MarketingMaterialsApi* | [**put_marketing_materials_templates_uuid_publish**](docs/MarketingMaterialsApi.md#put_marketing_materials_templates_uuid_publish) | **PUT** /marketing-materials/templates/{uuid}/publish | Publish a marketing material template.
 *Aryeo::MarketingMaterialsApi* | [**put_marketing_materials_uuid_publish**](docs/MarketingMaterialsApi.md#put_marketing_materials_uuid_publish) | **PUT** /marketing-materials/{uuid}/publish | Publish a marketing material.
 *Aryeo::OrdersApi* | [**get_orders**](docs/OrdersApi.md#get_orders) | **GET** /orders | Get orders available to a group.
 *Aryeo::OrdersApi* | [**post_orders**](docs/OrdersApi.md#post_orders) | **POST** /orders | Create an order.
@@ -69,6 +70,7 @@ Class | Method | HTTP request | Description
  - [Aryeo::Listing](docs/Listing.md)
  - [Aryeo::ListingResource](docs/ListingResource.md)
  - [Aryeo::MarketingMaterialPublishPayload](docs/MarketingMaterialPublishPayload.md)
+ - [Aryeo::MarketingMaterialTemplatePublishPayload](docs/MarketingMaterialTemplatePublishPayload.md)
  - [Aryeo::Order](docs/Order.md)
  - [Aryeo::OrderCollection](docs/OrderCollection.md)
  - [Aryeo::OrderForm](docs/OrderForm.md)
