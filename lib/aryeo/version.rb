@@ -6,5 +6,5 @@ Contact: jarrod@aryeo.com
 =end
 
 module Aryeo
-  VERSION = ''
+  VERSION = '1.0.0'
 end

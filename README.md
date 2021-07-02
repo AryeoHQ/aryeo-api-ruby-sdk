@@ -31,10 +31,10 @@ Aryeo.configure do |config|
 end
 
 api_instance = Aryeo::ListingsApi.new
-uuid = 'UUID'
+id = 'UUID'
 
 begin
-  result = api_instance.get_listings_id(uuid)
+  result = api_instance.get_listings_id(id)
   p result.data.address.address_line_1
 rescue Aryeo::ApiError => e
   puts "Error when calling ListingsApi->get_listings_id: #{e}"
@@ -48,7 +48,9 @@ All URIs are relative to *https://api.aryeo.com/v1*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *Aryeo::ListingsApi* | [**get_listings**](docs/ListingsApi.md#get_listings) | **GET** /listings | Get the listings available to a group.
-*Aryeo::ListingsApi* | [**get_listings_id**](docs/ListingsApi.md#get_listings_id) | **GET** /listings/{uuid} | Get information about a listing.
+*Aryeo::ListingsApi* | [**get_listings_id**](docs/ListingsApi.md#get_listings_id) | **GET** /listings/{id} | Get information about a listing.
+*Aryeo::MarketingMaterialsApi* | [**put_marketing_materials_templates_uuid_publish**](docs/MarketingMaterialsApi.md#put_marketing_materials_templates_uuid_publish) | **PUT** /marketing-materials/templates/{uuid}/publish | Publish a marketing material template.
+*Aryeo::MarketingMaterialsApi* | [**put_marketing_materials_uuid_publish**](docs/MarketingMaterialsApi.md#put_marketing_materials_uuid_publish) | **PUT** /marketing-materials/{uuid}/publish | Publish a marketing material.
 *Aryeo::OrdersApi* | [**get_orders**](docs/OrdersApi.md#get_orders) | **GET** /orders | Get orders available to a group.
 *Aryeo::OrdersApi* | [**post_orders**](docs/OrdersApi.md#post_orders) | **POST** /orders | Create an order.
 *Aryeo::VendorsApi* | [**get_vendors**](docs/VendorsApi.md#get_vendors) | **GET** /vendors | Get vendors available to a group.
@@ -67,6 +69,8 @@ Class | Method | HTTP request | Description
  - [Aryeo::InteractiveContent](docs/InteractiveContent.md)
  - [Aryeo::Listing](docs/Listing.md)
  - [Aryeo::ListingResource](docs/ListingResource.md)
+ - [Aryeo::MarketingMaterialPublishPayload](docs/MarketingMaterialPublishPayload.md)
+ - [Aryeo::MarketingMaterialTemplatePublishPayload](docs/MarketingMaterialTemplatePublishPayload.md)
  - [Aryeo::Order](docs/Order.md)
  - [Aryeo::OrderCollection](docs/OrderCollection.md)
  - [Aryeo::OrderForm](docs/OrderForm.md)
