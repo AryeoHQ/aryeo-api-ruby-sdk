@@ -130,37 +130,37 @@ module Aryeo
 
     # Get information about a listing.
     # Get information about a listing.
-    # @param id [String] The UUID of a listing.
+    # @param uuid [String] The UUID of a listing.
     # @param [Hash] opts the optional parameters
     # @return [ListingResource]
-    def get_listings_id(id, opts = {})
-      data, _status_code, _headers = get_listings_id_with_http_info(id, opts)
+    def get_listings_id(uuid, opts = {})
+      data, _status_code, _headers = get_listings_id_with_http_info(uuid, opts)
       data
     end
 
     # Get information about a listing.
     # Get information about a listing.
-    # @param id [String] The UUID of a listing.
+    # @param uuid [String] The UUID of a listing.
     # @param [Hash] opts the optional parameters
     # @return [Array<(ListingResource, Integer, Hash)>] ListingResource data, response status code and response headers
-    def get_listings_id_with_http_info(id, opts = {})
+    def get_listings_id_with_http_info(uuid, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ListingsApi.get_listings_id ...'
       end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling ListingsApi.get_listings_id"
+      # verify the required parameter 'uuid' is set
+      if @api_client.config.client_side_validation && uuid.nil?
+        fail ArgumentError, "Missing the required parameter 'uuid' when calling ListingsApi.get_listings_id"
       end
-      if @api_client.config.client_side_validation && id.to_s.length > 255
-        fail ArgumentError, 'invalid value for "id" when calling ListingsApi.get_listings_id, the character length must be smaller than or equal to 255.'
+      if @api_client.config.client_side_validation && uuid.to_s.length > 255
+        fail ArgumentError, 'invalid value for "uuid" when calling ListingsApi.get_listings_id, the character length must be smaller than or equal to 255.'
       end
 
-      if @api_client.config.client_side_validation && id.to_s.length < 0
-        fail ArgumentError, 'invalid value for "id" when calling ListingsApi.get_listings_id, the character length must be great than or equal to 0.'
+      if @api_client.config.client_side_validation && uuid.to_s.length < 0
+        fail ArgumentError, 'invalid value for "uuid" when calling ListingsApi.get_listings_id, the character length must be great than or equal to 0.'
       end
 
       # resource path
-      local_var_path = '/listings/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+      local_var_path = '/listings/{uuid}'.sub('{' + 'uuid' + '}', CGI.escape(uuid.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}

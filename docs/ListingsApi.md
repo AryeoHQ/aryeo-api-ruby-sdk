@@ -5,7 +5,7 @@ All URIs are relative to *https://api.aryeo.com/v1*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**get_listings**](ListingsApi.md#get_listings) | **GET** /listings | Get the listings available to a group. |
-| [**get_listings_id**](ListingsApi.md#get_listings_id) | **GET** /listings/{id} | Get information about a listing. |
+| [**get_listings_id**](ListingsApi.md#get_listings_id) | **GET** /listings/{uuid} | Get information about a listing. |
 
 
 ## get_listings
@@ -93,7 +93,7 @@ end
 
 ## get_listings_id
 
-> <ListingResource> get_listings_id(id)
+> <ListingResource> get_listings_id(uuid)
 
 Get information about a listing.
 
@@ -111,11 +111,11 @@ Aryeo.configure do |config|
 end
 
 api_instance = Aryeo::ListingsApi.new
-id = TODO # String | The UUID of a listing.
+uuid = TODO # String | The UUID of a listing.
 
 begin
   # Get information about a listing.
-  result = api_instance.get_listings_id(id)
+  result = api_instance.get_listings_id(uuid)
   p result
 rescue Aryeo::ApiError => e
   puts "Error when calling ListingsApi->get_listings_id: #{e}"
@@ -126,12 +126,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<ListingResource>, Integer, Hash)> get_listings_id_with_http_info(id)
+> <Array(<ListingResource>, Integer, Hash)> get_listings_id_with_http_info(uuid)
 
 ```ruby
 begin
   # Get information about a listing.
-  data, status_code, headers = api_instance.get_listings_id_with_http_info(id)
+  data, status_code, headers = api_instance.get_listings_id_with_http_info(uuid)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <ListingResource>
@@ -144,7 +144,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **id** | [**String**](.md) | The UUID of a listing. |  |
+| **uuid** | [**String**](.md) | The UUID of a listing. |  |
 
 ### Return type
 

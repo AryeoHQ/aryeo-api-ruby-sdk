@@ -12,7 +12,7 @@
 require 'aryeo'
 
 instance = Aryeo::ApiError.new(
-  message: ApiError.
+  message: Not found.
 )
 ```
 

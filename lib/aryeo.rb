@@ -22,8 +22,6 @@ require 'aryeo/models/image'
 require 'aryeo/models/interactive_content'
 require 'aryeo/models/listing'
 require 'aryeo/models/listing_resource'
-require 'aryeo/models/marketing_material_publish_payload'
-require 'aryeo/models/marketing_material_template_publish_payload'
 require 'aryeo/models/order'
 require 'aryeo/models/order_collection'
 require 'aryeo/models/order_form'
@@ -44,7 +42,6 @@ require 'aryeo/models/video'
 
 # APIs
 require 'aryeo/api/listings_api'
-require 'aryeo/api/marketing_materials_api'
 require 'aryeo/api/orders_api'
 require 'aryeo/api/vendors_api'
 

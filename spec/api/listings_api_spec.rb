@@ -48,7 +48,7 @@ describe 'ListingsApi' do
   # unit tests for get_listings_id
   # Get information about a listing.
   # Get information about a listing.
-  # @param id The UUID of a listing.
+  # @param uuid The UUID of a listing.
   # @param [Hash] opts the optional parameters
   # @return [ListingResource]
   describe 'get_listings_id test' do
