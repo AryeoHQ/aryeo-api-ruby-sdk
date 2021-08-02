@@ -14,14 +14,14 @@ module Aryeo
     # ID of the floor plan.
     attr_accessor :id
 
-    # A URL for a thumbnail-sized version of the floor plan.
-    attr_accessor :thumbnail_url
+    # A URL for the original, full-resolution version of the floor plan. Useful for downloading.
+    attr_accessor :original_url
 
     # A URL for a large version of the floor plan.
     attr_accessor :large_url
 
-    # A URL for the original, full-resolution version of the floor plan. Useful for downloading.
-    attr_accessor :original_url
+    # A URL for a thumbnail-sized version of the floor plan.
+    attr_accessor :thumbnail_url
 
     # The title (or caption) of the floor plan.
     attr_accessor :title
@@ -33,9 +33,9 @@ module Aryeo
     def self.attribute_map
       {
         :'id' => :'id',
-        :'thumbnail_url' => :'thumbnail_url',
-        :'large_url' => :'large_url',
         :'original_url' => :'original_url',
+        :'large_url' => :'large_url',
+        :'thumbnail_url' => :'thumbnail_url',
         :'title' => :'title',
         :'index' => :'index'
       }
@@ -49,10 +49,10 @@ module Aryeo
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'Integer',
-        :'thumbnail_url' => :'String',
-        :'large_url' => :'String',
+        :'id' => :'String',
         :'original_url' => :'String',
+        :'large_url' => :'String',
+        :'thumbnail_url' => :'String',
         :'title' => :'String',
         :'index' => :'Integer'
       }
@@ -85,16 +85,16 @@ module Aryeo
         self.id = attributes[:'id']
       end
 
-      if attributes.key?(:'thumbnail_url')
-        self.thumbnail_url = attributes[:'thumbnail_url']
+      if attributes.key?(:'original_url')
+        self.original_url = attributes[:'original_url']
       end
 
       if attributes.key?(:'large_url')
         self.large_url = attributes[:'large_url']
       end
 
-      if attributes.key?(:'original_url')
-        self.original_url = attributes[:'original_url']
+      if attributes.key?(:'thumbnail_url')
+        self.thumbnail_url = attributes[:'thumbnail_url']
       end
 
       if attributes.key?(:'title')
@@ -114,16 +114,24 @@ module Aryeo
         invalid_properties.push('invalid value for "id", id cannot be nil.')
       end
 
-      if @thumbnail_url.nil?
-        invalid_properties.push('invalid value for "thumbnail_url", thumbnail_url cannot be nil.')
+      if @id.to_s.length > 255
+        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 255.')
       end
 
-      if @thumbnail_url.to_s.length > 65535
-        invalid_properties.push('invalid value for "thumbnail_url", the character length must be smaller than or equal to 65535.')
+      if @id.to_s.length < 0
+        invalid_properties.push('invalid value for "id", the character length must be great than or equal to 0.')
       end
 
-      if @thumbnail_url.to_s.length < 1
-        invalid_properties.push('invalid value for "thumbnail_url", the character length must be great than or equal to 1.')
+      if @original_url.nil?
+        invalid_properties.push('invalid value for "original_url", original_url cannot be nil.')
+      end
+
+      if @original_url.to_s.length > 65535
+        invalid_properties.push('invalid value for "original_url", the character length must be smaller than or equal to 65535.')
+      end
+
+      if @original_url.to_s.length < 1
+        invalid_properties.push('invalid value for "original_url", the character length must be great than or equal to 1.')
       end
 
       if @large_url.nil?
@@ -138,16 +146,16 @@ module Aryeo
         invalid_properties.push('invalid value for "large_url", the character length must be great than or equal to 1.')
       end
 
-      if @original_url.nil?
-        invalid_properties.push('invalid value for "original_url", original_url cannot be nil.')
+      if @thumbnail_url.nil?
+        invalid_properties.push('invalid value for "thumbnail_url", thumbnail_url cannot be nil.')
       end
 
-      if @original_url.to_s.length > 65535
-        invalid_properties.push('invalid value for "original_url", the character length must be smaller than or equal to 65535.')
+      if @thumbnail_url.to_s.length > 65535
+        invalid_properties.push('invalid value for "thumbnail_url", the character length must be smaller than or equal to 65535.')
       end
 
-      if @original_url.to_s.length < 1
-        invalid_properties.push('invalid value for "original_url", the character length must be great than or equal to 1.')
+      if @thumbnail_url.to_s.length < 1
+        invalid_properties.push('invalid value for "thumbnail_url", the character length must be great than or equal to 1.')
       end
 
       if !@title.nil? && @title.to_s.length > 255
@@ -169,15 +177,17 @@ module Aryeo
     # @return true if the model is valid
     def valid?
       return false if @id.nil?
-      return false if @thumbnail_url.nil?
-      return false if @thumbnail_url.to_s.length > 65535
-      return false if @thumbnail_url.to_s.length < 1
-      return false if @large_url.nil?
-      return false if @large_url.to_s.length > 65535
-      return false if @large_url.to_s.length < 1
+      return false if @id.to_s.length > 255
+      return false if @id.to_s.length < 0
       return false if @original_url.nil?
       return false if @original_url.to_s.length > 65535
       return false if @original_url.to_s.length < 1
+      return false if @large_url.nil?
+      return false if @large_url.to_s.length > 65535
+      return false if @large_url.to_s.length < 1
+      return false if @thumbnail_url.nil?
+      return false if @thumbnail_url.to_s.length > 65535
+      return false if @thumbnail_url.to_s.length < 1
       return false if !@title.nil? && @title.to_s.length > 255
       return false if !@title.nil? && @title.to_s.length < 1
       return false if !@index.nil? && @index < 0
@@ -185,21 +195,39 @@ module Aryeo
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] thumbnail_url Value to be assigned
-    def thumbnail_url=(thumbnail_url)
-      if thumbnail_url.nil?
-        fail ArgumentError, 'thumbnail_url cannot be nil'
+    # @param [Object] id Value to be assigned
+    def id=(id)
+      if id.nil?
+        fail ArgumentError, 'id cannot be nil'
       end
 
-      if thumbnail_url.to_s.length > 65535
-        fail ArgumentError, 'invalid value for "thumbnail_url", the character length must be smaller than or equal to 65535.'
+      if id.to_s.length > 255
+        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 255.'
       end
 
-      if thumbnail_url.to_s.length < 1
-        fail ArgumentError, 'invalid value for "thumbnail_url", the character length must be great than or equal to 1.'
+      if id.to_s.length < 0
+        fail ArgumentError, 'invalid value for "id", the character length must be great than or equal to 0.'
       end
 
-      @thumbnail_url = thumbnail_url
+      @id = id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] original_url Value to be assigned
+    def original_url=(original_url)
+      if original_url.nil?
+        fail ArgumentError, 'original_url cannot be nil'
+      end
+
+      if original_url.to_s.length > 65535
+        fail ArgumentError, 'invalid value for "original_url", the character length must be smaller than or equal to 65535.'
+      end
+
+      if original_url.to_s.length < 1
+        fail ArgumentError, 'invalid value for "original_url", the character length must be great than or equal to 1.'
+      end
+
+      @original_url = original_url
     end
 
     # Custom attribute writer method with validation
@@ -221,21 +249,21 @@ module Aryeo
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] original_url Value to be assigned
-    def original_url=(original_url)
-      if original_url.nil?
-        fail ArgumentError, 'original_url cannot be nil'
+    # @param [Object] thumbnail_url Value to be assigned
+    def thumbnail_url=(thumbnail_url)
+      if thumbnail_url.nil?
+        fail ArgumentError, 'thumbnail_url cannot be nil'
       end
 
-      if original_url.to_s.length > 65535
-        fail ArgumentError, 'invalid value for "original_url", the character length must be smaller than or equal to 65535.'
+      if thumbnail_url.to_s.length > 65535
+        fail ArgumentError, 'invalid value for "thumbnail_url", the character length must be smaller than or equal to 65535.'
       end
 
-      if original_url.to_s.length < 1
-        fail ArgumentError, 'invalid value for "original_url", the character length must be great than or equal to 1.'
+      if thumbnail_url.to_s.length < 1
+        fail ArgumentError, 'invalid value for "thumbnail_url", the character length must be great than or equal to 1.'
       end
 
-      @original_url = original_url
+      @thumbnail_url = thumbnail_url
     end
 
     # Custom attribute writer method with validation
@@ -268,9 +296,9 @@ module Aryeo
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          thumbnail_url == o.thumbnail_url &&
-          large_url == o.large_url &&
           original_url == o.original_url &&
+          large_url == o.large_url &&
+          thumbnail_url == o.thumbnail_url &&
           title == o.title &&
           index == o.index
     end
@@ -284,7 +312,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, thumbnail_url, large_url, original_url, title, index].hash
+      [id, original_url, large_url, thumbnail_url, title, index].hash
     end
 
     # Builds the object from hash

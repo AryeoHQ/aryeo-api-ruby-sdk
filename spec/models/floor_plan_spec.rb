@@ -26,7 +26,7 @@ describe Aryeo::FloorPlan do
     end
   end
 
-  describe 'test attribute "thumbnail_url"' do
+  describe 'test attribute "original_url"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -38,7 +38,7 @@ describe Aryeo::FloorPlan do
     end
   end
 
-  describe 'test attribute "original_url"' do
+  describe 'test attribute "thumbnail_url"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

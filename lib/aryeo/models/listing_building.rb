@@ -9,15 +9,27 @@ require 'date'
 require 'time'
 
 module Aryeo
-  # Payload for publishing a marketing material template record.
-  class MarketingMaterialTemplatePublishPayload
-    # String representation of a polotno JSON object.
-    attr_accessor :polotno_json
+  # Structural data of the primary building on a listing. Includes everything from square footage of certain spaces to construction dates. 
+  class ListingBuilding
+    # Total number of bedrooms.
+    attr_accessor :bedrooms
+
+    # Sum of the number of bathrooms. Represented as a number in order to support half-baths.
+    attr_accessor :bathrooms
+
+    # Total number of square feet.
+    attr_accessor :square_feet
+
+    # Year the property was built.
+    attr_accessor :year_built
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'polotno_json' => :'polotno_json'
+        :'bedrooms' => :'bedrooms',
+        :'bathrooms' => :'bathrooms',
+        :'square_feet' => :'square_feet',
+        :'year_built' => :'year_built'
       }
     end
 
@@ -29,13 +41,20 @@ module Aryeo
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'polotno_json' => :'String'
+        :'bedrooms' => :'Integer',
+        :'bathrooms' => :'Float',
+        :'square_feet' => :'Float',
+        :'year_built' => :'Integer'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'bedrooms',
+        :'bathrooms',
+        :'square_feet',
+        :'year_built'
       ])
     end
 
@@ -43,19 +62,31 @@ module Aryeo
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Aryeo::MarketingMaterialTemplatePublishPayload` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Aryeo::ListingBuilding` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Aryeo::MarketingMaterialTemplatePublishPayload`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Aryeo::ListingBuilding`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'polotno_json')
-        self.polotno_json = attributes[:'polotno_json']
+      if attributes.key?(:'bedrooms')
+        self.bedrooms = attributes[:'bedrooms']
+      end
+
+      if attributes.key?(:'bathrooms')
+        self.bathrooms = attributes[:'bathrooms']
+      end
+
+      if attributes.key?(:'square_feet')
+        self.square_feet = attributes[:'square_feet']
+      end
+
+      if attributes.key?(:'year_built')
+        self.year_built = attributes[:'year_built']
       end
     end
 
@@ -63,37 +94,13 @@ module Aryeo
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@polotno_json.nil? && @polotno_json.to_s.length > 99999999
-        invalid_properties.push('invalid value for "polotno_json", the character length must be smaller than or equal to 99999999.')
-      end
-
-      if !@polotno_json.nil? && @polotno_json.to_s.length < 0
-        invalid_properties.push('invalid value for "polotno_json", the character length must be great than or equal to 0.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@polotno_json.nil? && @polotno_json.to_s.length > 99999999
-      return false if !@polotno_json.nil? && @polotno_json.to_s.length < 0
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] polotno_json Value to be assigned
-    def polotno_json=(polotno_json)
-      if !polotno_json.nil? && polotno_json.to_s.length > 99999999
-        fail ArgumentError, 'invalid value for "polotno_json", the character length must be smaller than or equal to 99999999.'
-      end
-
-      if !polotno_json.nil? && polotno_json.to_s.length < 0
-        fail ArgumentError, 'invalid value for "polotno_json", the character length must be great than or equal to 0.'
-      end
-
-      @polotno_json = polotno_json
     end
 
     # Checks equality by comparing each attribute.
@@ -101,7 +108,10 @@ module Aryeo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          polotno_json == o.polotno_json
+          bedrooms == o.bedrooms &&
+          bathrooms == o.bathrooms &&
+          square_feet == o.square_feet &&
+          year_built == o.year_built
     end
 
     # @see the `==` method
@@ -113,7 +123,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [polotno_json].hash
+      [bedrooms, bathrooms, square_feet, year_built].hash
     end
 
     # Builds the object from hash

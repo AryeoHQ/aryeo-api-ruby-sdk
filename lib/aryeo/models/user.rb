@@ -11,40 +11,36 @@ require 'time'
 module Aryeo
   # A record of a person on the Aryeo platform.
   class User
-    # UUID of the user.
+    # ID of the user.
     attr_accessor :id
 
-    # Avatar.
-    attr_accessor :avatar
-
-    # Email.
+    # Email address of the user.
     attr_accessor :email
 
-    # First name.
+    # First name of the user.
     attr_accessor :first_name
 
-    # Last name.
+    # Last name of the user.
     attr_accessor :last_name
 
-    # Timezone.
-    attr_accessor :timezone
-
-    # Phone number.
+    # A phone number represented in whichever standards specified by the user, typically ###-###-#### (separated by hyphens).
     attr_accessor :phone
 
-    # Describes user's relationship (access level) to a specified group.
+    # The avatar image URL of a user.
+    attr_accessor :avatar_url
+
+    # Describes user's relationship (access level) to a specified group. Only returned if this resource is returned as a sub-resource of a group.
     attr_accessor :relationship
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
-        :'avatar' => :'avatar',
         :'email' => :'email',
         :'first_name' => :'first_name',
         :'last_name' => :'last_name',
-        :'timezone' => :'timezone',
         :'phone' => :'phone',
+        :'avatar_url' => :'avatar_url',
         :'relationship' => :'relationship'
       }
     end
@@ -58,12 +54,11 @@ module Aryeo
     def self.openapi_types
       {
         :'id' => :'String',
-        :'avatar' => :'String',
         :'email' => :'String',
         :'first_name' => :'String',
         :'last_name' => :'String',
-        :'timezone' => :'String',
         :'phone' => :'String',
+        :'avatar_url' => :'String',
         :'relationship' => :'String'
       }
     end
@@ -71,11 +66,10 @@ module Aryeo
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'avatar',
         :'first_name',
         :'last_name',
-        :'timezone',
         :'phone',
+        :'avatar_url',
         :'relationship'
       ])
     end
@@ -99,10 +93,6 @@ module Aryeo
         self.id = attributes[:'id']
       end
 
-      if attributes.key?(:'avatar')
-        self.avatar = attributes[:'avatar']
-      end
-
       if attributes.key?(:'email')
         self.email = attributes[:'email']
       end
@@ -115,12 +105,12 @@ module Aryeo
         self.last_name = attributes[:'last_name']
       end
 
-      if attributes.key?(:'timezone')
-        self.timezone = attributes[:'timezone']
-      end
-
       if attributes.key?(:'phone')
         self.phone = attributes[:'phone']
+      end
+
+      if attributes.key?(:'avatar_url')
+        self.avatar_url = attributes[:'avatar_url']
       end
 
       if attributes.key?(:'relationship')
@@ -142,14 +132,6 @@ module Aryeo
 
       if @id.to_s.length < 0
         invalid_properties.push('invalid value for "id", the character length must be great than or equal to 0.')
-      end
-
-      if !@avatar.nil? && @avatar.to_s.length > 255
-        invalid_properties.push('invalid value for "avatar", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@avatar.nil? && @avatar.to_s.length < 0
-        invalid_properties.push('invalid value for "avatar", the character length must be great than or equal to 0.')
       end
 
       if @email.nil?
@@ -180,20 +162,20 @@ module Aryeo
         invalid_properties.push('invalid value for "last_name", the character length must be great than or equal to 0.')
       end
 
-      if !@timezone.nil? && @timezone.to_s.length > 255
-        invalid_properties.push('invalid value for "timezone", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@timezone.nil? && @timezone.to_s.length < 0
-        invalid_properties.push('invalid value for "timezone", the character length must be great than or equal to 0.')
-      end
-
       if !@phone.nil? && @phone.to_s.length > 255
         invalid_properties.push('invalid value for "phone", the character length must be smaller than or equal to 255.')
       end
 
       if !@phone.nil? && @phone.to_s.length < 0
         invalid_properties.push('invalid value for "phone", the character length must be great than or equal to 0.')
+      end
+
+      if !@avatar_url.nil? && @avatar_url.to_s.length > 255
+        invalid_properties.push('invalid value for "avatar_url", the character length must be smaller than or equal to 255.')
+      end
+
+      if !@avatar_url.nil? && @avatar_url.to_s.length < 0
+        invalid_properties.push('invalid value for "avatar_url", the character length must be great than or equal to 0.')
       end
 
       if !@relationship.nil? && @relationship.to_s.length > 255
@@ -213,8 +195,6 @@ module Aryeo
       return false if @id.nil?
       return false if @id.to_s.length > 255
       return false if @id.to_s.length < 0
-      return false if !@avatar.nil? && @avatar.to_s.length > 255
-      return false if !@avatar.nil? && @avatar.to_s.length < 0
       return false if @email.nil?
       return false if @email.to_s.length > 255
       return false if @email.to_s.length < 0
@@ -222,10 +202,10 @@ module Aryeo
       return false if !@first_name.nil? && @first_name.to_s.length < 0
       return false if !@last_name.nil? && @last_name.to_s.length > 255
       return false if !@last_name.nil? && @last_name.to_s.length < 0
-      return false if !@timezone.nil? && @timezone.to_s.length > 255
-      return false if !@timezone.nil? && @timezone.to_s.length < 0
       return false if !@phone.nil? && @phone.to_s.length > 255
       return false if !@phone.nil? && @phone.to_s.length < 0
+      return false if !@avatar_url.nil? && @avatar_url.to_s.length > 255
+      return false if !@avatar_url.nil? && @avatar_url.to_s.length < 0
       return false if !@relationship.nil? && @relationship.to_s.length > 255
       return false if !@relationship.nil? && @relationship.to_s.length < 0
       true
@@ -247,20 +227,6 @@ module Aryeo
       end
 
       @id = id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] avatar Value to be assigned
-    def avatar=(avatar)
-      if !avatar.nil? && avatar.to_s.length > 255
-        fail ArgumentError, 'invalid value for "avatar", the character length must be smaller than or equal to 255.'
-      end
-
-      if !avatar.nil? && avatar.to_s.length < 0
-        fail ArgumentError, 'invalid value for "avatar", the character length must be great than or equal to 0.'
-      end
-
-      @avatar = avatar
     end
 
     # Custom attribute writer method with validation
@@ -310,20 +276,6 @@ module Aryeo
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] timezone Value to be assigned
-    def timezone=(timezone)
-      if !timezone.nil? && timezone.to_s.length > 255
-        fail ArgumentError, 'invalid value for "timezone", the character length must be smaller than or equal to 255.'
-      end
-
-      if !timezone.nil? && timezone.to_s.length < 0
-        fail ArgumentError, 'invalid value for "timezone", the character length must be great than or equal to 0.'
-      end
-
-      @timezone = timezone
-    end
-
-    # Custom attribute writer method with validation
     # @param [Object] phone Value to be assigned
     def phone=(phone)
       if !phone.nil? && phone.to_s.length > 255
@@ -335,6 +287,20 @@ module Aryeo
       end
 
       @phone = phone
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] avatar_url Value to be assigned
+    def avatar_url=(avatar_url)
+      if !avatar_url.nil? && avatar_url.to_s.length > 255
+        fail ArgumentError, 'invalid value for "avatar_url", the character length must be smaller than or equal to 255.'
+      end
+
+      if !avatar_url.nil? && avatar_url.to_s.length < 0
+        fail ArgumentError, 'invalid value for "avatar_url", the character length must be great than or equal to 0.'
+      end
+
+      @avatar_url = avatar_url
     end
 
     # Custom attribute writer method with validation
@@ -357,12 +323,11 @@ module Aryeo
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          avatar == o.avatar &&
           email == o.email &&
           first_name == o.first_name &&
           last_name == o.last_name &&
-          timezone == o.timezone &&
           phone == o.phone &&
+          avatar_url == o.avatar_url &&
           relationship == o.relationship
     end
 
@@ -375,7 +340,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, avatar, email, first_name, last_name, timezone, phone, relationship].hash
+      [id, email, first_name, last_name, phone, avatar_url, relationship].hash
     end
 
     # Builds the object from hash

@@ -1,10 +1,11 @@
-# Aryeo::PartialListingCollection
+# Aryeo::ListingCollection
 
 ## Properties
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **data** | [**Array&lt;PartialListing&gt;**](PartialListing.md) |  | [optional] |
+| **status** | **String** | What was the state of the request? |  |
+| **data** | [**Array&lt;Listing&gt;**](Listing.md) |  | [optional] |
 | **meta** | [**PaginationMeta**](PaginationMeta.md) |  | [optional] |
 | **links** | [**PaginationLinks**](PaginationLinks.md) |  | [optional] |
 
@@ -13,7 +14,8 @@
 ```ruby
 require 'aryeo'
 
-instance = Aryeo::PartialListingCollection.new(
+instance = Aryeo::ListingCollection.new(
+  status: success,
   data: null,
   meta: null,
   links: null

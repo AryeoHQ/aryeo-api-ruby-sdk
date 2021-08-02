@@ -9,27 +9,18 @@ require 'date'
 require 'time'
 
 module Aryeo
-  # A system of money used for payment.
-  class Currency
-    # The ID of the currency.
-    attr_accessor :id
+  # A group.
+  class GroupResource
+    # What was the state of the request?
+    attr_accessor :status
 
-    # The name of the currency.
-    attr_accessor :name
-
-    # The currency symbol.
-    attr_accessor :symbol
-
-    # Is this currency enabled for Aryeo?
-    attr_accessor :enabled
+    attr_accessor :data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
-        :'name' => :'name',
-        :'symbol' => :'symbol',
-        :'enabled' => :'enabled'
+        :'status' => :'status',
+        :'data' => :'data'
       }
     end
 
@@ -41,10 +32,8 @@ module Aryeo
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
-        :'name' => :'String',
-        :'symbol' => :'String',
-        :'enabled' => :'Boolean'
+        :'status' => :'String',
+        :'data' => :'Group'
       }
     end
 
@@ -58,31 +47,23 @@ module Aryeo
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Aryeo::Currency` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Aryeo::GroupResource` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Aryeo::Currency`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Aryeo::GroupResource`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
       end
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
-      end
-
-      if attributes.key?(:'symbol')
-        self.symbol = attributes[:'symbol']
-      end
-
-      if attributes.key?(:'enabled')
-        self.enabled = attributes[:'enabled']
+      if attributes.key?(:'data')
+        self.data = attributes[:'data']
       end
     end
 
@@ -90,44 +71,16 @@ module Aryeo
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      if @status.nil?
+        invalid_properties.push('invalid value for "status", status cannot be nil.')
       end
 
-      if @id.to_s.length > 1000
-        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 1000.')
+      if @status.to_s.length > 255
+        invalid_properties.push('invalid value for "status", the character length must be smaller than or equal to 255.')
       end
 
-      if @id.to_s.length < 1
-        invalid_properties.push('invalid value for "id", the character length must be great than or equal to 1.')
-      end
-
-      if @name.nil?
-        invalid_properties.push('invalid value for "name", name cannot be nil.')
-      end
-
-      if @name.to_s.length > 100
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 100.')
-      end
-
-      if @name.to_s.length < 1
-        invalid_properties.push('invalid value for "name", the character length must be great than or equal to 1.')
-      end
-
-      if @symbol.nil?
-        invalid_properties.push('invalid value for "symbol", symbol cannot be nil.')
-      end
-
-      if @symbol.to_s.length > 10
-        invalid_properties.push('invalid value for "symbol", the character length must be smaller than or equal to 10.')
-      end
-
-      if @symbol.to_s.length < 1
-        invalid_properties.push('invalid value for "symbol", the character length must be great than or equal to 1.')
-      end
-
-      if @enabled.nil?
-        invalid_properties.push('invalid value for "enabled", enabled cannot be nil.')
+      if @status.to_s.length < 0
+        invalid_properties.push('invalid value for "status", the character length must be great than or equal to 0.')
       end
 
       invalid_properties
@@ -136,71 +89,28 @@ module Aryeo
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
-      return false if @id.to_s.length > 1000
-      return false if @id.to_s.length < 1
-      return false if @name.nil?
-      return false if @name.to_s.length > 100
-      return false if @name.to_s.length < 1
-      return false if @symbol.nil?
-      return false if @symbol.to_s.length > 10
-      return false if @symbol.to_s.length < 1
-      return false if @enabled.nil?
+      return false if @status.nil?
+      return false if @status.to_s.length > 255
+      return false if @status.to_s.length < 0
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] id Value to be assigned
-    def id=(id)
-      if id.nil?
-        fail ArgumentError, 'id cannot be nil'
+    # @param [Object] status Value to be assigned
+    def status=(status)
+      if status.nil?
+        fail ArgumentError, 'status cannot be nil'
       end
 
-      if id.to_s.length > 1000
-        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 1000.'
+      if status.to_s.length > 255
+        fail ArgumentError, 'invalid value for "status", the character length must be smaller than or equal to 255.'
       end
 
-      if id.to_s.length < 1
-        fail ArgumentError, 'invalid value for "id", the character length must be great than or equal to 1.'
+      if status.to_s.length < 0
+        fail ArgumentError, 'invalid value for "status", the character length must be great than or equal to 0.'
       end
 
-      @id = id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] name Value to be assigned
-    def name=(name)
-      if name.nil?
-        fail ArgumentError, 'name cannot be nil'
-      end
-
-      if name.to_s.length > 100
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 100.'
-      end
-
-      if name.to_s.length < 1
-        fail ArgumentError, 'invalid value for "name", the character length must be great than or equal to 1.'
-      end
-
-      @name = name
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] symbol Value to be assigned
-    def symbol=(symbol)
-      if symbol.nil?
-        fail ArgumentError, 'symbol cannot be nil'
-      end
-
-      if symbol.to_s.length > 10
-        fail ArgumentError, 'invalid value for "symbol", the character length must be smaller than or equal to 10.'
-      end
-
-      if symbol.to_s.length < 1
-        fail ArgumentError, 'invalid value for "symbol", the character length must be great than or equal to 1.'
-      end
-
-      @symbol = symbol
+      @status = status
     end
 
     # Checks equality by comparing each attribute.
@@ -208,10 +118,8 @@ module Aryeo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
-          name == o.name &&
-          symbol == o.symbol &&
-          enabled == o.enabled
+          status == o.status &&
+          data == o.data
     end
 
     # @see the `==` method
@@ -223,7 +131,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, name, symbol, enabled].hash
+      [status, data].hash
     end
 
     # Builds the object from hash

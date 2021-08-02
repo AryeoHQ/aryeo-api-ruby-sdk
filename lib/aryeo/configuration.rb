@@ -210,11 +210,10 @@ module Aryeo
     # Returns Auth Settings hash for api client.
     def auth_settings
       {
-        'JWT' =>
+        'Token' =>
           {
             type: 'bearer',
             in: 'header',
-            format: 'JWT',
             key: 'Authorization',
             value: "Bearer #{access_token}"
           },

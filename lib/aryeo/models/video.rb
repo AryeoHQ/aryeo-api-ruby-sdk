@@ -17,25 +17,25 @@ module Aryeo
     # The title of the video given by the uploading user.
     attr_accessor :title
 
+    # The video's runtime in seconds.
+    attr_accessor :duration
+
     # The display type determines if the video is branded or unbranded (can also be none or both). This affects whether the video is displayed on branded or unbranded marketing materials such as the property website.
     attr_accessor :display_type
 
     # The original upload source of the video, used to determine how to handle the playback_url of the video and other display properties. 
     attr_accessor :source_type
 
-    # Thumbnail URL for the video.
+    # A thumbnail image URL for the video.
     attr_accessor :thumbnail_url
 
-    # A URL linking to the video.
+    # A URL linking to playback stream of the video.
     attr_accessor :playback_url
 
     # A URL for downloading the video.
     attr_accessor :download_url
 
-    # The video's runtime in seconds.
-    attr_accessor :seconds
-
-    # Aryeo iFrame player URL
+    # A URL linking to a public viewing optimized webpage the video.
     attr_accessor :share_url
 
     class EnumAttributeValidator
@@ -65,12 +65,12 @@ module Aryeo
       {
         :'id' => :'id',
         :'title' => :'title',
+        :'duration' => :'duration',
         :'display_type' => :'display_type',
         :'source_type' => :'source_type',
         :'thumbnail_url' => :'thumbnail_url',
         :'playback_url' => :'playback_url',
         :'download_url' => :'download_url',
-        :'seconds' => :'seconds',
         :'share_url' => :'share_url'
       }
     end
@@ -83,14 +83,14 @@ module Aryeo
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'Integer',
+        :'id' => :'String',
         :'title' => :'String',
+        :'duration' => :'Integer',
         :'display_type' => :'String',
         :'source_type' => :'String',
         :'thumbnail_url' => :'String',
         :'playback_url' => :'String',
         :'download_url' => :'String',
-        :'seconds' => :'Integer',
         :'share_url' => :'String'
       }
     end
@@ -99,8 +99,8 @@ module Aryeo
     def self.openapi_nullable
       Set.new([
         :'title',
+        :'duration',
         :'download_url',
-        :'seconds',
         :'share_url'
       ])
     end
@@ -128,6 +128,10 @@ module Aryeo
         self.title = attributes[:'title']
       end
 
+      if attributes.key?(:'duration')
+        self.duration = attributes[:'duration']
+      end
+
       if attributes.key?(:'display_type')
         self.display_type = attributes[:'display_type']
       end
@@ -148,10 +152,6 @@ module Aryeo
         self.download_url = attributes[:'download_url']
       end
 
-      if attributes.key?(:'seconds')
-        self.seconds = attributes[:'seconds']
-      end
-
       if attributes.key?(:'share_url')
         self.share_url = attributes[:'share_url']
       end
@@ -163,6 +163,14 @@ module Aryeo
       invalid_properties = Array.new
       if @id.nil?
         invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
+      if @id.to_s.length > 255
+        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 255.')
+      end
+
+      if @id.to_s.length < 0
+        invalid_properties.push('invalid value for "id", the character length must be great than or equal to 0.')
       end
 
       if !@title.nil? && @title.to_s.length > 255
@@ -244,15 +252,17 @@ module Aryeo
     # @return true if the model is valid
     def valid?
       return false if @id.nil?
+      return false if @id.to_s.length > 255
+      return false if @id.to_s.length < 0
       return false if !@title.nil? && @title.to_s.length > 255
       return false if !@title.nil? && @title.to_s.length < 1
       return false if @display_type.nil?
-      display_type_validator = EnumAttributeValidator.new('String', ["branded", "unbranded", "both", "none"])
+      display_type_validator = EnumAttributeValidator.new('String', ["BRANDED", "UNBRANDED", "BOTH", "NONE"])
       return false unless display_type_validator.valid?(@display_type)
       return false if @display_type.to_s.length > 255
       return false if @display_type.to_s.length < 1
       return false if @source_type.nil?
-      source_type_validator = EnumAttributeValidator.new('String', ["youtube", "vimeo", "optimized", "uploaded", "link"])
+      source_type_validator = EnumAttributeValidator.new('String', ["YOUTUBE", "VIMEO", "OPTIMIZED", "UPLOADED", "LINK"])
       return false unless source_type_validator.valid?(@source_type)
       return false if @source_type.to_s.length > 255
       return false if @source_type.to_s.length < 1
@@ -267,6 +277,24 @@ module Aryeo
       return false if !@share_url.nil? && @share_url.to_s.length > 65535
       return false if !@share_url.nil? && @share_url.to_s.length < 0
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] id Value to be assigned
+    def id=(id)
+      if id.nil?
+        fail ArgumentError, 'id cannot be nil'
+      end
+
+      if id.to_s.length > 255
+        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 255.'
+      end
+
+      if id.to_s.length < 0
+        fail ArgumentError, 'invalid value for "id", the character length must be great than or equal to 0.'
+      end
+
+      @id = id
     end
 
     # Custom attribute writer method with validation
@@ -286,7 +314,7 @@ module Aryeo
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] display_type Object to be assigned
     def display_type=(display_type)
-      validator = EnumAttributeValidator.new('String', ["branded", "unbranded", "both", "none"])
+      validator = EnumAttributeValidator.new('String', ["BRANDED", "UNBRANDED", "BOTH", "NONE"])
       unless validator.valid?(display_type)
         fail ArgumentError, "invalid value for \"display_type\", must be one of #{validator.allowable_values}."
       end
@@ -296,7 +324,7 @@ module Aryeo
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] source_type Object to be assigned
     def source_type=(source_type)
-      validator = EnumAttributeValidator.new('String', ["youtube", "vimeo", "optimized", "uploaded", "link"])
+      validator = EnumAttributeValidator.new('String', ["YOUTUBE", "VIMEO", "OPTIMIZED", "UPLOADED", "LINK"])
       unless validator.valid?(source_type)
         fail ArgumentError, "invalid value for \"source_type\", must be one of #{validator.allowable_values}."
       end
@@ -374,12 +402,12 @@ module Aryeo
       self.class == o.class &&
           id == o.id &&
           title == o.title &&
+          duration == o.duration &&
           display_type == o.display_type &&
           source_type == o.source_type &&
           thumbnail_url == o.thumbnail_url &&
           playback_url == o.playback_url &&
           download_url == o.download_url &&
-          seconds == o.seconds &&
           share_url == o.share_url
     end
 
@@ -392,7 +420,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, title, display_type, source_type, thumbnail_url, playback_url, download_url, seconds, share_url].hash
+      [id, title, duration, display_type, source_type, thumbnail_url, playback_url, download_url, share_url].hash
     end
 
     # Builds the object from hash

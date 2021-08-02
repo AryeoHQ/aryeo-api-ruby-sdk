@@ -9,8 +9,12 @@ require 'date'
 require 'time'
 
 module Aryeo
-  # A collection of partial listings.
-  class PartialListingCollection
+  # A collection of listings.
+  class ListingCollection
+    # What was the state of the request?
+    attr_accessor :status
+
+    # 
     attr_accessor :data
 
     attr_accessor :meta
@@ -20,6 +24,7 @@ module Aryeo
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'status' => :'status',
         :'data' => :'data',
         :'meta' => :'meta',
         :'links' => :'links'
@@ -34,7 +39,8 @@ module Aryeo
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'data' => :'Array<PartialListing>',
+        :'status' => :'String',
+        :'data' => :'Array<Listing>',
         :'meta' => :'PaginationMeta',
         :'links' => :'PaginationLinks'
       }
@@ -43,6 +49,7 @@ module Aryeo
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'data',
       ])
     end
 
@@ -50,16 +57,20 @@ module Aryeo
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Aryeo::PartialListingCollection` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Aryeo::ListingCollection` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Aryeo::PartialListingCollection`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Aryeo::ListingCollection`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
+      end
 
       if attributes.key?(:'data')
         if (value = attributes[:'data']).is_a?(Array)
@@ -80,13 +91,46 @@ module Aryeo
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @status.nil?
+        invalid_properties.push('invalid value for "status", status cannot be nil.')
+      end
+
+      if @status.to_s.length > 255
+        invalid_properties.push('invalid value for "status", the character length must be smaller than or equal to 255.')
+      end
+
+      if @status.to_s.length < 0
+        invalid_properties.push('invalid value for "status", the character length must be great than or equal to 0.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @status.nil?
+      return false if @status.to_s.length > 255
+      return false if @status.to_s.length < 0
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] status Value to be assigned
+    def status=(status)
+      if status.nil?
+        fail ArgumentError, 'status cannot be nil'
+      end
+
+      if status.to_s.length > 255
+        fail ArgumentError, 'invalid value for "status", the character length must be smaller than or equal to 255.'
+      end
+
+      if status.to_s.length < 0
+        fail ArgumentError, 'invalid value for "status", the character length must be great than or equal to 0.'
+      end
+
+      @status = status
     end
 
     # Checks equality by comparing each attribute.
@@ -94,6 +138,7 @@ module Aryeo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          status == o.status &&
           data == o.data &&
           meta == o.meta &&
           links == o.links
@@ -108,7 +153,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [data, meta, links].hash
+      [status, data, meta, links].hash
     end
 
     # Builds the object from hash

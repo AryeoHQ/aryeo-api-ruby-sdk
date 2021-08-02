@@ -31,10 +31,10 @@ Aryeo.configure do |config|
 end
 
 api_instance = Aryeo::ListingsApi.new
-id = 'UUID'
+uuid = 'UUID'
 
 begin
-  result = api_instance.get_listings_id(id)
+  result = api_instance.get_listings_id(uuid)
   p result.data.address.address_line_1
 rescue Aryeo::ApiError => e
   puts "Error when calling ListingsApi->get_listings_id: #{e}"
@@ -48,29 +48,30 @@ All URIs are relative to *https://api.aryeo.com/v1*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *Aryeo::ListingsApi* | [**get_listings**](docs/ListingsApi.md#get_listings) | **GET** /listings | Get the listings available to a group.
-*Aryeo::ListingsApi* | [**get_listings_id**](docs/ListingsApi.md#get_listings_id) | **GET** /listings/{id} | Get information about a listing.
-*Aryeo::MarketingMaterialsApi* | [**put_marketing_materials_templates_uuid_publish**](docs/MarketingMaterialsApi.md#put_marketing_materials_templates_uuid_publish) | **PUT** /marketing-materials/templates/{uuid}/publish | Publish a marketing material template.
-*Aryeo::MarketingMaterialsApi* | [**put_marketing_materials_uuid_publish**](docs/MarketingMaterialsApi.md#put_marketing_materials_uuid_publish) | **PUT** /marketing-materials/{uuid}/publish | Publish a marketing material.
+*Aryeo::ListingsApi* | [**get_listings_id**](docs/ListingsApi.md#get_listings_id) | **GET** /listings/{listing_id} | Get information about a listing.
 *Aryeo::OrdersApi* | [**get_orders**](docs/OrdersApi.md#get_orders) | **GET** /orders | Get orders available to a group.
 *Aryeo::OrdersApi* | [**post_orders**](docs/OrdersApi.md#post_orders) | **POST** /orders | Create an order.
 *Aryeo::VendorsApi* | [**get_vendors**](docs/VendorsApi.md#get_vendors) | **GET** /vendors | Get vendors available to a group.
-*Aryeo::VendorsApi* | [**get_vendors_search**](docs/VendorsApi.md#get_vendors_search) | **GET** /vendors/search | Get vendors that can be added to the group's vendor list.
+*Aryeo::VendorsApi* | [**get_vendors_id**](docs/VendorsApi.md#get_vendors_id) | **GET** /vendors/{vendor_id} | Get vendors available to a group.
 
 
 ## Documentation for Models
 
+ - [Aryeo::Address](docs/Address.md)
  - [Aryeo::ApiError](docs/ApiError.md)
- - [Aryeo::Currency](docs/Currency.md)
+ - [Aryeo::ApiFail](docs/ApiFail.md)
  - [Aryeo::FloorPlan](docs/FloorPlan.md)
  - [Aryeo::Group](docs/Group.md)
- - [Aryeo::GroupAgentProperties](docs/GroupAgentProperties.md)
  - [Aryeo::GroupCollection](docs/GroupCollection.md)
+ - [Aryeo::GroupResource](docs/GroupResource.md)
  - [Aryeo::Image](docs/Image.md)
  - [Aryeo::InteractiveContent](docs/InteractiveContent.md)
  - [Aryeo::Listing](docs/Listing.md)
+ - [Aryeo::ListingBuilding](docs/ListingBuilding.md)
+ - [Aryeo::ListingCollection](docs/ListingCollection.md)
+ - [Aryeo::ListingLot](docs/ListingLot.md)
+ - [Aryeo::ListingPrice](docs/ListingPrice.md)
  - [Aryeo::ListingResource](docs/ListingResource.md)
- - [Aryeo::MarketingMaterialPublishPayload](docs/MarketingMaterialPublishPayload.md)
- - [Aryeo::MarketingMaterialTemplatePublishPayload](docs/MarketingMaterialTemplatePublishPayload.md)
  - [Aryeo::Order](docs/Order.md)
  - [Aryeo::OrderCollection](docs/OrderCollection.md)
  - [Aryeo::OrderForm](docs/OrderForm.md)
@@ -78,13 +79,7 @@ Class | Method | HTTP request | Description
  - [Aryeo::OrderResource](docs/OrderResource.md)
  - [Aryeo::PaginationLinks](docs/PaginationLinks.md)
  - [Aryeo::PaginationMeta](docs/PaginationMeta.md)
- - [Aryeo::PartialAddress](docs/PartialAddress.md)
- - [Aryeo::PartialGroup](docs/PartialGroup.md)
- - [Aryeo::PartialListing](docs/PartialListing.md)
- - [Aryeo::PartialListingCollection](docs/PartialListingCollection.md)
- - [Aryeo::ProductItem](docs/ProductItem.md)
- - [Aryeo::PropertyDetails](docs/PropertyDetails.md)
- - [Aryeo::PropertyWebsites](docs/PropertyWebsites.md)
+ - [Aryeo::PropertyWebsite](docs/PropertyWebsite.md)
  - [Aryeo::SocialProfiles](docs/SocialProfiles.md)
  - [Aryeo::User](docs/User.md)
  - [Aryeo::Video](docs/Video.md)
@@ -93,9 +88,9 @@ Class | Method | HTTP request | Description
 ## Documentation for Authorization
 
 
-### JWT
+### Token
 
-- **Type**: Bearer authentication (JWT)
+- **Type**: Bearer authentication
 
 
 ## Author

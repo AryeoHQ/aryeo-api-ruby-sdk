@@ -26,12 +26,6 @@ describe Aryeo::User do
     end
   end
 
-  describe 'test attribute "avatar"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   describe 'test attribute "email"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -50,13 +44,13 @@ describe Aryeo::User do
     end
   end
 
-  describe 'test attribute "timezone"' do
+  describe 'test attribute "phone"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "phone"' do
+  describe 'test attribute "avatar_url"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

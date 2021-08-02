@@ -11,11 +11,15 @@ require 'time'
 module Aryeo
   # An order.
   class OrderResource
+    # What was the state of the request?
+    attr_accessor :status
+
     attr_accessor :data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'status' => :'status',
         :'data' => :'data'
       }
     end
@@ -28,6 +32,7 @@ module Aryeo
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'status' => :'String',
         :'data' => :'Order'
       }
     end
@@ -53,6 +58,10 @@ module Aryeo
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
+      end
+
       if attributes.key?(:'data')
         self.data = attributes[:'data']
       end
@@ -62,13 +71,46 @@ module Aryeo
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @status.nil?
+        invalid_properties.push('invalid value for "status", status cannot be nil.')
+      end
+
+      if @status.to_s.length > 255
+        invalid_properties.push('invalid value for "status", the character length must be smaller than or equal to 255.')
+      end
+
+      if @status.to_s.length < 0
+        invalid_properties.push('invalid value for "status", the character length must be great than or equal to 0.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @status.nil?
+      return false if @status.to_s.length > 255
+      return false if @status.to_s.length < 0
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] status Value to be assigned
+    def status=(status)
+      if status.nil?
+        fail ArgumentError, 'status cannot be nil'
+      end
+
+      if status.to_s.length > 255
+        fail ArgumentError, 'invalid value for "status", the character length must be smaller than or equal to 255.'
+      end
+
+      if status.to_s.length < 0
+        fail ArgumentError, 'invalid value for "status", the character length must be great than or equal to 0.'
+      end
+
+      @status = status
     end
 
     # Checks equality by comparing each attribute.
@@ -76,6 +118,7 @@ module Aryeo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          status == o.status &&
           data == o.data
     end
 
@@ -88,7 +131,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [data].hash
+      [status, data].hash
     end
 
     # Builds the object from hash

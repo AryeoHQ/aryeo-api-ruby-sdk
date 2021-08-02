@@ -29,7 +29,7 @@ describe Aryeo::InteractiveContent do
   describe 'test attribute "display_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["branded", "unbranded", "both"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["BRANDED", "UNBRANDED", "BOTH"])
       # validator.allowable_values.each do |value|
       #   expect { instance.display_type = value }.not_to raise_error
       # end
@@ -39,7 +39,7 @@ describe Aryeo::InteractiveContent do
   describe 'test attribute "content_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["matterport", "other"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["MATTERPORT", "OTHER"])
       # validator.allowable_values.each do |value|
       #   expect { instance.content_type = value }.not_to raise_error
       # end

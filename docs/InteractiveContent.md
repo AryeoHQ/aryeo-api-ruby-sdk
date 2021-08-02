@@ -17,8 +17,8 @@ require 'aryeo'
 
 instance = Aryeo::InteractiveContent.new(
   id: 00000000-0000-0000-0000-000000000000,
-  display_type: branded,
-  content_type: matterport,
+  display_type: BRANDED,
+  content_type: MATTERPORT,
   url: https://my.matterport.com/show/?m&#x3D;HFaxPzqNFfm,
   thumbnail_url: https://via.placeholder.com/300.jpg
 )

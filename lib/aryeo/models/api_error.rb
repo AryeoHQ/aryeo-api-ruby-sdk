@@ -11,13 +11,21 @@ require 'time'
 module Aryeo
   # A generic error returned by the API.
   class ApiError
+    # What was the state of the request?
+    attr_accessor :status
+
     # The error message.
     attr_accessor :message
+
+    # A numeric code corresponding to the error.
+    attr_accessor :code
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'message' => :'message'
+        :'status' => :'status',
+        :'message' => :'message',
+        :'code' => :'code'
       }
     end
 
@@ -29,13 +37,16 @@ module Aryeo
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'message' => :'String'
+        :'status' => :'String',
+        :'message' => :'String',
+        :'code' => :'Integer'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'code'
       ])
     end
 
@@ -54,8 +65,16 @@ module Aryeo
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
+      end
+
       if attributes.key?(:'message')
         self.message = attributes[:'message']
+      end
+
+      if attributes.key?(:'code')
+        self.code = attributes[:'code']
       end
     end
 
@@ -63,6 +82,18 @@ module Aryeo
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @status.nil?
+        invalid_properties.push('invalid value for "status", status cannot be nil.')
+      end
+
+      if @status.to_s.length > 255
+        invalid_properties.push('invalid value for "status", the character length must be smaller than or equal to 255.')
+      end
+
+      if @status.to_s.length < 0
+        invalid_properties.push('invalid value for "status", the character length must be great than or equal to 0.')
+      end
+
       if @message.nil?
         invalid_properties.push('invalid value for "message", message cannot be nil.')
       end
@@ -81,10 +112,31 @@ module Aryeo
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @status.nil?
+      return false if @status.to_s.length > 255
+      return false if @status.to_s.length < 0
       return false if @message.nil?
       return false if @message.to_s.length > 255
       return false if @message.to_s.length < 0
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] status Value to be assigned
+    def status=(status)
+      if status.nil?
+        fail ArgumentError, 'status cannot be nil'
+      end
+
+      if status.to_s.length > 255
+        fail ArgumentError, 'invalid value for "status", the character length must be smaller than or equal to 255.'
+      end
+
+      if status.to_s.length < 0
+        fail ArgumentError, 'invalid value for "status", the character length must be great than or equal to 0.'
+      end
+
+      @status = status
     end
 
     # Custom attribute writer method with validation
@@ -110,7 +162,9 @@ module Aryeo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          message == o.message
+          status == o.status &&
+          message == o.message &&
+          code == o.code
     end
 
     # @see the `==` method
@@ -122,7 +176,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [message].hash
+      [status, message, code].hash
     end
 
     # Builds the object from hash

@@ -11,14 +11,11 @@ require 'time'
 module Aryeo
   # Payload for creating an order.
   class OrderPostPayload
-    # The fulfillment status of the order.
+    # The fulfillment status of the order. Defaults to \"UNFULFILLED\".
     attr_accessor :fulfillment_status
 
-    # The payment status of the order.
+    # The payment status of the order. Defaults to \"UNPAID\". 
     attr_accessor :payment_status
-
-    # product_items
-    attr_accessor :product_items
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -46,8 +43,7 @@ module Aryeo
     def self.attribute_map
       {
         :'fulfillment_status' => :'fulfillment_status',
-        :'payment_status' => :'payment_status',
-        :'product_items' => :'product_items'
+        :'payment_status' => :'payment_status'
       }
     end
 
@@ -60,8 +56,7 @@ module Aryeo
     def self.openapi_types
       {
         :'fulfillment_status' => :'String',
-        :'payment_status' => :'String',
-        :'product_items' => :'Array<ProductItem>'
+        :'payment_status' => :'String'
       }
     end
 
@@ -69,7 +64,7 @@ module Aryeo
     def self.openapi_nullable
       Set.new([
         :'fulfillment_status',
-        :'payment_status',
+        :'payment_status'
       ])
     end
 
@@ -94,12 +89,6 @@ module Aryeo
 
       if attributes.key?(:'payment_status')
         self.payment_status = attributes[:'payment_status']
-      end
-
-      if attributes.key?(:'product_items')
-        if (value = attributes[:'product_items']).is_a?(Array)
-          self.product_items = value
-        end
       end
     end
 
@@ -129,11 +118,11 @@ module Aryeo
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      fulfillment_status_validator = EnumAttributeValidator.new('String', ["fulfilled", "unfulfilled"])
+      fulfillment_status_validator = EnumAttributeValidator.new('String', ["FULFILLED", "UNFULFILLED"])
       return false unless fulfillment_status_validator.valid?(@fulfillment_status)
       return false if !@fulfillment_status.nil? && @fulfillment_status.to_s.length > 255
       return false if !@fulfillment_status.nil? && @fulfillment_status.to_s.length < 0
-      payment_status_validator = EnumAttributeValidator.new('String', ["paid", "unpaid"])
+      payment_status_validator = EnumAttributeValidator.new('String', ["PAID", "UNPAID"])
       return false unless payment_status_validator.valid?(@payment_status)
       return false if !@payment_status.nil? && @payment_status.to_s.length > 255
       return false if !@payment_status.nil? && @payment_status.to_s.length < 0
@@ -143,7 +132,7 @@ module Aryeo
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] fulfillment_status Object to be assigned
     def fulfillment_status=(fulfillment_status)
-      validator = EnumAttributeValidator.new('String', ["fulfilled", "unfulfilled"])
+      validator = EnumAttributeValidator.new('String', ["FULFILLED", "UNFULFILLED"])
       unless validator.valid?(fulfillment_status)
         fail ArgumentError, "invalid value for \"fulfillment_status\", must be one of #{validator.allowable_values}."
       end
@@ -153,7 +142,7 @@ module Aryeo
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] payment_status Object to be assigned
     def payment_status=(payment_status)
-      validator = EnumAttributeValidator.new('String', ["paid", "unpaid"])
+      validator = EnumAttributeValidator.new('String', ["PAID", "UNPAID"])
       unless validator.valid?(payment_status)
         fail ArgumentError, "invalid value for \"payment_status\", must be one of #{validator.allowable_values}."
       end
@@ -166,8 +155,7 @@ module Aryeo
       return true if self.equal?(o)
       self.class == o.class &&
           fulfillment_status == o.fulfillment_status &&
-          payment_status == o.payment_status &&
-          product_items == o.product_items
+          payment_status == o.payment_status
     end
 
     # @see the `==` method
@@ -179,7 +167,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [fulfillment_status, payment_status, product_items].hash
+      [fulfillment_status, payment_status].hash
     end
 
     # Builds the object from hash

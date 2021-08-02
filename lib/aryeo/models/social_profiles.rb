@@ -9,7 +9,7 @@ require 'date'
 require 'time'
 
 module Aryeo
-  # Details for a real estate agent.
+  # External profile URLs for an agent or brokerage group.
   class SocialProfiles
     # URL for Facebook.
     attr_accessor :facebook_profile_url

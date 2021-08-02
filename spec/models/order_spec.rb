@@ -26,41 +26,13 @@ describe Aryeo::Order do
     end
   end
 
-  describe 'test attribute "display_id"' do
+  describe 'test attribute "number"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "total_price_cents"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "currency"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "payment_status"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["paid", "unpaid"])
-      # validator.allowable_values.each do |value|
-      #   expect { instance.payment_status = value }.not_to raise_error
-      # end
-    end
-  end
-
-  describe 'test attribute "payment_url"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "listing"' do
+  describe 'test attribute "title"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -69,10 +41,42 @@ describe Aryeo::Order do
   describe 'test attribute "fulfillment_status"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["fulfilled", "unfulfilled"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["FULFILLED", "UNFULFILLED"])
       # validator.allowable_values.each do |value|
       #   expect { instance.fulfillment_status = value }.not_to raise_error
       # end
+    end
+  end
+
+  describe 'test attribute "payment_status"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["PAID", "UNPAID"])
+      # validator.allowable_values.each do |value|
+      #   expect { instance.payment_status = value }.not_to raise_error
+      # end
+    end
+  end
+
+  describe 'test attribute "currency"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["USD", "CAD", "GBP", "CHF", "EUR", "AUD", "NZD", "ZAR"])
+      # validator.allowable_values.each do |value|
+      #   expect { instance.currency = value }.not_to raise_error
+      # end
+    end
+  end
+
+  describe 'test attribute "total_amount"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "payment_url"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 

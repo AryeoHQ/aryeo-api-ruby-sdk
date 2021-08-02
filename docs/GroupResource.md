@@ -1,18 +1,18 @@
-# Aryeo::ListingResource
+# Aryeo::GroupResource
 
 ## Properties
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **status** | **String** | What was the state of the request? |  |
-| **data** | [**Listing**](Listing.md) |  | [optional] |
+| **data** | [**Group**](Group.md) |  | [optional] |
 
 ## Example
 
 ```ruby
 require 'aryeo'
 
-instance = Aryeo::ListingResource.new(
+instance = Aryeo::GroupResource.new(
   status: success,
   data: null
 )

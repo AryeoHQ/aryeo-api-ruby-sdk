@@ -188,12 +188,12 @@ module Aryeo
       return false if @id.to_s.length > 255
       return false if @id.to_s.length < 0
       return false if @display_type.nil?
-      display_type_validator = EnumAttributeValidator.new('String', ["branded", "unbranded", "both"])
+      display_type_validator = EnumAttributeValidator.new('String', ["BRANDED", "UNBRANDED", "BOTH"])
       return false unless display_type_validator.valid?(@display_type)
       return false if @display_type.to_s.length > 65535
       return false if @display_type.to_s.length < 1
       return false if @content_type.nil?
-      content_type_validator = EnumAttributeValidator.new('String', ["matterport", "other"])
+      content_type_validator = EnumAttributeValidator.new('String', ["MATTERPORT", "OTHER"])
       return false unless content_type_validator.valid?(@content_type)
       return false if @content_type.to_s.length > 65535
       return false if @content_type.to_s.length < 1
@@ -226,7 +226,7 @@ module Aryeo
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] display_type Object to be assigned
     def display_type=(display_type)
-      validator = EnumAttributeValidator.new('String', ["branded", "unbranded", "both"])
+      validator = EnumAttributeValidator.new('String', ["BRANDED", "UNBRANDED", "BOTH"])
       unless validator.valid?(display_type)
         fail ArgumentError, "invalid value for \"display_type\", must be one of #{validator.allowable_values}."
       end
@@ -236,7 +236,7 @@ module Aryeo
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] content_type Object to be assigned
     def content_type=(content_type)
-      validator = EnumAttributeValidator.new('String', ["matterport", "other"])
+      validator = EnumAttributeValidator.new('String', ["MATTERPORT", "OTHER"])
       unless validator.valid?(content_type)
         fail ArgumentError, "invalid value for \"content_type\", must be one of #{validator.allowable_values}."
       end

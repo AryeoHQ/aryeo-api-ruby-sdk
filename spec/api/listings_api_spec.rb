@@ -31,14 +31,24 @@ describe 'ListingsApi' do
   # Get the listings available to a group.
   # Get the listings available to a group.
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :query A search query.
+  # @option opts [String] :include Comma separated list of optional data to include in the response.
+  # @option opts [String] :filter_search Return listings that have fields matching this term.
+  # @option opts [String] :filter_address Return listings that have an address matching this term.
+  # @option opts [String] :filter_list_agent Return listings that have a listing agent or co-listing agent matching this term.
+  # @option opts [String] :filter_status Return listings that have a certain status.
+  # @option opts [Boolean] :filter_active Set as true to return listings that have an active status (e.g. active statuses include &#x60;COMING_SOON&#x60;, &#x60;FOR_SALE&#x60;, &#x60;FOR_LEASE&#x60;, &#x60;PENDING_SALE&#x60;, &#x60;PENDING_LEASE&#x60;, &#x60;SOLD&#x60;, &#x60;LEASED&#x60;). 
+  # @option opts [Float] :filter_price_gte Return listings where the price field is greater than or equal to this value.
+  # @option opts [Float] :filter_price_lte Return listings where the price field is less than or equal to this value.
+  # @option opts [Float] :filter_square_feet_gte Return listings where the square feet field is greater than or equal to this value.
+  # @option opts [Float] :filter_square_feet_lte Return listings where the square feet field is less than or equal to this value.
+  # @option opts [Integer] :filter_bedrooms_gte Return listings where the bedrooms field is greater than or equal to this value.
+  # @option opts [Integer] :filter_bedrooms_lte Return listings where the bedrooms field is less than or equal to this value.
+  # @option opts [Float] :filter_bathrooms_gte Return listings where the bathrooms field is greater than or equal to this value.
+  # @option opts [Float] :filter_bathrooms_lte Return listings where the bathrooms field is less than or equal to this value.
+  # @option opts [String] :sort Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;-created_at&#x60;.
   # @option opts [String] :per_page The number of items per page. Defaults to 25.
   # @option opts [String] :page The requested page. Defaults to 1.
-  # @option opts [String] :status The status you want to scope down to, example sold,  coming_soon,  for_sale, sold
-  # @option opts [Integer] :price The price value and greater will be returned.
-  # @option opts [Float] :bathrooms Number of bathrooms minimum.
-  # @option opts [Integer] :bedrooms Number of bedrooms minimum.
-  # @return [PartialListingCollection]
+  # @return [ListingCollection]
   describe 'get_listings test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -48,8 +58,9 @@ describe 'ListingsApi' do
   # unit tests for get_listings_id
   # Get information about a listing.
   # Get information about a listing.
-  # @param id The UUID of a listing.
+  # @param listing_id The ID of a listing.
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Comma separated list of optional data to include in the response.
   # @return [ListingResource]
   describe 'get_listings_id test' do
     it 'should work' do

@@ -23,7 +23,7 @@ describe Aryeo::OrderPostPayload do
   describe 'test attribute "fulfillment_status"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["fulfilled", "unfulfilled"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["FULFILLED", "UNFULFILLED"])
       # validator.allowable_values.each do |value|
       #   expect { instance.fulfillment_status = value }.not_to raise_error
       # end
@@ -33,16 +33,10 @@ describe Aryeo::OrderPostPayload do
   describe 'test attribute "payment_status"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["paid", "unpaid"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["PAID", "UNPAID"])
       # validator.allowable_values.each do |value|
       #   expect { instance.payment_status = value }.not_to raise_error
       # end
-    end
-  end
-
-  describe 'test attribute "product_items"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 

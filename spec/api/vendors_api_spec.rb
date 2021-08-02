@@ -31,6 +31,7 @@ describe 'VendorsApi' do
   # Get vendors available to a group.
   # Get vendors available to a group.
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Comma separated list of optional data to include in the response.
   # @return [GroupCollection]
   describe 'get_vendors test' do
     it 'should work' do
@@ -38,15 +39,14 @@ describe 'VendorsApi' do
     end
   end
 
-  # unit tests for get_vendors_search
-  # Get vendors that can be added to the group&#39;s vendor list.
-  # Get vendors that can be added to the group&#39;s vendor list, excluding those already available to a group. 
+  # unit tests for get_vendors_id
+  # Get vendors available to a group.
+  # Get information about a vendor.
+  # @param vendor_id ID of the group that is associated as a vendor.
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :query A search query.
-  # @option opts [String] :per_page The number of items per page. Defaults to 25.
-  # @option opts [String] :page The requested page. Defaults to 1.
-  # @return [GroupCollection]
-  describe 'get_vendors_search test' do
+  # @option opts [String] :include Comma separated list of optional data to include in the response.
+  # @return [GroupResource]
+  describe 'get_vendors_id test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

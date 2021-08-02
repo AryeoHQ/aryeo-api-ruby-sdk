@@ -5,18 +5,21 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | ID of the group. |  |
-| **group_type** | **String** | The type of group. |  |
+| **type** | **String** | The type of the group. Can be CREATOR, AGENT, or BROKERAGE, and may dictate the attributes of the group returned. |  |
 | **name** | **String** | The name of the group. |  |
-| **logo** | **String** | Group logo. | [optional] |
-| **email** | **String** | Email. | [optional] |
-| **phone** | **String** | Phone number. | [optional] |
-| **website** | **String** | Website. | [optional] |
-| **is_brokerage_or_brokerage_agent** | **Boolean** | Does this group represent a brokerage or an agent who belongs to a brokerage? |  |
+| **email** | **String** | The email address of a group. | [optional] |
+| **phone** | **String** | A phone number represented in whichever standards specified by the group, typically ###-###-#### (separated by hyphens). | [optional] |
+| **website_url** | **String** | The website URL of a group. | [optional] |
+| **logo_url** | **String** | The logo URL of a group. | [optional] |
+| **avatar_url** | **String** | The profile image URL of a real estate agent. Only returned if group&#39;s type is AGENT. | [optional] |
+| **office_name** | **String** | The name of the brokerage or team of a real estate agent. Only returned if group&#39;s type is AGENT. | [optional] |
+| **license_number** | **String** | The license number of a real estate agent. Only returned if group&#39;s type is AGENT. | [optional] |
 | **social_profiles** | [**SocialProfiles**](SocialProfiles.md) |  | [optional] |
-| **agent_properties** | [**GroupAgentProperties**](GroupAgentProperties.md) |  | [optional] |
-| **users** | [**Array&lt;User&gt;**](User.md) | users | [optional] |
 | **default_order_form** | [**OrderForm**](OrderForm.md) |  | [optional] |
-| **order_forms** | [**Array&lt;OrderForm&gt;**](OrderForm.md) | An array of order forms. | [optional] |
+| **order_forms** | [**Array&lt;OrderForm&gt;**](OrderForm.md) | An array of order forms a vendor group provides for placing orders. Only returned if group&#39;s type is CREATOR.  | [optional] |
+| **owner** | [**User**](User.md) |  | [optional] |
+| **users** | [**Array&lt;User&gt;**](User.md) | The Aryeo users associated with this group. | [optional] |
+| **is_brokerage_or_brokerage_agent** | **Boolean** | Does this group represent a brokerage or an agent who belongs to a brokerage? |  |
 
 ## Example
 
@@ -25,18 +28,21 @@ require 'aryeo'
 
 instance = Aryeo::Group.new(
   id: 00000000-0000-0000-0000-000000000000,
-  group_type: agent,
+  type: AGENT,
   name: John Doe Reality,
-  logo: https://via.placeholder.com/300.jpg,
   email: john.doe@gmail.com,
   phone: 6175550173,
-  website: https://www.aryeo.com,
-  is_brokerage_or_brokerage_agent: true,
+  website_url: https://www.aryeo.com,
+  logo_url: https://via.placeholder.com/300.jpg,
+  avatar_url: https://via.placeholder.com/300.jpg,
+  office_name: John Doe Brokerage,
+  license_number: 12345678,
   social_profiles: null,
-  agent_properties: null,
-  users: null,
   default_order_form: null,
-  order_forms: null
+  order_forms: null,
+  owner: null,
+  users: null,
+  is_brokerage_or_brokerage_agent: true
 )
 ```
 

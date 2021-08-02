@@ -14,8 +14,8 @@ module Aryeo
     # UUID of the order form.
     attr_accessor :id
 
-    # The name of the order form.
-    attr_accessor :name
+    # The title or name of the order form.
+    attr_accessor :title
 
     # A URL of a publicly-accessible webpage for this order form.
     attr_accessor :url
@@ -24,7 +24,7 @@ module Aryeo
     def self.attribute_map
       {
         :'id' => :'id',
-        :'name' => :'name',
+        :'title' => :'title',
         :'url' => :'url'
       }
     end
@@ -38,7 +38,7 @@ module Aryeo
     def self.openapi_types
       {
         :'id' => :'String',
-        :'name' => :'String',
+        :'title' => :'String',
         :'url' => :'String'
       }
     end
@@ -46,7 +46,7 @@ module Aryeo
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'name',
+        :'title',
       ])
     end
 
@@ -69,8 +69,8 @@ module Aryeo
         self.id = attributes[:'id']
       end
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.key?(:'title')
+        self.title = attributes[:'title']
       end
 
       if attributes.key?(:'url')
@@ -94,12 +94,12 @@ module Aryeo
         invalid_properties.push('invalid value for "id", the character length must be great than or equal to 0.')
       end
 
-      if !@name.nil? && @name.to_s.length > 255
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 255.')
+      if !@title.nil? && @title.to_s.length > 255
+        invalid_properties.push('invalid value for "title", the character length must be smaller than or equal to 255.')
       end
 
-      if !@name.nil? && @name.to_s.length < 0
-        invalid_properties.push('invalid value for "name", the character length must be great than or equal to 0.')
+      if !@title.nil? && @title.to_s.length < 0
+        invalid_properties.push('invalid value for "title", the character length must be great than or equal to 0.')
       end
 
       if @url.nil?
@@ -123,8 +123,8 @@ module Aryeo
       return false if @id.nil?
       return false if @id.to_s.length > 255
       return false if @id.to_s.length < 0
-      return false if !@name.nil? && @name.to_s.length > 255
-      return false if !@name.nil? && @name.to_s.length < 0
+      return false if !@title.nil? && @title.to_s.length > 255
+      return false if !@title.nil? && @title.to_s.length < 0
       return false if @url.nil?
       return false if @url.to_s.length > 255
       return false if @url.to_s.length < 0
@@ -150,17 +150,17 @@ module Aryeo
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] name Value to be assigned
-    def name=(name)
-      if !name.nil? && name.to_s.length > 255
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 255.'
+    # @param [Object] title Value to be assigned
+    def title=(title)
+      if !title.nil? && title.to_s.length > 255
+        fail ArgumentError, 'invalid value for "title", the character length must be smaller than or equal to 255.'
       end
 
-      if !name.nil? && name.to_s.length < 0
-        fail ArgumentError, 'invalid value for "name", the character length must be great than or equal to 0.'
+      if !title.nil? && title.to_s.length < 0
+        fail ArgumentError, 'invalid value for "title", the character length must be great than or equal to 0.'
       end
 
-      @name = name
+      @title = title
     end
 
     # Custom attribute writer method with validation
@@ -187,7 +187,7 @@ module Aryeo
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          name == o.name &&
+          title == o.title &&
           url == o.url
     end
 
@@ -200,7 +200,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, name, url].hash
+      [id, title, url].hash
     end
 
     # Builds the object from hash

@@ -9,23 +9,23 @@ require 'date'
 require 'time'
 
 module Aryeo
-  # Websites that displays information about a property.
-  class PropertyWebsites
-    # URL for website.
+  # Website (in branded and unbranded versions) that displays information about a property.
+  class PropertyWebsite
+    # ID of the website.
+    attr_accessor :id
+
+    # URL for branded version of website.
     attr_accessor :branded_url
 
-    # URL for website.
+    # URL for unbranded version of website.
     attr_accessor :unbranded_url
-
-    # ID for property website
-    attr_accessor :id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'id' => :'id',
         :'branded_url' => :'branded_url',
-        :'unbranded_url' => :'unbranded_url',
-        :'id' => :'id'
+        :'unbranded_url' => :'unbranded_url'
       }
     end
 
@@ -37,9 +37,9 @@ module Aryeo
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'id' => :'String',
         :'branded_url' => :'String',
-        :'unbranded_url' => :'String',
-        :'id' => :'Integer'
+        :'unbranded_url' => :'String'
       }
     end
 
@@ -53,16 +53,20 @@ module Aryeo
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Aryeo::PropertyWebsites` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Aryeo::PropertyWebsite` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Aryeo::PropertyWebsites`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Aryeo::PropertyWebsite`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
+      end
 
       if attributes.key?(:'branded_url')
         self.branded_url = attributes[:'branded_url']
@@ -71,16 +75,24 @@ module Aryeo
       if attributes.key?(:'unbranded_url')
         self.unbranded_url = attributes[:'unbranded_url']
       end
-
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
-      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
+      if @id.to_s.length > 255
+        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 255.')
+      end
+
+      if @id.to_s.length < 0
+        invalid_properties.push('invalid value for "id", the character length must be great than or equal to 0.')
+      end
+
       if @branded_url.nil?
         invalid_properties.push('invalid value for "branded_url", branded_url cannot be nil.')
       end
@@ -105,24 +117,40 @@ module Aryeo
         invalid_properties.push('invalid value for "unbranded_url", the character length must be great than or equal to 1.')
       end
 
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @id.nil?
+      return false if @id.to_s.length > 255
+      return false if @id.to_s.length < 0
       return false if @branded_url.nil?
       return false if @branded_url.to_s.length > 65535
       return false if @branded_url.to_s.length < 1
       return false if @unbranded_url.nil?
       return false if @unbranded_url.to_s.length > 65535
       return false if @unbranded_url.to_s.length < 1
-      return false if @id.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] id Value to be assigned
+    def id=(id)
+      if id.nil?
+        fail ArgumentError, 'id cannot be nil'
+      end
+
+      if id.to_s.length > 255
+        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 255.'
+      end
+
+      if id.to_s.length < 0
+        fail ArgumentError, 'invalid value for "id", the character length must be great than or equal to 0.'
+      end
+
+      @id = id
     end
 
     # Custom attribute writer method with validation
@@ -166,9 +194,9 @@ module Aryeo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          id == o.id &&
           branded_url == o.branded_url &&
-          unbranded_url == o.unbranded_url &&
-          id == o.id
+          unbranded_url == o.unbranded_url
     end
 
     # @see the `==` method
@@ -180,7 +208,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [branded_url, unbranded_url, id].hash
+      [id, branded_url, unbranded_url].hash
     end
 
     # Builds the object from hash

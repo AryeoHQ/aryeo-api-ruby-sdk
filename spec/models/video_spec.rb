@@ -32,10 +32,16 @@ describe Aryeo::Video do
     end
   end
 
+  describe 'test attribute "duration"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "display_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["branded", "unbranded", "both", "none"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["BRANDED", "UNBRANDED", "BOTH", "NONE"])
       # validator.allowable_values.each do |value|
       #   expect { instance.display_type = value }.not_to raise_error
       # end
@@ -45,7 +51,7 @@ describe Aryeo::Video do
   describe 'test attribute "source_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["youtube", "vimeo", "optimized", "uploaded", "link"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["YOUTUBE", "VIMEO", "OPTIMIZED", "UPLOADED", "LINK"])
       # validator.allowable_values.each do |value|
       #   expect { instance.source_type = value }.not_to raise_error
       # end
@@ -65,12 +71,6 @@ describe Aryeo::Video do
   end
 
   describe 'test attribute "download_url"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "seconds"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

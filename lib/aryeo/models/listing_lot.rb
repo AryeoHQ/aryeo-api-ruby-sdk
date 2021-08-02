@@ -9,23 +9,19 @@ require 'date'
 require 'time'
 
 module Aryeo
-  # A subset of group properties relevant to agents.
-  class GroupAgentProperties
-    # Name of brokerage.
-    attr_accessor :brokerage_name
+  # Parcel data of the lot of a listing. Includes nearly everything about the land that makes up the listing.
+  class ListingLot
+    # Total area of the lot of a listing in acres. 
+    attr_accessor :size_acres
 
-    # Agent's license number.
-    attr_accessor :agent_license_number
-
-    # Agent's profile image URL.
-    attr_accessor :agent_avatar
+    # Number of parking spaces.
+    attr_accessor :open_parking_spaces
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'brokerage_name' => :'brokerage_name',
-        :'agent_license_number' => :'agent_license_number',
-        :'agent_avatar' => :'agent_avatar'
+        :'size_acres' => :'size_acres',
+        :'open_parking_spaces' => :'open_parking_spaces'
       }
     end
 
@@ -37,18 +33,16 @@ module Aryeo
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'brokerage_name' => :'String',
-        :'agent_license_number' => :'String',
-        :'agent_avatar' => :'String'
+        :'size_acres' => :'Float',
+        :'open_parking_spaces' => :'Float'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'brokerage_name',
-        :'agent_license_number',
-        :'agent_avatar'
+        :'size_acres',
+        :'open_parking_spaces'
       ])
     end
 
@@ -56,27 +50,23 @@ module Aryeo
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Aryeo::GroupAgentProperties` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Aryeo::ListingLot` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Aryeo::GroupAgentProperties`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Aryeo::ListingLot`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'brokerage_name')
-        self.brokerage_name = attributes[:'brokerage_name']
+      if attributes.key?(:'size_acres')
+        self.size_acres = attributes[:'size_acres']
       end
 
-      if attributes.key?(:'agent_license_number')
-        self.agent_license_number = attributes[:'agent_license_number']
-      end
-
-      if attributes.key?(:'agent_avatar')
-        self.agent_avatar = attributes[:'agent_avatar']
+      if attributes.key?(:'open_parking_spaces')
+        self.open_parking_spaces = attributes[:'open_parking_spaces']
       end
     end
 
@@ -84,28 +74,12 @@ module Aryeo
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@brokerage_name.nil? && @brokerage_name.to_s.length > 255
-        invalid_properties.push('invalid value for "brokerage_name", the character length must be smaller than or equal to 255.')
+      if !@size_acres.nil? && @size_acres < 0
+        invalid_properties.push('invalid value for "size_acres", must be greater than or equal to 0.')
       end
 
-      if !@brokerage_name.nil? && @brokerage_name.to_s.length < 0
-        invalid_properties.push('invalid value for "brokerage_name", the character length must be great than or equal to 0.')
-      end
-
-      if !@agent_license_number.nil? && @agent_license_number.to_s.length > 255
-        invalid_properties.push('invalid value for "agent_license_number", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@agent_license_number.nil? && @agent_license_number.to_s.length < 0
-        invalid_properties.push('invalid value for "agent_license_number", the character length must be great than or equal to 0.')
-      end
-
-      if !@agent_avatar.nil? && @agent_avatar.to_s.length > 255
-        invalid_properties.push('invalid value for "agent_avatar", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@agent_avatar.nil? && @agent_avatar.to_s.length < 0
-        invalid_properties.push('invalid value for "agent_avatar", the character length must be great than or equal to 0.')
+      if !@open_parking_spaces.nil? && @open_parking_spaces < 0
+        invalid_properties.push('invalid value for "open_parking_spaces", must be greater than or equal to 0.')
       end
 
       invalid_properties
@@ -114,55 +88,29 @@ module Aryeo
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@brokerage_name.nil? && @brokerage_name.to_s.length > 255
-      return false if !@brokerage_name.nil? && @brokerage_name.to_s.length < 0
-      return false if !@agent_license_number.nil? && @agent_license_number.to_s.length > 255
-      return false if !@agent_license_number.nil? && @agent_license_number.to_s.length < 0
-      return false if !@agent_avatar.nil? && @agent_avatar.to_s.length > 255
-      return false if !@agent_avatar.nil? && @agent_avatar.to_s.length < 0
+      return false if !@size_acres.nil? && @size_acres < 0
+      return false if !@open_parking_spaces.nil? && @open_parking_spaces < 0
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] brokerage_name Value to be assigned
-    def brokerage_name=(brokerage_name)
-      if !brokerage_name.nil? && brokerage_name.to_s.length > 255
-        fail ArgumentError, 'invalid value for "brokerage_name", the character length must be smaller than or equal to 255.'
+    # @param [Object] size_acres Value to be assigned
+    def size_acres=(size_acres)
+      if !size_acres.nil? && size_acres < 0
+        fail ArgumentError, 'invalid value for "size_acres", must be greater than or equal to 0.'
       end
 
-      if !brokerage_name.nil? && brokerage_name.to_s.length < 0
-        fail ArgumentError, 'invalid value for "brokerage_name", the character length must be great than or equal to 0.'
-      end
-
-      @brokerage_name = brokerage_name
+      @size_acres = size_acres
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] agent_license_number Value to be assigned
-    def agent_license_number=(agent_license_number)
-      if !agent_license_number.nil? && agent_license_number.to_s.length > 255
-        fail ArgumentError, 'invalid value for "agent_license_number", the character length must be smaller than or equal to 255.'
+    # @param [Object] open_parking_spaces Value to be assigned
+    def open_parking_spaces=(open_parking_spaces)
+      if !open_parking_spaces.nil? && open_parking_spaces < 0
+        fail ArgumentError, 'invalid value for "open_parking_spaces", must be greater than or equal to 0.'
       end
 
-      if !agent_license_number.nil? && agent_license_number.to_s.length < 0
-        fail ArgumentError, 'invalid value for "agent_license_number", the character length must be great than or equal to 0.'
-      end
-
-      @agent_license_number = agent_license_number
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] agent_avatar Value to be assigned
-    def agent_avatar=(agent_avatar)
-      if !agent_avatar.nil? && agent_avatar.to_s.length > 255
-        fail ArgumentError, 'invalid value for "agent_avatar", the character length must be smaller than or equal to 255.'
-      end
-
-      if !agent_avatar.nil? && agent_avatar.to_s.length < 0
-        fail ArgumentError, 'invalid value for "agent_avatar", the character length must be great than or equal to 0.'
-      end
-
-      @agent_avatar = agent_avatar
+      @open_parking_spaces = open_parking_spaces
     end
 
     # Checks equality by comparing each attribute.
@@ -170,9 +118,8 @@ module Aryeo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          brokerage_name == o.brokerage_name &&
-          agent_license_number == o.agent_license_number &&
-          agent_avatar == o.agent_avatar
+          size_acres == o.size_acres &&
+          open_parking_spaces == o.open_parking_spaces
     end
 
     # @see the `==` method
@@ -184,7 +131,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [brokerage_name, agent_license_number, agent_avatar].hash
+      [size_acres, open_parking_spaces].hash
     end
 
     # Builds the object from hash

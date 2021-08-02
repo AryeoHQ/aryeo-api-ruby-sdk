@@ -14,38 +14,47 @@ module Aryeo
     # ID of the group.
     attr_accessor :id
 
-    # The type of group.
-    attr_accessor :group_type
+    # The type of the group. Can be CREATOR, AGENT, or BROKERAGE, and may dictate the attributes of the group returned.
+    attr_accessor :type
 
     # The name of the group.
     attr_accessor :name
 
-    # Group logo.
-    attr_accessor :logo
-
-    # Email.
+    # The email address of a group.
     attr_accessor :email
 
-    # Phone number.
+    # A phone number represented in whichever standards specified by the group, typically ###-###-#### (separated by hyphens).
     attr_accessor :phone
 
-    # Website.
-    attr_accessor :website
+    # The website URL of a group.
+    attr_accessor :website_url
 
-    # Does this group represent a brokerage or an agent who belongs to a brokerage?
-    attr_accessor :is_brokerage_or_brokerage_agent
+    # The logo URL of a group.
+    attr_accessor :logo_url
+
+    # The profile image URL of a real estate agent. Only returned if group's type is AGENT.
+    attr_accessor :avatar_url
+
+    # The name of the brokerage or team of a real estate agent. Only returned if group's type is AGENT.
+    attr_accessor :office_name
+
+    # The license number of a real estate agent. Only returned if group's type is AGENT.
+    attr_accessor :license_number
 
     attr_accessor :social_profiles
 
-    attr_accessor :agent_properties
-
-    # users
-    attr_accessor :users
-
     attr_accessor :default_order_form
 
-    # An array of order forms.
+    # An array of order forms a vendor group provides for placing orders. Only returned if group's type is CREATOR. 
     attr_accessor :order_forms
+
+    attr_accessor :owner
+
+    # The Aryeo users associated with this group.
+    attr_accessor :users
+
+    # Does this group represent a brokerage or an agent who belongs to a brokerage?
+    attr_accessor :is_brokerage_or_brokerage_agent
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -73,18 +82,21 @@ module Aryeo
     def self.attribute_map
       {
         :'id' => :'id',
-        :'group_type' => :'group_type',
+        :'type' => :'type',
         :'name' => :'name',
-        :'logo' => :'logo',
         :'email' => :'email',
         :'phone' => :'phone',
-        :'website' => :'website',
-        :'is_brokerage_or_brokerage_agent' => :'is_brokerage_or_brokerage_agent',
+        :'website_url' => :'website_url',
+        :'logo_url' => :'logo_url',
+        :'avatar_url' => :'avatar_url',
+        :'office_name' => :'office_name',
+        :'license_number' => :'license_number',
         :'social_profiles' => :'social_profiles',
-        :'agent_properties' => :'agent_properties',
-        :'users' => :'users',
         :'default_order_form' => :'default_order_form',
-        :'order_forms' => :'order_forms'
+        :'order_forms' => :'order_forms',
+        :'owner' => :'owner',
+        :'users' => :'users',
+        :'is_brokerage_or_brokerage_agent' => :'is_brokerage_or_brokerage_agent'
       }
     end
 
@@ -97,28 +109,36 @@ module Aryeo
     def self.openapi_types
       {
         :'id' => :'String',
-        :'group_type' => :'String',
+        :'type' => :'String',
         :'name' => :'String',
-        :'logo' => :'String',
         :'email' => :'String',
         :'phone' => :'String',
-        :'website' => :'String',
-        :'is_brokerage_or_brokerage_agent' => :'Boolean',
+        :'website_url' => :'String',
+        :'logo_url' => :'String',
+        :'avatar_url' => :'String',
+        :'office_name' => :'String',
+        :'license_number' => :'String',
         :'social_profiles' => :'SocialProfiles',
-        :'agent_properties' => :'GroupAgentProperties',
-        :'users' => :'Array<User>',
         :'default_order_form' => :'OrderForm',
-        :'order_forms' => :'Array<OrderForm>'
+        :'order_forms' => :'Array<OrderForm>',
+        :'owner' => :'User',
+        :'users' => :'Array<User>',
+        :'is_brokerage_or_brokerage_agent' => :'Boolean'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'logo',
         :'email',
         :'phone',
-        :'website',
+        :'website_url',
+        :'logo_url',
+        :'avatar_url',
+        :'office_name',
+        :'license_number',
+        :'order_forms',
+        :'users',
       ])
     end
 
@@ -141,16 +161,12 @@ module Aryeo
         self.id = attributes[:'id']
       end
 
-      if attributes.key?(:'group_type')
-        self.group_type = attributes[:'group_type']
+      if attributes.key?(:'type')
+        self.type = attributes[:'type']
       end
 
       if attributes.key?(:'name')
         self.name = attributes[:'name']
-      end
-
-      if attributes.key?(:'logo')
-        self.logo = attributes[:'logo']
       end
 
       if attributes.key?(:'email')
@@ -161,26 +177,28 @@ module Aryeo
         self.phone = attributes[:'phone']
       end
 
-      if attributes.key?(:'website')
-        self.website = attributes[:'website']
+      if attributes.key?(:'website_url')
+        self.website_url = attributes[:'website_url']
       end
 
-      if attributes.key?(:'is_brokerage_or_brokerage_agent')
-        self.is_brokerage_or_brokerage_agent = attributes[:'is_brokerage_or_brokerage_agent']
+      if attributes.key?(:'logo_url')
+        self.logo_url = attributes[:'logo_url']
+      end
+
+      if attributes.key?(:'avatar_url')
+        self.avatar_url = attributes[:'avatar_url']
+      end
+
+      if attributes.key?(:'office_name')
+        self.office_name = attributes[:'office_name']
+      end
+
+      if attributes.key?(:'license_number')
+        self.license_number = attributes[:'license_number']
       end
 
       if attributes.key?(:'social_profiles')
         self.social_profiles = attributes[:'social_profiles']
-      end
-
-      if attributes.key?(:'agent_properties')
-        self.agent_properties = attributes[:'agent_properties']
-      end
-
-      if attributes.key?(:'users')
-        if (value = attributes[:'users']).is_a?(Array)
-          self.users = value
-        end
       end
 
       if attributes.key?(:'default_order_form')
@@ -191,6 +209,20 @@ module Aryeo
         if (value = attributes[:'order_forms']).is_a?(Array)
           self.order_forms = value
         end
+      end
+
+      if attributes.key?(:'owner')
+        self.owner = attributes[:'owner']
+      end
+
+      if attributes.key?(:'users')
+        if (value = attributes[:'users']).is_a?(Array)
+          self.users = value
+        end
+      end
+
+      if attributes.key?(:'is_brokerage_or_brokerage_agent')
+        self.is_brokerage_or_brokerage_agent = attributes[:'is_brokerage_or_brokerage_agent']
       end
     end
 
@@ -210,16 +242,16 @@ module Aryeo
         invalid_properties.push('invalid value for "id", the character length must be great than or equal to 0.')
       end
 
-      if @group_type.nil?
-        invalid_properties.push('invalid value for "group_type", group_type cannot be nil.')
+      if @type.nil?
+        invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
 
-      if @group_type.to_s.length > 255
-        invalid_properties.push('invalid value for "group_type", the character length must be smaller than or equal to 255.')
+      if @type.to_s.length > 255
+        invalid_properties.push('invalid value for "type", the character length must be smaller than or equal to 255.')
       end
 
-      if @group_type.to_s.length < 0
-        invalid_properties.push('invalid value for "group_type", the character length must be great than or equal to 0.')
+      if @type.to_s.length < 0
+        invalid_properties.push('invalid value for "type", the character length must be great than or equal to 0.')
       end
 
       if @name.nil?
@@ -232,14 +264,6 @@ module Aryeo
 
       if @name.to_s.length < 0
         invalid_properties.push('invalid value for "name", the character length must be great than or equal to 0.')
-      end
-
-      if !@logo.nil? && @logo.to_s.length > 255
-        invalid_properties.push('invalid value for "logo", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@logo.nil? && @logo.to_s.length < 0
-        invalid_properties.push('invalid value for "logo", the character length must be great than or equal to 0.')
       end
 
       if !@email.nil? && @email.to_s.length > 255
@@ -258,12 +282,44 @@ module Aryeo
         invalid_properties.push('invalid value for "phone", the character length must be great than or equal to 0.')
       end
 
-      if !@website.nil? && @website.to_s.length > 255
-        invalid_properties.push('invalid value for "website", the character length must be smaller than or equal to 255.')
+      if !@website_url.nil? && @website_url.to_s.length > 255
+        invalid_properties.push('invalid value for "website_url", the character length must be smaller than or equal to 255.')
       end
 
-      if !@website.nil? && @website.to_s.length < 0
-        invalid_properties.push('invalid value for "website", the character length must be great than or equal to 0.')
+      if !@website_url.nil? && @website_url.to_s.length < 0
+        invalid_properties.push('invalid value for "website_url", the character length must be great than or equal to 0.')
+      end
+
+      if !@logo_url.nil? && @logo_url.to_s.length > 255
+        invalid_properties.push('invalid value for "logo_url", the character length must be smaller than or equal to 255.')
+      end
+
+      if !@logo_url.nil? && @logo_url.to_s.length < 0
+        invalid_properties.push('invalid value for "logo_url", the character length must be great than or equal to 0.')
+      end
+
+      if !@avatar_url.nil? && @avatar_url.to_s.length > 255
+        invalid_properties.push('invalid value for "avatar_url", the character length must be smaller than or equal to 255.')
+      end
+
+      if !@avatar_url.nil? && @avatar_url.to_s.length < 0
+        invalid_properties.push('invalid value for "avatar_url", the character length must be great than or equal to 0.')
+      end
+
+      if !@office_name.nil? && @office_name.to_s.length > 255
+        invalid_properties.push('invalid value for "office_name", the character length must be smaller than or equal to 255.')
+      end
+
+      if !@office_name.nil? && @office_name.to_s.length < 0
+        invalid_properties.push('invalid value for "office_name", the character length must be great than or equal to 0.')
+      end
+
+      if !@license_number.nil? && @license_number.to_s.length > 255
+        invalid_properties.push('invalid value for "license_number", the character length must be smaller than or equal to 255.')
+      end
+
+      if !@license_number.nil? && @license_number.to_s.length < 0
+        invalid_properties.push('invalid value for "license_number", the character length must be great than or equal to 0.')
       end
 
       if @is_brokerage_or_brokerage_agent.nil?
@@ -279,22 +335,28 @@ module Aryeo
       return false if @id.nil?
       return false if @id.to_s.length > 255
       return false if @id.to_s.length < 0
-      return false if @group_type.nil?
-      group_type_validator = EnumAttributeValidator.new('String', ["creator", "agent", "brokerage"])
-      return false unless group_type_validator.valid?(@group_type)
-      return false if @group_type.to_s.length > 255
-      return false if @group_type.to_s.length < 0
+      return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["CREATOR", "AGENT", "BROKERAGE"])
+      return false unless type_validator.valid?(@type)
+      return false if @type.to_s.length > 255
+      return false if @type.to_s.length < 0
       return false if @name.nil?
       return false if @name.to_s.length > 255
       return false if @name.to_s.length < 0
-      return false if !@logo.nil? && @logo.to_s.length > 255
-      return false if !@logo.nil? && @logo.to_s.length < 0
       return false if !@email.nil? && @email.to_s.length > 255
       return false if !@email.nil? && @email.to_s.length < 0
       return false if !@phone.nil? && @phone.to_s.length > 255
       return false if !@phone.nil? && @phone.to_s.length < 0
-      return false if !@website.nil? && @website.to_s.length > 255
-      return false if !@website.nil? && @website.to_s.length < 0
+      return false if !@website_url.nil? && @website_url.to_s.length > 255
+      return false if !@website_url.nil? && @website_url.to_s.length < 0
+      return false if !@logo_url.nil? && @logo_url.to_s.length > 255
+      return false if !@logo_url.nil? && @logo_url.to_s.length < 0
+      return false if !@avatar_url.nil? && @avatar_url.to_s.length > 255
+      return false if !@avatar_url.nil? && @avatar_url.to_s.length < 0
+      return false if !@office_name.nil? && @office_name.to_s.length > 255
+      return false if !@office_name.nil? && @office_name.to_s.length < 0
+      return false if !@license_number.nil? && @license_number.to_s.length > 255
+      return false if !@license_number.nil? && @license_number.to_s.length < 0
       return false if @is_brokerage_or_brokerage_agent.nil?
       true
     end
@@ -318,13 +380,13 @@ module Aryeo
     end
 
     # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] group_type Object to be assigned
-    def group_type=(group_type)
-      validator = EnumAttributeValidator.new('String', ["creator", "agent", "brokerage"])
-      unless validator.valid?(group_type)
-        fail ArgumentError, "invalid value for \"group_type\", must be one of #{validator.allowable_values}."
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["CREATOR", "AGENT", "BROKERAGE"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
       end
-      @group_type = group_type
+      @type = type
     end
 
     # Custom attribute writer method with validation
@@ -343,20 +405,6 @@ module Aryeo
       end
 
       @name = name
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] logo Value to be assigned
-    def logo=(logo)
-      if !logo.nil? && logo.to_s.length > 255
-        fail ArgumentError, 'invalid value for "logo", the character length must be smaller than or equal to 255.'
-      end
-
-      if !logo.nil? && logo.to_s.length < 0
-        fail ArgumentError, 'invalid value for "logo", the character length must be great than or equal to 0.'
-      end
-
-      @logo = logo
     end
 
     # Custom attribute writer method with validation
@@ -388,17 +436,73 @@ module Aryeo
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] website Value to be assigned
-    def website=(website)
-      if !website.nil? && website.to_s.length > 255
-        fail ArgumentError, 'invalid value for "website", the character length must be smaller than or equal to 255.'
+    # @param [Object] website_url Value to be assigned
+    def website_url=(website_url)
+      if !website_url.nil? && website_url.to_s.length > 255
+        fail ArgumentError, 'invalid value for "website_url", the character length must be smaller than or equal to 255.'
       end
 
-      if !website.nil? && website.to_s.length < 0
-        fail ArgumentError, 'invalid value for "website", the character length must be great than or equal to 0.'
+      if !website_url.nil? && website_url.to_s.length < 0
+        fail ArgumentError, 'invalid value for "website_url", the character length must be great than or equal to 0.'
       end
 
-      @website = website
+      @website_url = website_url
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] logo_url Value to be assigned
+    def logo_url=(logo_url)
+      if !logo_url.nil? && logo_url.to_s.length > 255
+        fail ArgumentError, 'invalid value for "logo_url", the character length must be smaller than or equal to 255.'
+      end
+
+      if !logo_url.nil? && logo_url.to_s.length < 0
+        fail ArgumentError, 'invalid value for "logo_url", the character length must be great than or equal to 0.'
+      end
+
+      @logo_url = logo_url
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] avatar_url Value to be assigned
+    def avatar_url=(avatar_url)
+      if !avatar_url.nil? && avatar_url.to_s.length > 255
+        fail ArgumentError, 'invalid value for "avatar_url", the character length must be smaller than or equal to 255.'
+      end
+
+      if !avatar_url.nil? && avatar_url.to_s.length < 0
+        fail ArgumentError, 'invalid value for "avatar_url", the character length must be great than or equal to 0.'
+      end
+
+      @avatar_url = avatar_url
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] office_name Value to be assigned
+    def office_name=(office_name)
+      if !office_name.nil? && office_name.to_s.length > 255
+        fail ArgumentError, 'invalid value for "office_name", the character length must be smaller than or equal to 255.'
+      end
+
+      if !office_name.nil? && office_name.to_s.length < 0
+        fail ArgumentError, 'invalid value for "office_name", the character length must be great than or equal to 0.'
+      end
+
+      @office_name = office_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] license_number Value to be assigned
+    def license_number=(license_number)
+      if !license_number.nil? && license_number.to_s.length > 255
+        fail ArgumentError, 'invalid value for "license_number", the character length must be smaller than or equal to 255.'
+      end
+
+      if !license_number.nil? && license_number.to_s.length < 0
+        fail ArgumentError, 'invalid value for "license_number", the character length must be great than or equal to 0.'
+      end
+
+      @license_number = license_number
     end
 
     # Checks equality by comparing each attribute.
@@ -407,18 +511,21 @@ module Aryeo
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          group_type == o.group_type &&
+          type == o.type &&
           name == o.name &&
-          logo == o.logo &&
           email == o.email &&
           phone == o.phone &&
-          website == o.website &&
-          is_brokerage_or_brokerage_agent == o.is_brokerage_or_brokerage_agent &&
+          website_url == o.website_url &&
+          logo_url == o.logo_url &&
+          avatar_url == o.avatar_url &&
+          office_name == o.office_name &&
+          license_number == o.license_number &&
           social_profiles == o.social_profiles &&
-          agent_properties == o.agent_properties &&
-          users == o.users &&
           default_order_form == o.default_order_form &&
-          order_forms == o.order_forms
+          order_forms == o.order_forms &&
+          owner == o.owner &&
+          users == o.users &&
+          is_brokerage_or_brokerage_agent == o.is_brokerage_or_brokerage_agent
     end
 
     # @see the `==` method
@@ -430,7 +537,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, group_type, name, logo, email, phone, website, is_brokerage_or_brokerage_agent, social_profiles, agent_properties, users, default_order_form, order_forms].hash
+      [id, type, name, email, phone, website_url, logo_url, avatar_url, office_name, license_number, social_profiles, default_order_form, order_forms, owner, users, is_brokerage_or_brokerage_agent].hash
     end
 
     # Builds the object from hash

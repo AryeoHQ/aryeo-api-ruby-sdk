@@ -32,29 +32,83 @@ describe Aryeo::Listing do
     end
   end
 
-  describe 'test attribute "delivery_status"' do
+  describe 'test attribute "mls_number"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["delivered", "undelivered"])
+    end
+  end
+
+  describe 'test attribute "type"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["BUSINESS_OPPORTUNITY", "COMMERCIAL_LEASE", "COMMERCIAL_SALE", "FARM", "LAND", "MANUFACTURED_IN_PARK", "RESIDENTIAL", "RESIDENTIAL_INCOME", "RESIDENTIAL_LEASE"])
       # validator.allowable_values.each do |value|
-      #   expect { instance.delivery_status = value }.not_to raise_error
+      #   expect { instance.type = value }.not_to raise_error
       # end
     end
   end
 
-  describe 'test attribute "thumbnail_url"' do
+  describe 'test attribute "sub_type"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["APARTMENT", "CONDOMINIUM", "DUPLEX", "FARM", "SINGLE_FAMILY_RESIDENCE", "TIMESHARE", "TOWNHOUSE", "OFFICE"])
+      # validator.allowable_values.each do |value|
+      #   expect { instance.sub_type = value }.not_to raise_error
+      # end
+    end
+  end
+
+  describe 'test attribute "status"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["DRAFT", "COMING_SOON", "FOR_SALE", "FOR_LEASE", "PENDING_SALE", "PENDING_LEASE", "SOLD", "LEASED", "OFF_MARKET"])
+      # validator.allowable_values.each do |value|
+      #   expect { instance.status = value }.not_to raise_error
+      # end
+    end
+  end
+
+  describe 'test attribute "standard_status"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["ACTIVE", "ACTIVE_UNDER_CONTRACT", "CANCELED", "CLOSED", "COMING_SOON", "DELETE", "EXPIRED", "HOLD", "INCOMPLETE", "PENDING", "WITHDRAWN"])
+      # validator.allowable_values.each do |value|
+      #   expect { instance.standard_status = value }.not_to raise_error
+      # end
+    end
+  end
+
+  describe 'test attribute "description"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "agent"' do
+  describe 'test attribute "lot"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "co_agent"' do
+  describe 'test attribute "building"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "price"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "list_agent"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "co_list_agent"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -78,31 +132,25 @@ describe Aryeo::Listing do
     end
   end
 
-  describe 'test attribute "property_websites"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   describe 'test attribute "interactive_content"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "property_details"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "downloads_enabled"' do
+  describe 'test attribute "property_website"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
   describe 'test attribute "orders"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "downloads_enabled"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

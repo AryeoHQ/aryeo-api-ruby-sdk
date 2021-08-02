@@ -10,7 +10,7 @@ All URIs are relative to *https://api.aryeo.com/v1*
 
 ## get_orders
 
-> <OrderCollection> get_orders
+> <OrderCollection> get_orders(opts)
 
 Get orders available to a group.
 
@@ -23,15 +23,20 @@ require 'time'
 require 'aryeo'
 # setup authorization
 Aryeo.configure do |config|
-  # Configure Bearer authorization (JWT): JWT
+  # Configure Bearer authorization: Token
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Aryeo::OrdersApi.new
+opts = {
+  sort: '-created_at', # String | Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to `-created_at`.
+  per_page: '25', # String | The number of items per page. Defaults to 25.
+  page: '2' # String | The requested page. Defaults to 1.
+}
 
 begin
   # Get orders available to a group.
-  result = api_instance.get_orders
+  result = api_instance.get_orders(opts)
   p result
 rescue Aryeo::ApiError => e
   puts "Error when calling OrdersApi->get_orders: #{e}"
@@ -42,12 +47,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<OrderCollection>, Integer, Hash)> get_orders_with_http_info
+> <Array(<OrderCollection>, Integer, Hash)> get_orders_with_http_info(opts)
 
 ```ruby
 begin
   # Get orders available to a group.
-  data, status_code, headers = api_instance.get_orders_with_http_info
+  data, status_code, headers = api_instance.get_orders_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <OrderCollection>
@@ -58,7 +63,11 @@ end
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **sort** | **String** | Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;-created_at&#x60;. | [optional] |
+| **per_page** | **String** | The number of items per page. Defaults to 25. | [optional] |
+| **page** | **String** | The requested page. Defaults to 1. | [optional] |
 
 ### Return type
 
@@ -66,7 +75,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[JWT](../README.md#JWT)
+[Token](../README.md#Token)
 
 ### HTTP request headers
 
@@ -89,13 +98,13 @@ require 'time'
 require 'aryeo'
 # setup authorization
 Aryeo.configure do |config|
-  # Configure Bearer authorization (JWT): JWT
+  # Configure Bearer authorization: Token
   config.access_token = 'YOUR_BEARER_TOKEN'
 end
 
 api_instance = Aryeo::OrdersApi.new
 opts = {
-  order_post_payload: Aryeo::OrderPostPayload.new # OrderPostPayload | 
+  order_post_payload: Aryeo::OrderPostPayload.new # OrderPostPayload | OrderPostPayload
 }
 
 begin
@@ -129,7 +138,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **order_post_payload** | [**OrderPostPayload**](OrderPostPayload.md) |  | [optional] |
+| **order_post_payload** | [**OrderPostPayload**](OrderPostPayload.md) | OrderPostPayload | [optional] |
 
 ### Return type
 
@@ -137,7 +146,7 @@ end
 
 ### Authorization
 
-[JWT](../README.md#JWT)
+[Token](../README.md#Token)
 
 ### HTTP request headers
 
