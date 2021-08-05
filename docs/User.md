@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **id** | **String** | ID of the user. |  |
+| **id** | **String** | ID of the user. UUID Version 4. |  |
 | **email** | **String** | Email address of the user. |  |
 | **first_name** | **String** | First name of the user. | [optional] |
 | **last_name** | **String** | Last name of the user. | [optional] |
@@ -18,7 +18,7 @@
 require 'aryeo'
 
 instance = Aryeo::User.new(
-  id: 00000000-0000-0000-0000-000000000000,
+  id: 00000000-0000-4000-8000-000000000000,
   email: john.doe@gmail.com,
   first_name: John,
   last_name: Doe,

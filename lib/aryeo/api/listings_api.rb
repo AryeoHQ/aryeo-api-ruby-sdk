@@ -200,7 +200,7 @@ module Aryeo
 
     # Get information about a listing.
     # Get information about a listing.
-    # @param listing_id [String] The ID of a listing.
+    # @param listing_id [String] The ID of a listing. UUID Version 4.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.
     # @return [ListingResource]
@@ -211,7 +211,7 @@ module Aryeo
 
     # Get information about a listing.
     # Get information about a listing.
-    # @param listing_id [String] The ID of a listing.
+    # @param listing_id [String] The ID of a listing. UUID Version 4.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.
     # @return [Array<(ListingResource, Integer, Hash)>] ListingResource data, response status code and response headers
@@ -223,12 +223,12 @@ module Aryeo
       if @api_client.config.client_side_validation && listing_id.nil?
         fail ArgumentError, "Missing the required parameter 'listing_id' when calling ListingsApi.get_listings_id"
       end
-      if @api_client.config.client_side_validation && listing_id.to_s.length > 255
-        fail ArgumentError, 'invalid value for "listing_id" when calling ListingsApi.get_listings_id, the character length must be smaller than or equal to 255.'
+      if @api_client.config.client_side_validation && listing_id.to_s.length > 36
+        fail ArgumentError, 'invalid value for "listing_id" when calling ListingsApi.get_listings_id, the character length must be smaller than or equal to 36.'
       end
 
-      if @api_client.config.client_side_validation && listing_id.to_s.length < 0
-        fail ArgumentError, 'invalid value for "listing_id" when calling ListingsApi.get_listings_id, the character length must be great than or equal to 0.'
+      if @api_client.config.client_side_validation && listing_id.to_s.length < 36
+        fail ArgumentError, 'invalid value for "listing_id" when calling ListingsApi.get_listings_id, the character length must be great than or equal to 36.'
       end
 
       if @api_client.config.client_side_validation && !opts[:'include'].nil? && opts[:'include'].to_s.length > 255

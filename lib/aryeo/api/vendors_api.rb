@@ -84,7 +84,7 @@ module Aryeo
 
     # Get vendors available to a group.
     # Get information about a vendor.
-    # @param vendor_id [String] ID of the group that is associated as a vendor.
+    # @param vendor_id [String] The ID of the group that is associated as a vendor. UUID Version 4.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.
     # @return [GroupResource]
@@ -95,7 +95,7 @@ module Aryeo
 
     # Get vendors available to a group.
     # Get information about a vendor.
-    # @param vendor_id [String] ID of the group that is associated as a vendor.
+    # @param vendor_id [String] The ID of the group that is associated as a vendor. UUID Version 4.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.
     # @return [Array<(GroupResource, Integer, Hash)>] GroupResource data, response status code and response headers
@@ -107,12 +107,12 @@ module Aryeo
       if @api_client.config.client_side_validation && vendor_id.nil?
         fail ArgumentError, "Missing the required parameter 'vendor_id' when calling VendorsApi.get_vendors_id"
       end
-      if @api_client.config.client_side_validation && vendor_id.to_s.length > 255
-        fail ArgumentError, 'invalid value for "vendor_id" when calling VendorsApi.get_vendors_id, the character length must be smaller than or equal to 255.'
+      if @api_client.config.client_side_validation && vendor_id.to_s.length > 36
+        fail ArgumentError, 'invalid value for "vendor_id" when calling VendorsApi.get_vendors_id, the character length must be smaller than or equal to 36.'
       end
 
-      if @api_client.config.client_side_validation && vendor_id.to_s.length < 0
-        fail ArgumentError, 'invalid value for "vendor_id" when calling VendorsApi.get_vendors_id, the character length must be great than or equal to 0.'
+      if @api_client.config.client_side_validation && vendor_id.to_s.length < 36
+        fail ArgumentError, 'invalid value for "vendor_id" when calling VendorsApi.get_vendors_id, the character length must be great than or equal to 36.'
       end
 
       if @api_client.config.client_side_validation && !opts[:'include'].nil? && opts[:'include'].to_s.length > 255

@@ -42,7 +42,7 @@ describe 'VendorsApi' do
   # unit tests for get_vendors_id
   # Get vendors available to a group.
   # Get information about a vendor.
-  # @param vendor_id ID of the group that is associated as a vendor.
+  # @param vendor_id The ID of the group that is associated as a vendor. UUID Version 4.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Comma separated list of optional data to include in the response.
   # @return [GroupResource]

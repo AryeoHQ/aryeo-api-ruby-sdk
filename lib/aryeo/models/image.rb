@@ -11,7 +11,7 @@ require 'time'
 module Aryeo
   # A visual representation of something.
   class Image
-    # ID of the image.
+    # ID of the image. UUID Version 4.
     attr_accessor :id
 
     # A URL for a thumbnail-sized version of the image.
@@ -123,12 +123,12 @@ module Aryeo
         invalid_properties.push('invalid value for "id", id cannot be nil.')
       end
 
-      if @id.to_s.length > 255
-        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 255.')
+      if @id.to_s.length > 36
+        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 36.')
       end
 
-      if @id.to_s.length < 0
-        invalid_properties.push('invalid value for "id", the character length must be great than or equal to 0.')
+      if @id.to_s.length < 36
+        invalid_properties.push('invalid value for "id", the character length must be great than or equal to 36.')
       end
 
       if @thumbnail_url.nil?
@@ -186,8 +186,8 @@ module Aryeo
     # @return true if the model is valid
     def valid?
       return false if @id.nil?
-      return false if @id.to_s.length > 255
-      return false if @id.to_s.length < 0
+      return false if @id.to_s.length > 36
+      return false if @id.to_s.length < 36
       return false if @thumbnail_url.nil?
       return false if @thumbnail_url.to_s.length > 65535
       return false if @thumbnail_url.to_s.length < 1
@@ -210,12 +210,12 @@ module Aryeo
         fail ArgumentError, 'id cannot be nil'
       end
 
-      if id.to_s.length > 255
-        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 255.'
+      if id.to_s.length > 36
+        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 36.'
       end
 
-      if id.to_s.length < 0
-        fail ArgumentError, 'invalid value for "id", the character length must be great than or equal to 0.'
+      if id.to_s.length < 36
+        fail ArgumentError, 'invalid value for "id", the character length must be great than or equal to 36.'
       end
 
       @id = id

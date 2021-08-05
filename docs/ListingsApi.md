@@ -131,7 +131,7 @@ Aryeo.configure do |config|
 end
 
 api_instance = Aryeo::ListingsApi.new
-listing_id = TODO # String | The ID of a listing.
+listing_id = TODO # String | The ID of a listing. UUID Version 4.
 opts = {
   include: 'images,videos,orders' # String | Comma separated list of optional data to include in the response.
 }
@@ -167,7 +167,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **listing_id** | [**String**](.md) | The ID of a listing. |  |
+| **listing_id** | [**String**](.md) | The ID of a listing. UUID Version 4. |  |
 | **include** | **String** | Comma separated list of optional data to include in the response. | [optional] |
 
 ### Return type

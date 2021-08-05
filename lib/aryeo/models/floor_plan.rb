@@ -11,7 +11,7 @@ require 'time'
 module Aryeo
   # A scale diagram of the arrangement of a building.
   class FloorPlan
-    # ID of the floor plan.
+    # ID of the floor plan. UUID Version 4.
     attr_accessor :id
 
     # A URL for the original, full-resolution version of the floor plan. Useful for downloading.
@@ -114,12 +114,12 @@ module Aryeo
         invalid_properties.push('invalid value for "id", id cannot be nil.')
       end
 
-      if @id.to_s.length > 255
-        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 255.')
+      if @id.to_s.length > 36
+        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 36.')
       end
 
-      if @id.to_s.length < 0
-        invalid_properties.push('invalid value for "id", the character length must be great than or equal to 0.')
+      if @id.to_s.length < 36
+        invalid_properties.push('invalid value for "id", the character length must be great than or equal to 36.')
       end
 
       if @original_url.nil?
@@ -177,8 +177,8 @@ module Aryeo
     # @return true if the model is valid
     def valid?
       return false if @id.nil?
-      return false if @id.to_s.length > 255
-      return false if @id.to_s.length < 0
+      return false if @id.to_s.length > 36
+      return false if @id.to_s.length < 36
       return false if @original_url.nil?
       return false if @original_url.to_s.length > 65535
       return false if @original_url.to_s.length < 1
@@ -201,12 +201,12 @@ module Aryeo
         fail ArgumentError, 'id cannot be nil'
       end
 
-      if id.to_s.length > 255
-        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 255.'
+      if id.to_s.length > 36
+        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 36.'
       end
 
-      if id.to_s.length < 0
-        fail ArgumentError, 'invalid value for "id", the character length must be great than or equal to 0.'
+      if id.to_s.length < 36
+        fail ArgumentError, 'invalid value for "id", the character length must be great than or equal to 36.'
       end
 
       @id = id

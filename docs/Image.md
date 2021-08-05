@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **id** | **String** | ID of the image. |  |
+| **id** | **String** | ID of the image. UUID Version 4. |  |
 | **thumbnail_url** | **String** | A URL for a thumbnail-sized version of the image. |  |
 | **large_url** | **String** | A URL for a large version of the image. |  |
 | **original_url** | **String** | A URL for the original, full-resolution version of the image. Useful for downloading. |  |
@@ -18,7 +18,7 @@
 require 'aryeo'
 
 instance = Aryeo::Image.new(
-  id: 00000000-0000-0000-0000-000000000000,
+  id: 00000000-0000-4000-8000-000000000000,
   thumbnail_url: https://via.placeholder.com/250x200.jpg,
   large_url: https://via.placeholder.com/1750x1400.jpg,
   original_url: https://via.placeholder.com/2500x2000.jpg,
