@@ -104,6 +104,105 @@ module Aryeo
       return data, status_code, headers
     end
 
+    # Get products available to a group.
+    # Get products of a group.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :sort Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;title&#x60;.
+    # @option opts [String] :per_page The number of items per page. Defaults to 25.
+    # @option opts [String] :page The requested page. Defaults to 1.
+    # @option opts [String] :filter_search Return products that have fields matching this term.
+    # @option opts [String] :filter_category_ids Return products in the given categories.
+    # @option opts [String] :filter_type Return products matching the given type. Allowed values are: MAIN, ADDON.
+    # @return [ProductCollection]
+    def get_products(opts = {})
+      data, _status_code, _headers = get_products_with_http_info(opts)
+      data
+    end
+
+    # Get products available to a group.
+    # Get products of a group.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :sort Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;title&#x60;.
+    # @option opts [String] :per_page The number of items per page. Defaults to 25.
+    # @option opts [String] :page The requested page. Defaults to 1.
+    # @option opts [String] :filter_search Return products that have fields matching this term.
+    # @option opts [String] :filter_category_ids Return products in the given categories.
+    # @option opts [String] :filter_type Return products matching the given type. Allowed values are: MAIN, ADDON.
+    # @return [Array<(ProductCollection, Integer, Hash)>] ProductCollection data, response status code and response headers
+    def get_products_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: OrdersApi.get_products ...'
+      end
+      if @api_client.config.client_side_validation && !opts[:'sort'].nil? && opts[:'sort'].to_s.length > 100
+        fail ArgumentError, 'invalid value for "opts[:"sort"]" when calling OrdersApi.get_products, the character length must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'sort'].nil? && opts[:'sort'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"sort"]" when calling OrdersApi.get_products, the character length must be great than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'per_page'].nil? && opts[:'per_page'].to_s.length > 5
+        fail ArgumentError, 'invalid value for "opts[:"per_page"]" when calling OrdersApi.get_products, the character length must be smaller than or equal to 5.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'per_page'].nil? && opts[:'per_page'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"per_page"]" when calling OrdersApi.get_products, the character length must be great than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page'].nil? && opts[:'page'].to_s.length > 5
+        fail ArgumentError, 'invalid value for "opts[:"page"]" when calling OrdersApi.get_products, the character length must be smaller than or equal to 5.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page'].nil? && opts[:'page'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"page"]" when calling OrdersApi.get_products, the character length must be great than or equal to 1.'
+      end
+
+      # resource path
+      local_var_path = '/products'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
+      query_params[:'per_page'] = opts[:'per_page'] if !opts[:'per_page'].nil?
+      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'filter[search]'] = opts[:'filter_search'] if !opts[:'filter_search'].nil?
+      query_params[:'filter[category_ids]'] = opts[:'filter_category_ids'] if !opts[:'filter_category_ids'].nil?
+      query_params[:'filter[type]'] = opts[:'filter_type'] if !opts[:'filter_type'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'ProductCollection'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"OrdersApi.get_products",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: OrdersApi#get_products\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Create an order.
     # Create an order.
     # @param [Hash] opts the optional parameters

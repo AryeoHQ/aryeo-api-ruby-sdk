@@ -5,6 +5,7 @@ All URIs are relative to *https://api.aryeo.com/v1*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**get_orders**](OrdersApi.md#get_orders) | **GET** /orders | List all orders. |
+| [**get_products**](OrdersApi.md#get_products) | **GET** /products | Get products available to a group. |
 | [**post_orders**](OrdersApi.md#post_orders) | **POST** /orders | Create an order. |
 
 
@@ -72,6 +73,87 @@ end
 ### Return type
 
 [**OrderCollection**](OrderCollection.md)
+
+### Authorization
+
+[Token](../README.md#Token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_products
+
+> <ProductCollection> get_products(opts)
+
+Get products available to a group.
+
+Get products of a group.
+
+### Examples
+
+```ruby
+require 'time'
+require 'aryeo'
+# setup authorization
+Aryeo.configure do |config|
+  # Configure Bearer authorization: Token
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = Aryeo::OrdersApi.new
+opts = {
+  sort: '-created_at', # String | Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to `title`.
+  per_page: '25', # String | The number of items per page. Defaults to 25.
+  page: '2', # String | The requested page. Defaults to 1.
+  filter_search: 'filter_search_example', # String | Return products that have fields matching this term.
+  filter_category_ids: 'filter_category_ids_example', # String | Return products in the given categories.
+  filter_type: 'filter_type_example' # String | Return products matching the given type. Allowed values are: MAIN, ADDON.
+}
+
+begin
+  # Get products available to a group.
+  result = api_instance.get_products(opts)
+  p result
+rescue Aryeo::ApiError => e
+  puts "Error when calling OrdersApi->get_products: #{e}"
+end
+```
+
+#### Using the get_products_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<ProductCollection>, Integer, Hash)> get_products_with_http_info(opts)
+
+```ruby
+begin
+  # Get products available to a group.
+  data, status_code, headers = api_instance.get_products_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <ProductCollection>
+rescue Aryeo::ApiError => e
+  puts "Error when calling OrdersApi->get_products_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **sort** | **String** | Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;title&#x60;. | [optional] |
+| **per_page** | **String** | The number of items per page. Defaults to 25. | [optional] |
+| **page** | **String** | The requested page. Defaults to 1. | [optional] |
+| **filter_search** | **String** | Return products that have fields matching this term. | [optional] |
+| **filter_category_ids** | **String** | Return products in the given categories. | [optional] |
+| **filter_type** | **String** | Return products matching the given type. Allowed values are: MAIN, ADDON. | [optional] |
+
+### Return type
+
+[**ProductCollection**](ProductCollection.md)
 
 ### Authorization
 

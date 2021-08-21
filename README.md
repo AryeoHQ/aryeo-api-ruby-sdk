@@ -54,6 +54,7 @@ Class | Method | HTTP request | Description
 *Aryeo::ListingsApi* | [**get_listings**](docs/ListingsApi.md#get_listings) | **GET** /listings | List all listings.
 *Aryeo::ListingsApi* | [**get_listings_id**](docs/ListingsApi.md#get_listings_id) | **GET** /listings/{listing_id} | Retrieve a listing.
 *Aryeo::OrdersApi* | [**get_orders**](docs/OrdersApi.md#get_orders) | **GET** /orders | List all orders.
+*Aryeo::OrdersApi* | [**get_products**](docs/OrdersApi.md#get_products) | **GET** /products | Get products available to a group.
 *Aryeo::OrdersApi* | [**post_orders**](docs/OrdersApi.md#post_orders) | **POST** /orders | Create an order.
 *Aryeo::VendorsApi* | [**get_vendors**](docs/VendorsApi.md#get_vendors) | **GET** /vendors | List all vendors.
 *Aryeo::VendorsApi* | [**get_vendors_id**](docs/VendorsApi.md#get_vendors_id) | **GET** /vendors/{vendor_id} | Retrieve a vendor.
@@ -89,6 +90,10 @@ Class | Method | HTTP request | Description
  - [Aryeo::OrderResource](docs/OrderResource.md)
  - [Aryeo::PaginationLinks](docs/PaginationLinks.md)
  - [Aryeo::PaginationMeta](docs/PaginationMeta.md)
+ - [Aryeo::Product](docs/Product.md)
+ - [Aryeo::ProductCategory](docs/ProductCategory.md)
+ - [Aryeo::ProductCollection](docs/ProductCollection.md)
+ - [Aryeo::ProductVariant](docs/ProductVariant.md)
  - [Aryeo::PropertyWebsite](docs/PropertyWebsite.md)
  - [Aryeo::SocialProfiles](docs/SocialProfiles.md)
  - [Aryeo::UnconfirmedAppointment](docs/UnconfirmedAppointment.md)
