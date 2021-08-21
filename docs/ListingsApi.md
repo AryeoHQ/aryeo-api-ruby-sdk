@@ -4,17 +4,17 @@ All URIs are relative to *https://api.aryeo.com/v1*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**get_listings**](ListingsApi.md#get_listings) | **GET** /listings | Get the listings available to a group. |
-| [**get_listings_id**](ListingsApi.md#get_listings_id) | **GET** /listings/{listing_id} | Get information about a listing. |
+| [**get_listings**](ListingsApi.md#get_listings) | **GET** /listings | List all listings. |
+| [**get_listings_id**](ListingsApi.md#get_listings_id) | **GET** /listings/{listing_id} | Retrieve a listing. |
 
 
 ## get_listings
 
 > <ListingCollection> get_listings(opts)
 
-Get the listings available to a group.
+List all listings.
 
-Get the listings available to a group.
+Lists all listings available to a group.
 
 ### Examples
 
@@ -49,7 +49,7 @@ opts = {
 }
 
 begin
-  # Get the listings available to a group.
+  # List all listings.
   result = api_instance.get_listings(opts)
   p result
 rescue Aryeo::ApiError => e
@@ -65,7 +65,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Get the listings available to a group.
+  # List all listings.
   data, status_code, headers = api_instance.get_listings_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
@@ -115,9 +115,9 @@ end
 
 > <ListingResource> get_listings_id(listing_id, opts)
 
-Get information about a listing.
+Retrieve a listing.
 
-Get information about a listing.
+Retrieves the details of a listing with the given ID.
 
 ### Examples
 
@@ -137,7 +137,7 @@ opts = {
 }
 
 begin
-  # Get information about a listing.
+  # Retrieve a listing.
   result = api_instance.get_listings_id(listing_id, opts)
   p result
 rescue Aryeo::ApiError => e
@@ -153,7 +153,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Get information about a listing.
+  # Retrieve a listing.
   data, status_code, headers = api_instance.get_listings_id_with_http_info(listing_id, opts)
   p status_code # => 2xx
   p headers # => { ... }

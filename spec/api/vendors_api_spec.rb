@@ -28,8 +28,8 @@ describe 'VendorsApi' do
   end
 
   # unit tests for get_vendors
-  # Get vendors available to a group.
-  # Get vendors available to a group.
+  # List all vendors.
+  # Lists all vendors available to a group.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Comma separated list of optional data to include in the response.
   # @return [GroupCollection]
@@ -40,8 +40,8 @@ describe 'VendorsApi' do
   end
 
   # unit tests for get_vendors_id
-  # Get vendors available to a group.
-  # Get information about a vendor.
+  # Retrieve a vendor.
+  # Retrieves the details of a vendor with the given ID.
   # @param vendor_id The ID of the group that is associated as a vendor. UUID Version 4.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Comma separated list of optional data to include in the response.

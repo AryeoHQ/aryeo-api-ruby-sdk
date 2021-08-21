@@ -9,45 +9,25 @@ require 'date'
 require 'time'
 
 module Aryeo
-  # Payload for creating an order.
-  class OrderPostPayload
-    # The fulfillment status of the order. Defaults to \"UNFULFILLED\".
-    attr_accessor :fulfillment_status
+  # A collection of appointments.
+  class UnconfirmedAppointmentCollection
+    # What was the state of the request?
+    attr_accessor :status
 
-    # The payment status of the order. Defaults to \"UNPAID\". 
-    attr_accessor :payment_status
+    # 
+    attr_accessor :data
 
-    # Google Places ID of the address to attach to the order.
-    attr_accessor :place_id
+    attr_accessor :meta
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    attr_accessor :links
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'fulfillment_status' => :'fulfillment_status',
-        :'payment_status' => :'payment_status',
-        :'place_id' => :'place_id'
+        :'status' => :'status',
+        :'data' => :'data',
+        :'meta' => :'meta',
+        :'links' => :'links'
       }
     end
 
@@ -59,17 +39,17 @@ module Aryeo
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'fulfillment_status' => :'String',
-        :'payment_status' => :'String',
-        :'place_id' => :'String'
+        :'status' => :'String',
+        :'data' => :'Array<UnconfirmedAppointment>',
+        :'meta' => :'PaginationMeta',
+        :'links' => :'PaginationLinks'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'fulfillment_status',
-        :'payment_status',
+        :'data',
       ])
     end
 
@@ -77,27 +57,33 @@ module Aryeo
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Aryeo::OrderPostPayload` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Aryeo::UnconfirmedAppointmentCollection` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Aryeo::OrderPostPayload`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Aryeo::UnconfirmedAppointmentCollection`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'fulfillment_status')
-        self.fulfillment_status = attributes[:'fulfillment_status']
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
       end
 
-      if attributes.key?(:'payment_status')
-        self.payment_status = attributes[:'payment_status']
+      if attributes.key?(:'data')
+        if (value = attributes[:'data']).is_a?(Array)
+          self.data = value
+        end
       end
 
-      if attributes.key?(:'place_id')
-        self.place_id = attributes[:'place_id']
+      if attributes.key?(:'meta')
+        self.meta = attributes[:'meta']
+      end
+
+      if attributes.key?(:'links')
+        self.links = attributes[:'links']
       end
     end
 
@@ -105,28 +91,16 @@ module Aryeo
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@fulfillment_status.nil? && @fulfillment_status.to_s.length > 255
-        invalid_properties.push('invalid value for "fulfillment_status", the character length must be smaller than or equal to 255.')
+      if @status.nil?
+        invalid_properties.push('invalid value for "status", status cannot be nil.')
       end
 
-      if !@fulfillment_status.nil? && @fulfillment_status.to_s.length < 0
-        invalid_properties.push('invalid value for "fulfillment_status", the character length must be great than or equal to 0.')
+      if @status.to_s.length > 255
+        invalid_properties.push('invalid value for "status", the character length must be smaller than or equal to 255.')
       end
 
-      if !@payment_status.nil? && @payment_status.to_s.length > 255
-        invalid_properties.push('invalid value for "payment_status", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@payment_status.nil? && @payment_status.to_s.length < 0
-        invalid_properties.push('invalid value for "payment_status", the character length must be great than or equal to 0.')
-      end
-
-      if !@place_id.nil? && @place_id.to_s.length > 255
-        invalid_properties.push('invalid value for "place_id", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@place_id.nil? && @place_id.to_s.length < 0
-        invalid_properties.push('invalid value for "place_id", the character length must be great than or equal to 0.')
+      if @status.to_s.length < 0
+        invalid_properties.push('invalid value for "status", the character length must be great than or equal to 0.')
       end
 
       invalid_properties
@@ -135,51 +109,28 @@ module Aryeo
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      fulfillment_status_validator = EnumAttributeValidator.new('String', ["FULFILLED", "UNFULFILLED"])
-      return false unless fulfillment_status_validator.valid?(@fulfillment_status)
-      return false if !@fulfillment_status.nil? && @fulfillment_status.to_s.length > 255
-      return false if !@fulfillment_status.nil? && @fulfillment_status.to_s.length < 0
-      payment_status_validator = EnumAttributeValidator.new('String', ["PAID", "UNPAID"])
-      return false unless payment_status_validator.valid?(@payment_status)
-      return false if !@payment_status.nil? && @payment_status.to_s.length > 255
-      return false if !@payment_status.nil? && @payment_status.to_s.length < 0
-      return false if !@place_id.nil? && @place_id.to_s.length > 255
-      return false if !@place_id.nil? && @place_id.to_s.length < 0
+      return false if @status.nil?
+      return false if @status.to_s.length > 255
+      return false if @status.to_s.length < 0
       true
     end
 
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] fulfillment_status Object to be assigned
-    def fulfillment_status=(fulfillment_status)
-      validator = EnumAttributeValidator.new('String', ["FULFILLED", "UNFULFILLED"])
-      unless validator.valid?(fulfillment_status)
-        fail ArgumentError, "invalid value for \"fulfillment_status\", must be one of #{validator.allowable_values}."
-      end
-      @fulfillment_status = fulfillment_status
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] payment_status Object to be assigned
-    def payment_status=(payment_status)
-      validator = EnumAttributeValidator.new('String', ["PAID", "UNPAID"])
-      unless validator.valid?(payment_status)
-        fail ArgumentError, "invalid value for \"payment_status\", must be one of #{validator.allowable_values}."
-      end
-      @payment_status = payment_status
-    end
-
     # Custom attribute writer method with validation
-    # @param [Object] place_id Value to be assigned
-    def place_id=(place_id)
-      if !place_id.nil? && place_id.to_s.length > 255
-        fail ArgumentError, 'invalid value for "place_id", the character length must be smaller than or equal to 255.'
+    # @param [Object] status Value to be assigned
+    def status=(status)
+      if status.nil?
+        fail ArgumentError, 'status cannot be nil'
       end
 
-      if !place_id.nil? && place_id.to_s.length < 0
-        fail ArgumentError, 'invalid value for "place_id", the character length must be great than or equal to 0.'
+      if status.to_s.length > 255
+        fail ArgumentError, 'invalid value for "status", the character length must be smaller than or equal to 255.'
       end
 
-      @place_id = place_id
+      if status.to_s.length < 0
+        fail ArgumentError, 'invalid value for "status", the character length must be great than or equal to 0.'
+      end
+
+      @status = status
     end
 
     # Checks equality by comparing each attribute.
@@ -187,9 +138,10 @@ module Aryeo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          fulfillment_status == o.fulfillment_status &&
-          payment_status == o.payment_status &&
-          place_id == o.place_id
+          status == o.status &&
+          data == o.data &&
+          meta == o.meta &&
+          links == o.links
     end
 
     # @see the `==` method
@@ -201,7 +153,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [fulfillment_status, payment_status, place_id].hash
+      [status, data, meta, links].hash
     end
 
     # Builds the object from hash

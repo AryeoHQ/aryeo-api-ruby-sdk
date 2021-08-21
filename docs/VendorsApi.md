@@ -4,17 +4,17 @@ All URIs are relative to *https://api.aryeo.com/v1*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**get_vendors**](VendorsApi.md#get_vendors) | **GET** /vendors | Get vendors available to a group. |
-| [**get_vendors_id**](VendorsApi.md#get_vendors_id) | **GET** /vendors/{vendor_id} | Get vendors available to a group. |
+| [**get_vendors**](VendorsApi.md#get_vendors) | **GET** /vendors | List all vendors. |
+| [**get_vendors_id**](VendorsApi.md#get_vendors_id) | **GET** /vendors/{vendor_id} | Retrieve a vendor. |
 
 
 ## get_vendors
 
 > <GroupCollection> get_vendors(opts)
 
-Get vendors available to a group.
+List all vendors.
 
-Get vendors available to a group.
+Lists all vendors available to a group.
 
 ### Examples
 
@@ -33,7 +33,7 @@ opts = {
 }
 
 begin
-  # Get vendors available to a group.
+  # List all vendors.
   result = api_instance.get_vendors(opts)
   p result
 rescue Aryeo::ApiError => e
@@ -49,7 +49,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Get vendors available to a group.
+  # List all vendors.
   data, status_code, headers = api_instance.get_vendors_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
@@ -83,9 +83,9 @@ end
 
 > <GroupResource> get_vendors_id(vendor_id, opts)
 
-Get vendors available to a group.
+Retrieve a vendor.
 
-Get information about a vendor.
+Retrieves the details of a vendor with the given ID.
 
 ### Examples
 
@@ -105,7 +105,7 @@ opts = {
 }
 
 begin
-  # Get vendors available to a group.
+  # Retrieve a vendor.
   result = api_instance.get_vendors_id(vendor_id, opts)
   p result
 rescue Aryeo::ApiError => e
@@ -121,7 +121,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Get vendors available to a group.
+  # Retrieve a vendor.
   data, status_code, headers = api_instance.get_vendors_id_with_http_info(vendor_id, opts)
   p status_code # => 2xx
   p headers # => { ... }

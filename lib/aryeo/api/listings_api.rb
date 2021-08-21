@@ -14,8 +14,8 @@ module Aryeo
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Get the listings available to a group.
-    # Get the listings available to a group.
+    # List all listings.
+    # Lists all listings available to a group.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.
     # @option opts [String] :filter_search Return listings that have fields matching this term.
@@ -40,8 +40,8 @@ module Aryeo
       data
     end
 
-    # Get the listings available to a group.
-    # Get the listings available to a group.
+    # List all listings.
+    # Lists all listings available to a group.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.
     # @option opts [String] :filter_search Return listings that have fields matching this term.
@@ -198,8 +198,8 @@ module Aryeo
       return data, status_code, headers
     end
 
-    # Get information about a listing.
-    # Get information about a listing.
+    # Retrieve a listing.
+    # Retrieves the details of a listing with the given ID.
     # @param listing_id [String] The ID of a listing. UUID Version 4.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.
@@ -209,8 +209,8 @@ module Aryeo
       data
     end
 
-    # Get information about a listing.
-    # Get information about a listing.
+    # Retrieve a listing.
+    # Retrieves the details of a listing with the given ID.
     # @param listing_id [String] The ID of a listing. UUID Version 4.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.

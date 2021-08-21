@@ -14,8 +14,8 @@ module Aryeo
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Get vendors available to a group.
-    # Get vendors available to a group.
+    # List all vendors.
+    # Lists all vendors available to a group.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.
     # @return [GroupCollection]
@@ -24,8 +24,8 @@ module Aryeo
       data
     end
 
-    # Get vendors available to a group.
-    # Get vendors available to a group.
+    # List all vendors.
+    # Lists all vendors available to a group.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.
     # @return [Array<(GroupCollection, Integer, Hash)>] GroupCollection data, response status code and response headers
@@ -82,8 +82,8 @@ module Aryeo
       return data, status_code, headers
     end
 
-    # Get vendors available to a group.
-    # Get information about a vendor.
+    # Retrieve a vendor.
+    # Retrieves the details of a vendor with the given ID.
     # @param vendor_id [String] The ID of the group that is associated as a vendor. UUID Version 4.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.
@@ -93,8 +93,8 @@ module Aryeo
       data
     end
 
-    # Get vendors available to a group.
-    # Get information about a vendor.
+    # Retrieve a vendor.
+    # Retrieves the details of a vendor with the given ID.
     # @param vendor_id [String] The ID of the group that is associated as a vendor. UUID Version 4.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.

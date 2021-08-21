@@ -14,8 +14,8 @@ module Aryeo
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Get orders available to a group.
-    # Get orders of a group.
+    # List all orders.
+    # Lists all orders of a group.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :sort Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;-created_at&#x60;.
     # @option opts [String] :per_page The number of items per page. Defaults to 25.
@@ -26,8 +26,8 @@ module Aryeo
       data
     end
 
-    # Get orders available to a group.
-    # Get orders of a group.
+    # List all orders.
+    # Lists all orders of a group.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :sort Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;-created_at&#x60;.
     # @option opts [String] :per_page The number of items per page. Defaults to 25.
