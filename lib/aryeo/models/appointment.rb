@@ -37,6 +37,9 @@ module Aryeo
     # Users attached to the appointment.
     attr_accessor :users
 
+    # Items attached to the appointment.
+    attr_accessor :items
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -70,7 +73,8 @@ module Aryeo
         :'end_at' => :'end_at',
         :'duration' => :'duration',
         :'order' => :'order',
-        :'users' => :'users'
+        :'users' => :'users',
+        :'items' => :'items'
       }
     end
 
@@ -90,7 +94,8 @@ module Aryeo
         :'end_at' => :'Time',
         :'duration' => :'Integer',
         :'order' => :'Order',
-        :'users' => :'Array<User>'
+        :'users' => :'Array<User>',
+        :'items' => :'Array<OrderItem>'
       }
     end
 
@@ -103,7 +108,7 @@ module Aryeo
         :'start_at',
         :'end_at',
         :'duration',
-        :'users'
+        :'users',
       ])
     end
 
@@ -157,6 +162,12 @@ module Aryeo
       if attributes.key?(:'users')
         if (value = attributes[:'users']).is_a?(Array)
           self.users = value
+        end
+      end
+
+      if attributes.key?(:'items')
+        if (value = attributes[:'items']).is_a?(Array)
+          self.items = value
         end
       end
     end
@@ -338,7 +349,8 @@ module Aryeo
           end_at == o.end_at &&
           duration == o.duration &&
           order == o.order &&
-          users == o.users
+          users == o.users &&
+          items == o.items
     end
 
     # @see the `==` method
@@ -350,7 +362,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, status, title, description, start_at, end_at, duration, order, users].hash
+      [id, status, title, description, start_at, end_at, duration, order, users, items].hash
     end
 
     # Builds the object from hash

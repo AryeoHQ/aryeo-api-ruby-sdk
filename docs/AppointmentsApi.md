@@ -244,7 +244,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json, application/xml
+- **Accept**: application/json
 
 
 ## put_appointments_appointment_id_reschedule

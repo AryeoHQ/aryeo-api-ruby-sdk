@@ -1,4 +1,4 @@
-# Aryeo::ApiError
+# Aryeo::ApiError409
 
 ## Properties
 
@@ -13,10 +13,10 @@
 ```ruby
 require 'aryeo'
 
-instance = Aryeo::ApiError.new(
+instance = Aryeo::ApiError409.new(
   status: error,
-  message: Not found.,
-  code: 404
+  message: {ApiError message.},
+  code: 409
 )
 ```
 

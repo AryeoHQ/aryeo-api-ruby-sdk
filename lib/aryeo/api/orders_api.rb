@@ -111,7 +111,7 @@ module Aryeo
     # @option opts [String] :per_page The number of items per page. Defaults to 25.
     # @option opts [String] :page The requested page. Defaults to 1.
     # @option opts [String] :filter_search Return products that have fields matching this term.
-    # @option opts [String] :filter_category_ids Return products in the given categories.
+    # @option opts [Array] :filter_category_ids Return products in the given categories.
     # @option opts [String] :filter_type Return products matching the given type. Allowed values are: MAIN, ADDON.
     # @return [ProductCollection]
     def get_products(opts = {})
@@ -126,7 +126,7 @@ module Aryeo
     # @option opts [String] :per_page The number of items per page. Defaults to 25.
     # @option opts [String] :page The requested page. Defaults to 1.
     # @option opts [String] :filter_search Return products that have fields matching this term.
-    # @option opts [String] :filter_category_ids Return products in the given categories.
+    # @option opts [Array] :filter_category_ids Return products in the given categories.
     # @option opts [String] :filter_type Return products matching the given type. Allowed values are: MAIN, ADDON.
     # @return [Array<(ProductCollection, Integer, Hash)>] ProductCollection data, response status code and response headers
     def get_products_with_http_info(opts = {})
@@ -155,6 +155,30 @@ module Aryeo
 
       if @api_client.config.client_side_validation && !opts[:'page'].nil? && opts[:'page'].to_s.length < 1
         fail ArgumentError, 'invalid value for "opts[:"page"]" when calling OrdersApi.get_products, the character length must be great than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_search'].nil? && opts[:'filter_search'].to_s.length > 255
+        fail ArgumentError, 'invalid value for "opts[:"filter_search"]" when calling OrdersApi.get_products, the character length must be smaller than or equal to 255.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_search'].nil? && opts[:'filter_search'].to_s.length < 0
+        fail ArgumentError, 'invalid value for "opts[:"filter_search"]" when calling OrdersApi.get_products, the character length must be great than or equal to 0.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_category_ids'].nil? && opts[:'filter_category_ids'].to_s.length > 36
+        fail ArgumentError, 'invalid value for "opts[:"filter_category_ids"]" when calling OrdersApi.get_products, the character length must be smaller than or equal to 36.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_category_ids'].nil? && opts[:'filter_category_ids'].to_s.length < 36
+        fail ArgumentError, 'invalid value for "opts[:"filter_category_ids"]" when calling OrdersApi.get_products, the character length must be great than or equal to 36.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_type'].nil? && opts[:'filter_type'].to_s.length > 255
+        fail ArgumentError, 'invalid value for "opts[:"filter_type"]" when calling OrdersApi.get_products, the character length must be smaller than or equal to 255.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_type'].nil? && opts[:'filter_type'].to_s.length < 0
+        fail ArgumentError, 'invalid value for "opts[:"filter_type"]" when calling OrdersApi.get_products, the character length must be great than or equal to 0.'
       end
 
       # resource path

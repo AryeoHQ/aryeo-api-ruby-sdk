@@ -108,9 +108,9 @@ opts = {
   sort: '-created_at', # String | Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to `title`.
   per_page: '25', # String | The number of items per page. Defaults to 25.
   page: '2', # String | The requested page. Defaults to 1.
-  filter_search: 'filter_search_example', # String | Return products that have fields matching this term.
-  filter_category_ids: 'filter_category_ids_example', # String | Return products in the given categories.
-  filter_type: 'filter_type_example' # String | Return products matching the given type. Allowed values are: MAIN, ADDON.
+  filter_search: 'Photography', # String | Return products that have fields matching this term.
+  filter_category_ids: TODO, # Array | Return products in the given categories.
+  filter_type: 'MAIN' # String | Return products matching the given type. Allowed values are: MAIN, ADDON.
 }
 
 begin
@@ -148,7 +148,7 @@ end
 | **per_page** | **String** | The number of items per page. Defaults to 25. | [optional] |
 | **page** | **String** | The requested page. Defaults to 1. | [optional] |
 | **filter_search** | **String** | Return products that have fields matching this term. | [optional] |
-| **filter_category_ids** | **String** | Return products in the given categories. | [optional] |
+| **filter_category_ids** | [**Array**](.md) | Return products in the given categories. | [optional] |
 | **filter_type** | **String** | Return products matching the given type. Allowed values are: MAIN, ADDON. | [optional] |
 
 ### Return type

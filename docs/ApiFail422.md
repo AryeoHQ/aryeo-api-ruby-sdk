@@ -1,4 +1,4 @@
-# Aryeo::ApiFail
+# Aryeo::ApiFail422
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'aryeo'
 
-instance = Aryeo::ApiFail.new(
+instance = Aryeo::ApiFail422.new(
   status: fail
 )
 ```

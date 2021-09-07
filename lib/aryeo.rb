@@ -13,8 +13,11 @@ require 'aryeo/configuration'
 
 # Models
 require 'aryeo/models/address'
-require 'aryeo/models/api_error'
-require 'aryeo/models/api_fail'
+require 'aryeo/models/api_error403'
+require 'aryeo/models/api_error404'
+require 'aryeo/models/api_error409'
+require 'aryeo/models/api_error500'
+require 'aryeo/models/api_fail422'
 require 'aryeo/models/appointment'
 require 'aryeo/models/appointment_cancel_put_payload'
 require 'aryeo/models/appointment_collection'

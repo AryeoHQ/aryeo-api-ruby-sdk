@@ -13,6 +13,7 @@
 | **duration** | **Integer** | The length of the appointment in minutes. | [optional] |
 | **order** | [**Order**](Order.md) |  | [optional] |
 | **users** | [**Array&lt;User&gt;**](User.md) | Users attached to the appointment. | [optional] |
+| **items** | [**Array&lt;OrderItem&gt;**](OrderItem.md) | Items attached to the appointment. | [optional] |
 
 ## Example
 
@@ -29,7 +30,8 @@ Order Details: Order #123,
   end_at: 2021-06-30T20:30Z,
   duration: 60,
   order: null,
-  users: null
+  users: null,
+  items: null
 )
 ```
 
