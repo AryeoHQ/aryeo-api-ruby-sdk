@@ -62,6 +62,19 @@ describe 'AppointmentsApi' do
     end
   end
 
+  # unit tests for get_unconfirmed_appointments_id
+  # Retrieve an unconfirmed appointment.
+  # Retrieves the details of an unconfirmed appointment with the given ID.
+  # @param unconfirmed_appointment_id The ID of an appointment.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Comma separated list of optional data to include in the response.
+  # @return [UnconfirmedAppointmentResource]
+  describe 'get_unconfirmed_appointments_id test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for put_appointments_appointment_id_cancel
   # Cancel an appointment.
   # Cancel an appointment. The appointments order&#39;s customer can be optionally notified of this change. 

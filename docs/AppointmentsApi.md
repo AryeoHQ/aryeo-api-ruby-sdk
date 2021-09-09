@@ -6,6 +6,7 @@ All URIs are relative to *https://api.aryeo.com/v1*
 | ------ | ------------ | ----------- |
 | [**get_appointments**](AppointmentsApi.md#get_appointments) | **GET** /appointments | List all appointments. |
 | [**get_unconfirmed_appointments**](AppointmentsApi.md#get_unconfirmed_appointments) | **GET** /unconfirmed-appointments | List all unconfirmed appointments. |
+| [**get_unconfirmed_appointments_id**](AppointmentsApi.md#get_unconfirmed_appointments_id) | **GET** /unconfirmed-appointments/{unconfirmed_appointment_id} | Retrieve an unconfirmed appointment. |
 | [**put_appointments_appointment_id_cancel**](AppointmentsApi.md#put_appointments_appointment_id_cancel) | **PUT** /appointments/{appointment_id}/cancel | Cancel an appointment. |
 | [**put_appointments_appointment_id_reschedule**](AppointmentsApi.md#put_appointments_appointment_id_reschedule) | **PUT** /appointments/{appointment_id}/reschedule | Reschedule an appointment. |
 
@@ -163,6 +164,79 @@ end
 ### Return type
 
 [**UnconfirmedAppointmentCollection**](UnconfirmedAppointmentCollection.md)
+
+### Authorization
+
+[Token](../README.md#Token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_unconfirmed_appointments_id
+
+> <UnconfirmedAppointmentResource> get_unconfirmed_appointments_id(unconfirmed_appointment_id, opts)
+
+Retrieve an unconfirmed appointment.
+
+Retrieves the details of an unconfirmed appointment with the given ID.
+
+### Examples
+
+```ruby
+require 'time'
+require 'aryeo'
+# setup authorization
+Aryeo.configure do |config|
+  # Configure Bearer authorization: Token
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = Aryeo::AppointmentsApi.new
+unconfirmed_appointment_id = TODO # String | The ID of an appointment.
+opts = {
+  include: 'order,users' # String | Comma separated list of optional data to include in the response.
+}
+
+begin
+  # Retrieve an unconfirmed appointment.
+  result = api_instance.get_unconfirmed_appointments_id(unconfirmed_appointment_id, opts)
+  p result
+rescue Aryeo::ApiError => e
+  puts "Error when calling AppointmentsApi->get_unconfirmed_appointments_id: #{e}"
+end
+```
+
+#### Using the get_unconfirmed_appointments_id_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<UnconfirmedAppointmentResource>, Integer, Hash)> get_unconfirmed_appointments_id_with_http_info(unconfirmed_appointment_id, opts)
+
+```ruby
+begin
+  # Retrieve an unconfirmed appointment.
+  data, status_code, headers = api_instance.get_unconfirmed_appointments_id_with_http_info(unconfirmed_appointment_id, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <UnconfirmedAppointmentResource>
+rescue Aryeo::ApiError => e
+  puts "Error when calling AppointmentsApi->get_unconfirmed_appointments_id_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **unconfirmed_appointment_id** | [**String**](.md) | The ID of an appointment. |  |
+| **include** | **String** | Comma separated list of optional data to include in the response. | [optional] |
+
+### Return type
+
+[**UnconfirmedAppointmentResource**](UnconfirmedAppointmentResource.md)
 
 ### Authorization
 

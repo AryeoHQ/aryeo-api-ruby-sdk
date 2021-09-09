@@ -275,6 +275,88 @@ module Aryeo
       return data, status_code, headers
     end
 
+    # Retrieve an unconfirmed appointment.
+    # Retrieves the details of an unconfirmed appointment with the given ID.
+    # @param unconfirmed_appointment_id [String] The ID of an appointment.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Comma separated list of optional data to include in the response.
+    # @return [UnconfirmedAppointmentResource]
+    def get_unconfirmed_appointments_id(unconfirmed_appointment_id, opts = {})
+      data, _status_code, _headers = get_unconfirmed_appointments_id_with_http_info(unconfirmed_appointment_id, opts)
+      data
+    end
+
+    # Retrieve an unconfirmed appointment.
+    # Retrieves the details of an unconfirmed appointment with the given ID.
+    # @param unconfirmed_appointment_id [String] The ID of an appointment.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Comma separated list of optional data to include in the response.
+    # @return [Array<(UnconfirmedAppointmentResource, Integer, Hash)>] UnconfirmedAppointmentResource data, response status code and response headers
+    def get_unconfirmed_appointments_id_with_http_info(unconfirmed_appointment_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: AppointmentsApi.get_unconfirmed_appointments_id ...'
+      end
+      # verify the required parameter 'unconfirmed_appointment_id' is set
+      if @api_client.config.client_side_validation && unconfirmed_appointment_id.nil?
+        fail ArgumentError, "Missing the required parameter 'unconfirmed_appointment_id' when calling AppointmentsApi.get_unconfirmed_appointments_id"
+      end
+      if @api_client.config.client_side_validation && unconfirmed_appointment_id.to_s.length > 255
+        fail ArgumentError, 'invalid value for "unconfirmed_appointment_id" when calling AppointmentsApi.get_unconfirmed_appointments_id, the character length must be smaller than or equal to 255.'
+      end
+
+      if @api_client.config.client_side_validation && unconfirmed_appointment_id.to_s.length < 0
+        fail ArgumentError, 'invalid value for "unconfirmed_appointment_id" when calling AppointmentsApi.get_unconfirmed_appointments_id, the character length must be great than or equal to 0.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'include'].nil? && opts[:'include'].to_s.length > 255
+        fail ArgumentError, 'invalid value for "opts[:"include"]" when calling AppointmentsApi.get_unconfirmed_appointments_id, the character length must be smaller than or equal to 255.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'include'].nil? && opts[:'include'].to_s.length < 0
+        fail ArgumentError, 'invalid value for "opts[:"include"]" when calling AppointmentsApi.get_unconfirmed_appointments_id, the character length must be great than or equal to 0.'
+      end
+
+      # resource path
+      local_var_path = '/unconfirmed-appointments/{unconfirmed_appointment_id}'.sub('{' + 'unconfirmed_appointment_id' + '}', CGI.escape(unconfirmed_appointment_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'UnconfirmedAppointmentResource'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"AppointmentsApi.get_unconfirmed_appointments_id",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: AppointmentsApi#get_unconfirmed_appointments_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Cancel an appointment.
     # Cancel an appointment. The appointments order's customer can be optionally notified of this change. 
     # @param appointment_id [String] The ID of an appointment.

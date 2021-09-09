@@ -51,6 +51,7 @@ require 'aryeo/models/property_website'
 require 'aryeo/models/social_profiles'
 require 'aryeo/models/unconfirmed_appointment'
 require 'aryeo/models/unconfirmed_appointment_collection'
+require 'aryeo/models/unconfirmed_appointment_resource'
 require 'aryeo/models/user'
 require 'aryeo/models/video'
 

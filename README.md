@@ -49,6 +49,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *Aryeo::AppointmentsApi* | [**get_appointments**](docs/AppointmentsApi.md#get_appointments) | **GET** /appointments | List all appointments.
 *Aryeo::AppointmentsApi* | [**get_unconfirmed_appointments**](docs/AppointmentsApi.md#get_unconfirmed_appointments) | **GET** /unconfirmed-appointments | List all unconfirmed appointments.
+*Aryeo::AppointmentsApi* | [**get_unconfirmed_appointments_id**](docs/AppointmentsApi.md#get_unconfirmed_appointments_id) | **GET** /unconfirmed-appointments/{unconfirmed_appointment_id} | Retrieve an unconfirmed appointment.
 *Aryeo::AppointmentsApi* | [**put_appointments_appointment_id_cancel**](docs/AppointmentsApi.md#put_appointments_appointment_id_cancel) | **PUT** /appointments/{appointment_id}/cancel | Cancel an appointment.
 *Aryeo::AppointmentsApi* | [**put_appointments_appointment_id_reschedule**](docs/AppointmentsApi.md#put_appointments_appointment_id_reschedule) | **PUT** /appointments/{appointment_id}/reschedule | Reschedule an appointment.
 *Aryeo::ListingsApi* | [**get_listings**](docs/ListingsApi.md#get_listings) | **GET** /listings | List all listings.
@@ -102,6 +103,7 @@ Class | Method | HTTP request | Description
  - [Aryeo::SocialProfiles](docs/SocialProfiles.md)
  - [Aryeo::UnconfirmedAppointment](docs/UnconfirmedAppointment.md)
  - [Aryeo::UnconfirmedAppointmentCollection](docs/UnconfirmedAppointmentCollection.md)
+ - [Aryeo::UnconfirmedAppointmentResource](docs/UnconfirmedAppointmentResource.md)
  - [Aryeo::User](docs/User.md)
  - [Aryeo::Video](docs/Video.md)
 
