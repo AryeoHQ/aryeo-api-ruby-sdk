@@ -5,6 +5,7 @@ All URIs are relative to *https://api.aryeo.com/v1*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**get_orders**](OrdersApi.md#get_orders) | **GET** /orders | List all orders. |
+| [**get_orders_id**](OrdersApi.md#get_orders_id) | **GET** /orders/{order_id} | Retrieve an order. |
 | [**get_products**](OrdersApi.md#get_products) | **GET** /products | Get products available to a group. |
 | [**post_orders**](OrdersApi.md#post_orders) | **POST** /orders | Create an order. |
 
@@ -73,6 +74,79 @@ end
 ### Return type
 
 [**OrderCollection**](OrderCollection.md)
+
+### Authorization
+
+[Token](../README.md#Token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_orders_id
+
+> <OrderResource> get_orders_id(order_id, opts)
+
+Retrieve an order.
+
+Retrieves the details of an order with the given ID.
+
+### Examples
+
+```ruby
+require 'time'
+require 'aryeo'
+# setup authorization
+Aryeo.configure do |config|
+  # Configure Bearer authorization: Token
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = Aryeo::OrdersApi.new
+order_id = TODO # String | The ID of an order. UUID Version 4.
+opts = {
+  include: 'items,appointments,unconfirmed_appointments' # String | Comma separated list of optional data to include in the response.
+}
+
+begin
+  # Retrieve an order.
+  result = api_instance.get_orders_id(order_id, opts)
+  p result
+rescue Aryeo::ApiError => e
+  puts "Error when calling OrdersApi->get_orders_id: #{e}"
+end
+```
+
+#### Using the get_orders_id_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<OrderResource>, Integer, Hash)> get_orders_id_with_http_info(order_id, opts)
+
+```ruby
+begin
+  # Retrieve an order.
+  data, status_code, headers = api_instance.get_orders_id_with_http_info(order_id, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <OrderResource>
+rescue Aryeo::ApiError => e
+  puts "Error when calling OrdersApi->get_orders_id_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **order_id** | [**String**](.md) | The ID of an order. UUID Version 4. |  |
+| **include** | **String** | Comma separated list of optional data to include in the response. | [optional] |
+
+### Return type
+
+[**OrderResource**](OrderResource.md)
 
 ### Authorization
 

@@ -41,6 +41,19 @@ describe 'OrdersApi' do
     end
   end
 
+  # unit tests for get_orders_id
+  # Retrieve an order.
+  # Retrieves the details of an order with the given ID.
+  # @param order_id The ID of an order. UUID Version 4.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Comma separated list of optional data to include in the response.
+  # @return [OrderResource]
+  describe 'get_orders_id test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for get_products
   # Get products available to a group.
   # Get products of a group.

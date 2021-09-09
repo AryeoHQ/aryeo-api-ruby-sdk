@@ -54,6 +54,7 @@ Class | Method | HTTP request | Description
 *Aryeo::ListingsApi* | [**get_listings**](docs/ListingsApi.md#get_listings) | **GET** /listings | List all listings.
 *Aryeo::ListingsApi* | [**get_listings_id**](docs/ListingsApi.md#get_listings_id) | **GET** /listings/{listing_id} | Retrieve a listing.
 *Aryeo::OrdersApi* | [**get_orders**](docs/OrdersApi.md#get_orders) | **GET** /orders | List all orders.
+*Aryeo::OrdersApi* | [**get_orders_id**](docs/OrdersApi.md#get_orders_id) | **GET** /orders/{order_id} | Retrieve an order.
 *Aryeo::OrdersApi* | [**get_products**](docs/OrdersApi.md#get_products) | **GET** /products | Get products available to a group.
 *Aryeo::OrdersApi* | [**post_orders**](docs/OrdersApi.md#post_orders) | **POST** /orders | Create an order.
 *Aryeo::VendorsApi* | [**get_vendors**](docs/VendorsApi.md#get_vendors) | **GET** /vendors | List all vendors.
