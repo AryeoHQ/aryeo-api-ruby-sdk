@@ -15,7 +15,10 @@
 | **status_url** | **String** | A URL of a publicly-accessible webpage to see the order&#39;s status. |  |
 | **address** | [**Address**](Address.md) |  | [optional] |
 | **customer** | [**Group**](Group.md) |  | [optional] |
+| **listing** | [**Listing**](Listing.md) |  | [optional] |
 | **items** | [**Array&lt;OrderItem&gt;**](OrderItem.md) | items | [optional] |
+| **appointments** | [**Array&lt;Appointment&gt;**](Appointment.md) |  | [optional] |
+| **unconfirmed_appointments** | [**Array&lt;UnconfirmedAppointment&gt;**](UnconfirmedAppointment.md) |  | [optional] |
 
 ## Example
 
@@ -34,7 +37,10 @@ instance = Aryeo::Order.new(
   status_url: https://www.aryeo.com/v2/orders/00000000-0000-4000-8000-000000000000/status/public,
   address: null,
   customer: null,
-  items: null
+  listing: null,
+  items: null,
+  appointments: null,
+  unconfirmed_appointments: null
 )
 ```
 

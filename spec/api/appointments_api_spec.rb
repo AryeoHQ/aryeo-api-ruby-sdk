@@ -35,7 +35,7 @@ describe 'AppointmentsApi' do
   # @option opts [String] :filter_tense Return appointments that are upcoming or in the past.
   # @option opts [Time] :filter_start_at_gte Return appointments where the start_at field is greater than or equal to this value. Effectively, appointments that start after this date.
   # @option opts [Time] :filter_start_at_lte Return appointments where the start_at field is less than or equal to this value. Effectively, appointments that start before this date.
-  # @option opts [Array] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
+  # @option opts [Array<String>] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
   # @option opts [String] :sort Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;-start_at&#x60;.
   # @option opts [String] :per_page The number of items per page. Defaults to 25.
   # @option opts [String] :page The requested page. Defaults to 1.
@@ -51,7 +51,7 @@ describe 'AppointmentsApi' do
   # List all unconfirmed appointments. These are appointments that have not been scheduled. 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Comma separated list of optional data to include in the response.
-  # @option opts [Array] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
+  # @option opts [Array<String>] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
   # @option opts [String] :sort Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;-start_at&#x60;.
   # @option opts [String] :per_page The number of items per page. Defaults to 25.
   # @option opts [String] :page The requested page. Defaults to 1.

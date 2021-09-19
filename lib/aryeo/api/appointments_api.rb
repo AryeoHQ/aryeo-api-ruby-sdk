@@ -21,7 +21,7 @@ module Aryeo
     # @option opts [String] :filter_tense Return appointments that are upcoming or in the past.
     # @option opts [Time] :filter_start_at_gte Return appointments where the start_at field is greater than or equal to this value. Effectively, appointments that start after this date.
     # @option opts [Time] :filter_start_at_lte Return appointments where the start_at field is less than or equal to this value. Effectively, appointments that start before this date.
-    # @option opts [Array] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
+    # @option opts [Array<String>] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
     # @option opts [String] :sort Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;-start_at&#x60;.
     # @option opts [String] :per_page The number of items per page. Defaults to 25.
     # @option opts [String] :page The requested page. Defaults to 1.
@@ -38,7 +38,7 @@ module Aryeo
     # @option opts [String] :filter_tense Return appointments that are upcoming or in the past.
     # @option opts [Time] :filter_start_at_gte Return appointments where the start_at field is greater than or equal to this value. Effectively, appointments that start after this date.
     # @option opts [Time] :filter_start_at_lte Return appointments where the start_at field is less than or equal to this value. Effectively, appointments that start before this date.
-    # @option opts [Array] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
+    # @option opts [Array<String>] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
     # @option opts [String] :sort Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;-start_at&#x60;.
     # @option opts [String] :per_page The number of items per page. Defaults to 25.
     # @option opts [String] :page The requested page. Defaults to 1.
@@ -83,14 +83,6 @@ module Aryeo
         fail ArgumentError, 'invalid value for "opts[:"filter_start_at_lte"]" when calling AppointmentsApi.get_appointments, the character length must be great than or equal to 1.'
       end
 
-      if @api_client.config.client_side_validation && !opts[:'filter_user_ids'].nil? && opts[:'filter_user_ids'].to_s.length > 36
-        fail ArgumentError, 'invalid value for "opts[:"filter_user_ids"]" when calling AppointmentsApi.get_appointments, the character length must be smaller than or equal to 36.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'filter_user_ids'].nil? && opts[:'filter_user_ids'].to_s.length < 36
-        fail ArgumentError, 'invalid value for "opts[:"filter_user_ids"]" when calling AppointmentsApi.get_appointments, the character length must be great than or equal to 36.'
-      end
-
       if @api_client.config.client_side_validation && !opts[:'sort'].nil? && opts[:'sort'].to_s.length > 100
         fail ArgumentError, 'invalid value for "opts[:"sort"]" when calling AppointmentsApi.get_appointments, the character length must be smaller than or equal to 100.'
       end
@@ -124,7 +116,7 @@ module Aryeo
       query_params[:'filter[tense]'] = opts[:'filter_tense'] if !opts[:'filter_tense'].nil?
       query_params[:'filter[start_at_gte]'] = opts[:'filter_start_at_gte'] if !opts[:'filter_start_at_gte'].nil?
       query_params[:'filter[start_at_lte]'] = opts[:'filter_start_at_lte'] if !opts[:'filter_start_at_lte'].nil?
-      query_params[:'filter[user_ids]'] = opts[:'filter_user_ids'] if !opts[:'filter_user_ids'].nil?
+      query_params[:'filter[user_ids]'] = @api_client.build_collection_param(opts[:'filter_user_ids'], :multi) if !opts[:'filter_user_ids'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
       query_params[:'per_page'] = opts[:'per_page'] if !opts[:'per_page'].nil?
       query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
@@ -167,7 +159,7 @@ module Aryeo
     # List all unconfirmed appointments. These are appointments that have not been scheduled. 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.
-    # @option opts [Array] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
+    # @option opts [Array<String>] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
     # @option opts [String] :sort Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;-start_at&#x60;.
     # @option opts [String] :per_page The number of items per page. Defaults to 25.
     # @option opts [String] :page The requested page. Defaults to 1.
@@ -181,7 +173,7 @@ module Aryeo
     # List all unconfirmed appointments. These are appointments that have not been scheduled. 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.
-    # @option opts [Array] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
+    # @option opts [Array<String>] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
     # @option opts [String] :sort Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;-start_at&#x60;.
     # @option opts [String] :per_page The number of items per page. Defaults to 25.
     # @option opts [String] :page The requested page. Defaults to 1.
@@ -196,14 +188,6 @@ module Aryeo
 
       if @api_client.config.client_side_validation && !opts[:'include'].nil? && opts[:'include'].to_s.length < 0
         fail ArgumentError, 'invalid value for "opts[:"include"]" when calling AppointmentsApi.get_unconfirmed_appointments, the character length must be great than or equal to 0.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'filter_user_ids'].nil? && opts[:'filter_user_ids'].to_s.length > 36
-        fail ArgumentError, 'invalid value for "opts[:"filter_user_ids"]" when calling AppointmentsApi.get_unconfirmed_appointments, the character length must be smaller than or equal to 36.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'filter_user_ids'].nil? && opts[:'filter_user_ids'].to_s.length < 36
-        fail ArgumentError, 'invalid value for "opts[:"filter_user_ids"]" when calling AppointmentsApi.get_unconfirmed_appointments, the character length must be great than or equal to 36.'
       end
 
       if @api_client.config.client_side_validation && !opts[:'sort'].nil? && opts[:'sort'].to_s.length > 100
@@ -236,7 +220,7 @@ module Aryeo
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
-      query_params[:'filter[user_ids]'] = opts[:'filter_user_ids'] if !opts[:'filter_user_ids'].nil?
+      query_params[:'filter[user_ids]'] = @api_client.build_collection_param(opts[:'filter_user_ids'], :multi) if !opts[:'filter_user_ids'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
       query_params[:'per_page'] = opts[:'per_page'] if !opts[:'per_page'].nil?
       query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?

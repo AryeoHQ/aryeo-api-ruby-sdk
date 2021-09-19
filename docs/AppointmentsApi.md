@@ -36,7 +36,7 @@ opts = {
   filter_tense: 'PAST', # String | Return appointments that are upcoming or in the past.
   filter_start_at_gte: Time.parse('2021-01-01T13:00Z'), # Time | Return appointments where the start_at field is greater than or equal to this value. Effectively, appointments that start after this date.
   filter_start_at_lte: Time.parse('2021-01-02T13:00Z'), # Time | Return appointments where the start_at field is less than or equal to this value. Effectively, appointments that start before this date.
-  filter_user_ids: TODO, # Array | The IDs of users whose appointments will be retrieved. UUID Version 4.
+  filter_user_ids: ['00000000-0000-4000-8000-000000000000'], # Array<String> | The IDs of users whose appointments will be retrieved. UUID Version 4.
   sort: '-created_at', # String | Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to `-start_at`.
   per_page: '25', # String | The number of items per page. Defaults to 25.
   page: '2' # String | The requested page. Defaults to 1.
@@ -77,7 +77,7 @@ end
 | **filter_tense** | **String** | Return appointments that are upcoming or in the past. | [optional] |
 | **filter_start_at_gte** | **Time** | Return appointments where the start_at field is greater than or equal to this value. Effectively, appointments that start after this date. | [optional] |
 | **filter_start_at_lte** | **Time** | Return appointments where the start_at field is less than or equal to this value. Effectively, appointments that start before this date. | [optional] |
-| **filter_user_ids** | [**Array**](.md) | The IDs of users whose appointments will be retrieved. UUID Version 4. | [optional] |
+| **filter_user_ids** | [**Array&lt;String&gt;**](String.md) | The IDs of users whose appointments will be retrieved. UUID Version 4. | [optional] |
 | **sort** | **String** | Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;-start_at&#x60;. | [optional] |
 | **per_page** | **String** | The number of items per page. Defaults to 25. | [optional] |
 | **page** | **String** | The requested page. Defaults to 1. | [optional] |
@@ -118,7 +118,7 @@ end
 api_instance = Aryeo::AppointmentsApi.new
 opts = {
   include: 'order,users', # String | Comma separated list of optional data to include in the response.
-  filter_user_ids: TODO, # Array | The IDs of users whose appointments will be retrieved. UUID Version 4.
+  filter_user_ids: ['00000000-0000-4000-8000-000000000000'], # Array<String> | The IDs of users whose appointments will be retrieved. UUID Version 4.
   sort: '-created_at', # String | Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to `-start_at`.
   per_page: '25', # String | The number of items per page. Defaults to 25.
   page: '2' # String | The requested page. Defaults to 1.
@@ -156,7 +156,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **include** | **String** | Comma separated list of optional data to include in the response. | [optional] |
-| **filter_user_ids** | [**Array**](.md) | The IDs of users whose appointments will be retrieved. UUID Version 4. | [optional] |
+| **filter_user_ids** | [**Array&lt;String&gt;**](String.md) | The IDs of users whose appointments will be retrieved. UUID Version 4. | [optional] |
 | **sort** | **String** | Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;-start_at&#x60;. | [optional] |
 | **per_page** | **String** | The number of items per page. Defaults to 25. | [optional] |
 | **page** | **String** | The requested page. Defaults to 1. | [optional] |

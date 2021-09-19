@@ -55,14 +55,14 @@ describe 'OrdersApi' do
   end
 
   # unit tests for get_products
-  # Get products available to a group.
-  # Get products of a group.
+  # List all products.
+  # List all products of a group.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :sort Comma separated list of fields used for sorting. Placing a minus symbol in front of a field name sorts in descending order. Defaults to &#x60;title&#x60;.
   # @option opts [String] :per_page The number of items per page. Defaults to 25.
   # @option opts [String] :page The requested page. Defaults to 1.
   # @option opts [String] :filter_search Return products that have fields matching this term.
-  # @option opts [Array] :filter_category_ids Return products in the given categories.
+  # @option opts [Array<String>] :filter_category_ids Return products in the given categories.
   # @option opts [String] :filter_type Return products matching the given type. Allowed values are: MAIN, ADDON.
   # @return [ProductCollection]
   describe 'get_products test' do

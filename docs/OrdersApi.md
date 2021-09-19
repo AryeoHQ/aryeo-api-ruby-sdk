@@ -6,7 +6,7 @@ All URIs are relative to *https://api.aryeo.com/v1*
 | ------ | ------------ | ----------- |
 | [**get_orders**](OrdersApi.md#get_orders) | **GET** /orders | List all orders. |
 | [**get_orders_id**](OrdersApi.md#get_orders_id) | **GET** /orders/{order_id} | Retrieve an order. |
-| [**get_products**](OrdersApi.md#get_products) | **GET** /products | Get products available to a group. |
+| [**get_products**](OrdersApi.md#get_products) | **GET** /products | List all products. |
 | [**post_orders**](OrdersApi.md#post_orders) | **POST** /orders | Create an order. |
 
 
@@ -162,9 +162,9 @@ end
 
 > <ProductCollection> get_products(opts)
 
-Get products available to a group.
+List all products.
 
-Get products of a group.
+List all products of a group.
 
 ### Examples
 
@@ -183,12 +183,12 @@ opts = {
   per_page: '25', # String | The number of items per page. Defaults to 25.
   page: '2', # String | The requested page. Defaults to 1.
   filter_search: 'Photography', # String | Return products that have fields matching this term.
-  filter_category_ids: TODO, # Array | Return products in the given categories.
+  filter_category_ids: ['00000000-0000-4000-8000-000000000000'], # Array<String> | Return products in the given categories.
   filter_type: 'MAIN' # String | Return products matching the given type. Allowed values are: MAIN, ADDON.
 }
 
 begin
-  # Get products available to a group.
+  # List all products.
   result = api_instance.get_products(opts)
   p result
 rescue Aryeo::ApiError => e
@@ -204,7 +204,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Get products available to a group.
+  # List all products.
   data, status_code, headers = api_instance.get_products_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
@@ -222,7 +222,7 @@ end
 | **per_page** | **String** | The number of items per page. Defaults to 25. | [optional] |
 | **page** | **String** | The requested page. Defaults to 1. | [optional] |
 | **filter_search** | **String** | Return products that have fields matching this term. | [optional] |
-| **filter_category_ids** | [**Array**](.md) | Return products in the given categories. | [optional] |
+| **filter_category_ids** | [**Array&lt;String&gt;**](String.md) | Return products in the given categories. | [optional] |
 | **filter_type** | **String** | Return products matching the given type. Allowed values are: MAIN, ADDON. | [optional] |
 
 ### Return type

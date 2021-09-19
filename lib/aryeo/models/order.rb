@@ -42,8 +42,14 @@ module Aryeo
 
     attr_accessor :customer
 
+    attr_accessor :listing
+
     # items
     attr_accessor :items
+
+    attr_accessor :appointments
+
+    attr_accessor :unconfirmed_appointments
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -81,7 +87,10 @@ module Aryeo
         :'status_url' => :'status_url',
         :'address' => :'address',
         :'customer' => :'customer',
-        :'items' => :'items'
+        :'listing' => :'listing',
+        :'items' => :'items',
+        :'appointments' => :'appointments',
+        :'unconfirmed_appointments' => :'unconfirmed_appointments'
       }
     end
 
@@ -104,7 +113,10 @@ module Aryeo
         :'status_url' => :'String',
         :'address' => :'Address',
         :'customer' => :'Group',
-        :'items' => :'Array<OrderItem>'
+        :'listing' => :'Listing',
+        :'items' => :'Array<OrderItem>',
+        :'appointments' => :'Array<Appointment>',
+        :'unconfirmed_appointments' => :'Array<UnconfirmedAppointment>'
       }
     end
 
@@ -175,9 +187,25 @@ module Aryeo
         self.customer = attributes[:'customer']
       end
 
+      if attributes.key?(:'listing')
+        self.listing = attributes[:'listing']
+      end
+
       if attributes.key?(:'items')
         if (value = attributes[:'items']).is_a?(Array)
           self.items = value
+        end
+      end
+
+      if attributes.key?(:'appointments')
+        if (value = attributes[:'appointments']).is_a?(Array)
+          self.appointments = value
+        end
+      end
+
+      if attributes.key?(:'unconfirmed_appointments')
+        if (value = attributes[:'unconfirmed_appointments']).is_a?(Array)
+          self.unconfirmed_appointments = value
         end
       end
     end
@@ -421,7 +449,10 @@ module Aryeo
           status_url == o.status_url &&
           address == o.address &&
           customer == o.customer &&
-          items == o.items
+          listing == o.listing &&
+          items == o.items &&
+          appointments == o.appointments &&
+          unconfirmed_appointments == o.unconfirmed_appointments
     end
 
     # @see the `==` method
@@ -433,7 +464,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, number, title, fulfillment_status, payment_status, currency, total_amount, payment_url, status_url, address, customer, items].hash
+      [id, number, title, fulfillment_status, payment_status, currency, total_amount, payment_url, status_url, address, customer, listing, items, appointments, unconfirmed_appointments].hash
     end
 
     # Builds the object from hash
