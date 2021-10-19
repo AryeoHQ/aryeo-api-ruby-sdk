@@ -30,6 +30,12 @@ describe Aryeo::OrderPostPayload do
     end
   end
 
+  describe 'test attribute "internal_notes"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "payment_status"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -40,7 +46,13 @@ describe Aryeo::OrderPostPayload do
     end
   end
 
-  describe 'test attribute "place_id"' do
+  describe 'test attribute "address_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "customer_id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

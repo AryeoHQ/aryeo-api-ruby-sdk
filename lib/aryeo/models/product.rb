@@ -20,6 +20,9 @@ module Aryeo
     # The description of the product.
     attr_accessor :description
 
+    # The active status of a product.
+    attr_accessor :active
+
     # The type of product.
     attr_accessor :type
 
@@ -55,6 +58,7 @@ module Aryeo
         :'id' => :'id',
         :'title' => :'title',
         :'description' => :'description',
+        :'active' => :'active',
         :'type' => :'type',
         :'variants' => :'variants',
         :'categories' => :'categories'
@@ -72,6 +76,7 @@ module Aryeo
         :'id' => :'String',
         :'title' => :'String',
         :'description' => :'String',
+        :'active' => :'Boolean',
         :'type' => :'String',
         :'variants' => :'Array<ProductVariant>',
         :'categories' => :'Array<ProductCategory>'
@@ -109,6 +114,10 @@ module Aryeo
 
       if attributes.key?(:'description')
         self.description = attributes[:'description']
+      end
+
+      if attributes.key?(:'active')
+        self.active = attributes[:'active']
       end
 
       if attributes.key?(:'type')
@@ -266,6 +275,7 @@ module Aryeo
           id == o.id &&
           title == o.title &&
           description == o.description &&
+          active == o.active &&
           type == o.type &&
           variants == o.variants &&
           categories == o.categories
@@ -280,7 +290,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, title, description, type, variants, categories].hash
+      [id, title, description, active, type, variants, categories].hash
     end
 
     # Builds the object from hash

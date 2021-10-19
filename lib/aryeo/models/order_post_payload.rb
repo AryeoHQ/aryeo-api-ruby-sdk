@@ -14,11 +14,17 @@ module Aryeo
     # The fulfillment status of the order. Defaults to \"UNFULFILLED\".
     attr_accessor :fulfillment_status
 
+    # Internal notes that will be attached to the order. Viewable only by the team.
+    attr_accessor :internal_notes
+
     # The payment status of the order. Defaults to \"UNPAID\". 
     attr_accessor :payment_status
 
-    # Google Places ID of the address to attach to the order.
-    attr_accessor :place_id
+    # ID of the address to associate with the order. UUID Version 4.
+    attr_accessor :address_id
+
+    # ID of the customer to associate with the order. UUID Version 4.
+    attr_accessor :customer_id
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -46,8 +52,10 @@ module Aryeo
     def self.attribute_map
       {
         :'fulfillment_status' => :'fulfillment_status',
+        :'internal_notes' => :'internal_notes',
         :'payment_status' => :'payment_status',
-        :'place_id' => :'place_id'
+        :'address_id' => :'address_id',
+        :'customer_id' => :'customer_id'
       }
     end
 
@@ -60,8 +68,10 @@ module Aryeo
     def self.openapi_types
       {
         :'fulfillment_status' => :'String',
+        :'internal_notes' => :'String',
         :'payment_status' => :'String',
-        :'place_id' => :'String'
+        :'address_id' => :'String',
+        :'customer_id' => :'String'
       }
     end
 
@@ -69,6 +79,7 @@ module Aryeo
     def self.openapi_nullable
       Set.new([
         :'fulfillment_status',
+        :'internal_notes',
         :'payment_status',
       ])
     end
@@ -92,12 +103,20 @@ module Aryeo
         self.fulfillment_status = attributes[:'fulfillment_status']
       end
 
+      if attributes.key?(:'internal_notes')
+        self.internal_notes = attributes[:'internal_notes']
+      end
+
       if attributes.key?(:'payment_status')
         self.payment_status = attributes[:'payment_status']
       end
 
-      if attributes.key?(:'place_id')
-        self.place_id = attributes[:'place_id']
+      if attributes.key?(:'address_id')
+        self.address_id = attributes[:'address_id']
+      end
+
+      if attributes.key?(:'customer_id')
+        self.customer_id = attributes[:'customer_id']
       end
     end
 
@@ -113,6 +132,14 @@ module Aryeo
         invalid_properties.push('invalid value for "fulfillment_status", the character length must be great than or equal to 0.')
       end
 
+      if !@internal_notes.nil? && @internal_notes.to_s.length > 2550
+        invalid_properties.push('invalid value for "internal_notes", the character length must be smaller than or equal to 2550.')
+      end
+
+      if !@internal_notes.nil? && @internal_notes.to_s.length < 0
+        invalid_properties.push('invalid value for "internal_notes", the character length must be great than or equal to 0.')
+      end
+
       if !@payment_status.nil? && @payment_status.to_s.length > 255
         invalid_properties.push('invalid value for "payment_status", the character length must be smaller than or equal to 255.')
       end
@@ -121,12 +148,20 @@ module Aryeo
         invalid_properties.push('invalid value for "payment_status", the character length must be great than or equal to 0.')
       end
 
-      if !@place_id.nil? && @place_id.to_s.length > 255
-        invalid_properties.push('invalid value for "place_id", the character length must be smaller than or equal to 255.')
+      if !@address_id.nil? && @address_id.to_s.length > 36
+        invalid_properties.push('invalid value for "address_id", the character length must be smaller than or equal to 36.')
       end
 
-      if !@place_id.nil? && @place_id.to_s.length < 0
-        invalid_properties.push('invalid value for "place_id", the character length must be great than or equal to 0.')
+      if !@address_id.nil? && @address_id.to_s.length < 36
+        invalid_properties.push('invalid value for "address_id", the character length must be great than or equal to 36.')
+      end
+
+      if !@customer_id.nil? && @customer_id.to_s.length > 36
+        invalid_properties.push('invalid value for "customer_id", the character length must be smaller than or equal to 36.')
+      end
+
+      if !@customer_id.nil? && @customer_id.to_s.length < 36
+        invalid_properties.push('invalid value for "customer_id", the character length must be great than or equal to 36.')
       end
 
       invalid_properties
@@ -139,12 +174,16 @@ module Aryeo
       return false unless fulfillment_status_validator.valid?(@fulfillment_status)
       return false if !@fulfillment_status.nil? && @fulfillment_status.to_s.length > 255
       return false if !@fulfillment_status.nil? && @fulfillment_status.to_s.length < 0
+      return false if !@internal_notes.nil? && @internal_notes.to_s.length > 2550
+      return false if !@internal_notes.nil? && @internal_notes.to_s.length < 0
       payment_status_validator = EnumAttributeValidator.new('String', ["PAID", "UNPAID"])
       return false unless payment_status_validator.valid?(@payment_status)
       return false if !@payment_status.nil? && @payment_status.to_s.length > 255
       return false if !@payment_status.nil? && @payment_status.to_s.length < 0
-      return false if !@place_id.nil? && @place_id.to_s.length > 255
-      return false if !@place_id.nil? && @place_id.to_s.length < 0
+      return false if !@address_id.nil? && @address_id.to_s.length > 36
+      return false if !@address_id.nil? && @address_id.to_s.length < 36
+      return false if !@customer_id.nil? && @customer_id.to_s.length > 36
+      return false if !@customer_id.nil? && @customer_id.to_s.length < 36
       true
     end
 
@@ -158,6 +197,20 @@ module Aryeo
       @fulfillment_status = fulfillment_status
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] internal_notes Value to be assigned
+    def internal_notes=(internal_notes)
+      if !internal_notes.nil? && internal_notes.to_s.length > 2550
+        fail ArgumentError, 'invalid value for "internal_notes", the character length must be smaller than or equal to 2550.'
+      end
+
+      if !internal_notes.nil? && internal_notes.to_s.length < 0
+        fail ArgumentError, 'invalid value for "internal_notes", the character length must be great than or equal to 0.'
+      end
+
+      @internal_notes = internal_notes
+    end
+
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] payment_status Object to be assigned
     def payment_status=(payment_status)
@@ -169,17 +222,31 @@ module Aryeo
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] place_id Value to be assigned
-    def place_id=(place_id)
-      if !place_id.nil? && place_id.to_s.length > 255
-        fail ArgumentError, 'invalid value for "place_id", the character length must be smaller than or equal to 255.'
+    # @param [Object] address_id Value to be assigned
+    def address_id=(address_id)
+      if !address_id.nil? && address_id.to_s.length > 36
+        fail ArgumentError, 'invalid value for "address_id", the character length must be smaller than or equal to 36.'
       end
 
-      if !place_id.nil? && place_id.to_s.length < 0
-        fail ArgumentError, 'invalid value for "place_id", the character length must be great than or equal to 0.'
+      if !address_id.nil? && address_id.to_s.length < 36
+        fail ArgumentError, 'invalid value for "address_id", the character length must be great than or equal to 36.'
       end
 
-      @place_id = place_id
+      @address_id = address_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] customer_id Value to be assigned
+    def customer_id=(customer_id)
+      if !customer_id.nil? && customer_id.to_s.length > 36
+        fail ArgumentError, 'invalid value for "customer_id", the character length must be smaller than or equal to 36.'
+      end
+
+      if !customer_id.nil? && customer_id.to_s.length < 36
+        fail ArgumentError, 'invalid value for "customer_id", the character length must be great than or equal to 36.'
+      end
+
+      @customer_id = customer_id
     end
 
     # Checks equality by comparing each attribute.
@@ -188,8 +255,10 @@ module Aryeo
       return true if self.equal?(o)
       self.class == o.class &&
           fulfillment_status == o.fulfillment_status &&
+          internal_notes == o.internal_notes &&
           payment_status == o.payment_status &&
-          place_id == o.place_id
+          address_id == o.address_id &&
+          customer_id == o.customer_id
     end
 
     # @see the `==` method
@@ -201,7 +270,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [fulfillment_status, payment_status, place_id].hash
+      [fulfillment_status, internal_notes, payment_status, address_id, customer_id].hash
     end
 
     # Builds the object from hash

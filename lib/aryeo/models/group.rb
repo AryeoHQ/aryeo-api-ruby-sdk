@@ -11,6 +11,9 @@ require 'time'
 module Aryeo
   # A collection of users that can interact with the Aryeo platform. Permissions and properties are determined based on the group's type which can be creator, agent, or brokerage.
   class Group
+    # String representing the object’s type. Objects of the same type share the same schema.
+    attr_accessor :object
+
     # ID of the group. UUID Version 4.
     attr_accessor :id
 
@@ -81,6 +84,7 @@ module Aryeo
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'object' => :'object',
         :'id' => :'id',
         :'type' => :'type',
         :'name' => :'name',
@@ -108,6 +112,7 @@ module Aryeo
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'object' => :'String',
         :'id' => :'String',
         :'type' => :'String',
         :'name' => :'String',
@@ -156,6 +161,10 @@ module Aryeo
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'object')
+        self.object = attributes[:'object']
+      end
 
       if attributes.key?(:'id')
         self.id = attributes[:'id']
@@ -230,6 +239,14 @@ module Aryeo
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@object.nil? && @object.to_s.length > 100
+        invalid_properties.push('invalid value for "object", the character length must be smaller than or equal to 100.')
+      end
+
+      if !@object.nil? && @object.to_s.length < 1
+        invalid_properties.push('invalid value for "object", the character length must be great than or equal to 1.')
+      end
+
       if @id.nil?
         invalid_properties.push('invalid value for "id", id cannot be nil.')
       end
@@ -332,6 +349,8 @@ module Aryeo
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@object.nil? && @object.to_s.length > 100
+      return false if !@object.nil? && @object.to_s.length < 1
       return false if @id.nil?
       return false if @id.to_s.length > 36
       return false if @id.to_s.length < 36
@@ -359,6 +378,20 @@ module Aryeo
       return false if !@license_number.nil? && @license_number.to_s.length < 0
       return false if @is_brokerage_or_brokerage_agent.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] object Value to be assigned
+    def object=(object)
+      if !object.nil? && object.to_s.length > 100
+        fail ArgumentError, 'invalid value for "object", the character length must be smaller than or equal to 100.'
+      end
+
+      if !object.nil? && object.to_s.length < 1
+        fail ArgumentError, 'invalid value for "object", the character length must be great than or equal to 1.'
+      end
+
+      @object = object
     end
 
     # Custom attribute writer method with validation
@@ -510,6 +543,7 @@ module Aryeo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          object == o.object &&
           id == o.id &&
           type == o.type &&
           name == o.name &&
@@ -537,7 +571,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, type, name, email, phone, website_url, logo_url, avatar_url, office_name, license_number, social_profiles, default_order_form, order_forms, owner, users, is_brokerage_or_brokerage_agent].hash
+      [object, id, type, name, email, phone, website_url, logo_url, avatar_url, office_name, license_number, social_profiles, default_order_form, order_forms, owner, users, is_brokerage_or_brokerage_agent].hash
     end
 
     # Builds the object from hash

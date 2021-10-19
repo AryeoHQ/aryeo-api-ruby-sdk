@@ -4,6 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **object** | **String** | String representing the object’s type. Objects of the same type share the same schema. |  |
 | **id** | **String** | ID of the listing. UUID Version 4. |  |
 | **address** | [**Address**](Address.md) |  |  |
 | **mls_number** | **String** | The identifier for a listing on its local MLS.  | [optional] |
@@ -31,6 +32,7 @@
 require 'aryeo'
 
 instance = Aryeo::Listing.new(
+  object: LISTING,
   id: 00000000-0000-4000-8000-000000000000,
   address: null,
   mls_number: 1850209,

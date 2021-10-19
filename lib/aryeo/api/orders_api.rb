@@ -193,6 +193,7 @@ module Aryeo
     # @option opts [String] :per_page The number of items per page. Defaults to 25.
     # @option opts [String] :page The requested page. Defaults to 1.
     # @option opts [String] :filter_search Return products that have fields matching this term.
+    # @option opts [Boolean] :filter_include_inactive Include inactive products (in addition to active products) when returning products.
     # @option opts [Array<String>] :filter_category_ids Return products in the given categories.
     # @option opts [String] :filter_type Return products matching the given type. Allowed values are: MAIN, ADDON.
     # @return [ProductCollection]
@@ -208,6 +209,7 @@ module Aryeo
     # @option opts [String] :per_page The number of items per page. Defaults to 25.
     # @option opts [String] :page The requested page. Defaults to 1.
     # @option opts [String] :filter_search Return products that have fields matching this term.
+    # @option opts [Boolean] :filter_include_inactive Include inactive products (in addition to active products) when returning products.
     # @option opts [Array<String>] :filter_category_ids Return products in the given categories.
     # @option opts [String] :filter_type Return products matching the given type. Allowed values are: MAIN, ADDON.
     # @return [Array<(ProductCollection, Integer, Hash)>] ProductCollection data, response status code and response headers
@@ -264,6 +266,7 @@ module Aryeo
       query_params[:'per_page'] = opts[:'per_page'] if !opts[:'per_page'].nil?
       query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
       query_params[:'filter[search]'] = opts[:'filter_search'] if !opts[:'filter_search'].nil?
+      query_params[:'filter[include_inactive]'] = opts[:'filter_include_inactive'] if !opts[:'filter_include_inactive'].nil?
       query_params[:'filter[category_ids]'] = @api_client.build_collection_param(opts[:'filter_category_ids'], :multi) if !opts[:'filter_category_ids'].nil?
       query_params[:'filter[type]'] = opts[:'filter_type'] if !opts[:'filter_type'].nil?
 

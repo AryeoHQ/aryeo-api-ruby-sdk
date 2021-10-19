@@ -11,6 +11,9 @@ require 'time'
 module Aryeo
   # A real estate listing.
   class Listing
+    # String representing the object’s type. Objects of the same type share the same schema.
+    attr_accessor :object
+
     # ID of the listing. UUID Version 4.
     attr_accessor :id
 
@@ -89,6 +92,7 @@ module Aryeo
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'object' => :'object',
         :'id' => :'id',
         :'address' => :'address',
         :'mls_number' => :'mls_number',
@@ -120,6 +124,7 @@ module Aryeo
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'object' => :'String',
         :'id' => :'String',
         :'address' => :'Address',
         :'mls_number' => :'String',
@@ -169,6 +174,10 @@ module Aryeo
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'object')
+        self.object = attributes[:'object']
+      end
 
       if attributes.key?(:'id')
         self.id = attributes[:'id']
@@ -265,6 +274,18 @@ module Aryeo
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @object.nil?
+        invalid_properties.push('invalid value for "object", object cannot be nil.')
+      end
+
+      if @object.to_s.length > 100
+        invalid_properties.push('invalid value for "object", the character length must be smaller than or equal to 100.')
+      end
+
+      if @object.to_s.length < 1
+        invalid_properties.push('invalid value for "object", the character length must be great than or equal to 1.')
+      end
+
       if @id.nil?
         invalid_properties.push('invalid value for "id", id cannot be nil.')
       end
@@ -339,6 +360,9 @@ module Aryeo
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @object.nil?
+      return false if @object.to_s.length > 100
+      return false if @object.to_s.length < 1
       return false if @id.nil?
       return false if @id.to_s.length > 36
       return false if @id.to_s.length < 36
@@ -365,6 +389,24 @@ module Aryeo
       return false if !@description.nil? && @description.to_s.length < 1
       return false if @downloads_enabled.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] object Value to be assigned
+    def object=(object)
+      if object.nil?
+        fail ArgumentError, 'object cannot be nil'
+      end
+
+      if object.to_s.length > 100
+        fail ArgumentError, 'invalid value for "object", the character length must be smaller than or equal to 100.'
+      end
+
+      if object.to_s.length < 1
+        fail ArgumentError, 'invalid value for "object", the character length must be great than or equal to 1.'
+      end
+
+      @object = object
     end
 
     # Custom attribute writer method with validation
@@ -458,6 +500,7 @@ module Aryeo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          object == o.object &&
           id == o.id &&
           address == o.address &&
           mls_number == o.mls_number &&
@@ -489,7 +532,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, address, mls_number, type, sub_type, status, standard_status, description, lot, building, price, list_agent, co_list_agent, images, videos, floor_plans, interactive_content, property_website, orders, downloads_enabled].hash
+      [object, id, address, mls_number, type, sub_type, status, standard_status, description, lot, building, price, list_agent, co_list_agent, images, videos, floor_plans, interactive_content, property_website, orders, downloads_enabled].hash
     end
 
     # Builds the object from hash
