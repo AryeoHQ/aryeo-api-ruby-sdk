@@ -26,6 +26,9 @@ module Aryeo
     # ID of the customer to associate with the order. UUID Version 4.
     attr_accessor :customer_id
 
+    # Indicates if the customer and creator notifications should be sent when creating the order. Requires an address and customer to be set in order for the notifications to be sent.
+    attr_accessor :notify
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -55,7 +58,8 @@ module Aryeo
         :'internal_notes' => :'internal_notes',
         :'payment_status' => :'payment_status',
         :'address_id' => :'address_id',
-        :'customer_id' => :'customer_id'
+        :'customer_id' => :'customer_id',
+        :'notify' => :'notify'
       }
     end
 
@@ -71,7 +75,8 @@ module Aryeo
         :'internal_notes' => :'String',
         :'payment_status' => :'String',
         :'address_id' => :'String',
-        :'customer_id' => :'String'
+        :'customer_id' => :'String',
+        :'notify' => :'Boolean'
       }
     end
 
@@ -81,6 +86,7 @@ module Aryeo
         :'fulfillment_status',
         :'internal_notes',
         :'payment_status',
+        :'notify'
       ])
     end
 
@@ -117,6 +123,10 @@ module Aryeo
 
       if attributes.key?(:'customer_id')
         self.customer_id = attributes[:'customer_id']
+      end
+
+      if attributes.key?(:'notify')
+        self.notify = attributes[:'notify']
       end
     end
 
@@ -258,7 +268,8 @@ module Aryeo
           internal_notes == o.internal_notes &&
           payment_status == o.payment_status &&
           address_id == o.address_id &&
-          customer_id == o.customer_id
+          customer_id == o.customer_id &&
+          notify == o.notify
     end
 
     # @see the `==` method
@@ -270,7 +281,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [fulfillment_status, internal_notes, payment_status, address_id, customer_id].hash
+      [fulfillment_status, internal_notes, payment_status, address_id, customer_id, notify].hash
     end
 
     # Builds the object from hash

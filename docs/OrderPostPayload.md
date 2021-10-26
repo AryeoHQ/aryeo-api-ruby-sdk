@@ -9,6 +9,7 @@
 | **payment_status** | **String** | The payment status of the order. Defaults to \&quot;UNPAID\&quot;.  | [optional] |
 | **address_id** | **String** | ID of the address to associate with the order. UUID Version 4. | [optional] |
 | **customer_id** | **String** | ID of the customer to associate with the order. UUID Version 4. | [optional] |
+| **notify** | **Boolean** | Indicates if the customer and creator notifications should be sent when creating the order. Requires an address and customer to be set in order for the notifications to be sent. | [optional] |
 
 ## Example
 
@@ -20,7 +21,8 @@ instance = Aryeo::OrderPostPayload.new(
   internal_notes: Private note about the order!,
   payment_status: paid,
   address_id: 00000000-0000-4000-8000-000000000000,
-  customer_id: 00000000-0000-4000-8000-000000000000
+  customer_id: 00000000-0000-4000-8000-000000000000,
+  notify: true
 )
 ```
 
