@@ -20,12 +20,16 @@ module Aryeo
     # A positive integer in the smallest currency unit (that is, 100 cents for $1.00) representing the price of the product variant.
     attr_accessor :price
 
+    # The duration of the product item, in minutes.
+    attr_accessor :duration
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
         :'title' => :'title',
-        :'price' => :'price'
+        :'price' => :'price',
+        :'duration' => :'duration'
       }
     end
 
@@ -39,7 +43,8 @@ module Aryeo
       {
         :'id' => :'String',
         :'title' => :'String',
-        :'price' => :'Integer'
+        :'price' => :'Integer',
+        :'duration' => :'Integer'
       }
     end
 
@@ -75,6 +80,10 @@ module Aryeo
       if attributes.key?(:'price')
         self.price = attributes[:'price']
       end
+
+      if attributes.key?(:'duration')
+        self.duration = attributes[:'duration']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -109,6 +118,10 @@ module Aryeo
         invalid_properties.push('invalid value for "price", price cannot be nil.')
       end
 
+      if !@duration.nil? && @duration < 0
+        invalid_properties.push('invalid value for "duration", must be greater than or equal to 0.')
+      end
+
       invalid_properties
     end
 
@@ -122,6 +135,7 @@ module Aryeo
       return false if @title.to_s.length > 255
       return false if @title.to_s.length < 0
       return false if @price.nil?
+      return false if !@duration.nil? && @duration < 0
       true
     end
 
@@ -161,6 +175,16 @@ module Aryeo
       @title = title
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] duration Value to be assigned
+    def duration=(duration)
+      if !duration.nil? && duration < 0
+        fail ArgumentError, 'invalid value for "duration", must be greater than or equal to 0.'
+      end
+
+      @duration = duration
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -168,7 +192,8 @@ module Aryeo
       self.class == o.class &&
           id == o.id &&
           title == o.title &&
-          price == o.price
+          price == o.price &&
+          duration == o.duration
     end
 
     # @see the `==` method
@@ -180,7 +205,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, title, price].hash
+      [id, title, price, duration].hash
     end
 
     # Builds the object from hash
