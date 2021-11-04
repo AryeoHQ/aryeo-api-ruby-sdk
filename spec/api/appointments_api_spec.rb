@@ -46,6 +46,47 @@ describe 'AppointmentsApi' do
     end
   end
 
+  # unit tests for get_available_dates
+  # Fetch available days for a user or group
+  # Fetch available calendar days for scheduling or rescheduling an appointment. Availability can be retrieved using a specific start &amp; end date range, or using a timeframe. When using a timeframe, the page parameter can be used to flip through weeks, months, etc.
+  # @param [Hash] opts the optional parameters
+  # @option opts [Array<String>] :filter_user_ids The IDs of users whose availability will be retrieved. UUID Version 4.
+  # @option opts [String] :filter_appointment_id Appointment ID used to fetch availability for an existing order
+  # @option opts [Time] :filter_start_at Returns availability after start_at
+  # @option opts [Time] :filter_end_at Returns availability before end_at
+  # @option opts [Array<String>] :filter_timeframe Returns availability for a specific timeframe. Used instead of start_at &amp; end_at
+  # @option opts [Integer] :duration Duration of the event to schedule. Required if appointment_id isn&#39;t specified
+  # @option opts [Integer] :interval Interval of bookable timeslots starting at x minutes on the hour . Required if appointment_id isn&#39;t specified
+  # @option opts [String] :timezone Timezone of the client. Localizes the available days
+  # @option opts [Integer] :page The requested page of results
+  # @option opts [Integer] :per_page The number of results per page. Only applies when using a date range
+  # @return [CalendarDayCollection]
+  describe 'get_available_dates test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for get_available_timeslots
+  # Fetch available timeslots for a user or group
+  # Fetch available timeslots for scheduling or rescheduling an appointment. Timeslots can be retrieved using a specific start &amp; end date range, or using a timeframe. When using a timeframe, the page parameter can be used to flip through days or weeks.
+  # @param [Hash] opts the optional parameters
+  # @option opts [Array<String>] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
+  # @option opts [String] :filter_appointment_id Appointment ID used to fetch availability for an existing order
+  # @option opts [Time] :filter_start_at Returns availability after start_at
+  # @option opts [Time] :filter_end_at Returns availability before end_at
+  # @option opts [Array<String>] :filter_timeframe Returns availability for a specific timeframe. Used instead of start_at &amp; end_at
+  # @option opts [Integer] :duration Duration of the event to schedule. Required if appointment_id isn&#39;t specified
+  # @option opts [Integer] :interval Interval of bookable timeslots starting at x minutes on the hour . Required if appointment_id isn&#39;t specified
+  # @option opts [Integer] :page The requested page of results
+  # @option opts [Integer] :per_page The number of results per page. Only applies when using a date range
+  # @return [TimeslotCollection]
+  describe 'get_available_timeslots test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for get_unconfirmed_appointments
   # List all unconfirmed appointments.
   # List all unconfirmed appointments. These are appointments that have not been scheduled. 

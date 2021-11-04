@@ -48,6 +48,8 @@ All URIs are relative to *https://api.aryeo.com/v1*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *Aryeo::AppointmentsApi* | [**get_appointments**](docs/AppointmentsApi.md#get_appointments) | **GET** /appointments | List all appointments.
+*Aryeo::AppointmentsApi* | [**get_available_dates**](docs/AppointmentsApi.md#get_available_dates) | **GET** /scheduling/available-dates | Fetch available days for a user or group
+*Aryeo::AppointmentsApi* | [**get_available_timeslots**](docs/AppointmentsApi.md#get_available_timeslots) | **GET** /scheduling/available-timeslots | Fetch available timeslots for a user or group
 *Aryeo::AppointmentsApi* | [**get_unconfirmed_appointments**](docs/AppointmentsApi.md#get_unconfirmed_appointments) | **GET** /unconfirmed-appointments | List all unconfirmed appointments.
 *Aryeo::AppointmentsApi* | [**get_unconfirmed_appointments_id**](docs/AppointmentsApi.md#get_unconfirmed_appointments_id) | **GET** /unconfirmed-appointments/{unconfirmed_appointment_id} | Retrieve an unconfirmed appointment.
 *Aryeo::AppointmentsApi* | [**put_appointments_appointment_id_cancel**](docs/AppointmentsApi.md#put_appointments_appointment_id_cancel) | **PUT** /appointments/{appointment_id}/cancel | Cancel an appointment.
@@ -75,6 +77,8 @@ Class | Method | HTTP request | Description
  - [Aryeo::AppointmentCollection](docs/AppointmentCollection.md)
  - [Aryeo::AppointmentReschedulePutPayload](docs/AppointmentReschedulePutPayload.md)
  - [Aryeo::AppointmentResource](docs/AppointmentResource.md)
+ - [Aryeo::CalendarDay](docs/CalendarDay.md)
+ - [Aryeo::CalendarDayCollection](docs/CalendarDayCollection.md)
  - [Aryeo::FloorPlan](docs/FloorPlan.md)
  - [Aryeo::Group](docs/Group.md)
  - [Aryeo::GroupCollection](docs/GroupCollection.md)
@@ -101,6 +105,8 @@ Class | Method | HTTP request | Description
  - [Aryeo::ProductVariant](docs/ProductVariant.md)
  - [Aryeo::PropertyWebsite](docs/PropertyWebsite.md)
  - [Aryeo::SocialProfiles](docs/SocialProfiles.md)
+ - [Aryeo::Timeslot](docs/Timeslot.md)
+ - [Aryeo::TimeslotCollection](docs/TimeslotCollection.md)
  - [Aryeo::UnconfirmedAppointment](docs/UnconfirmedAppointment.md)
  - [Aryeo::UnconfirmedAppointmentCollection](docs/UnconfirmedAppointmentCollection.md)
  - [Aryeo::UnconfirmedAppointmentResource](docs/UnconfirmedAppointmentResource.md)

@@ -155,6 +155,333 @@ module Aryeo
       return data, status_code, headers
     end
 
+    # Fetch available days for a user or group
+    # Fetch available calendar days for scheduling or rescheduling an appointment. Availability can be retrieved using a specific start & end date range, or using a timeframe. When using a timeframe, the page parameter can be used to flip through weeks, months, etc.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :filter_user_ids The IDs of users whose availability will be retrieved. UUID Version 4.
+    # @option opts [String] :filter_appointment_id Appointment ID used to fetch availability for an existing order
+    # @option opts [Time] :filter_start_at Returns availability after start_at
+    # @option opts [Time] :filter_end_at Returns availability before end_at
+    # @option opts [Array<String>] :filter_timeframe Returns availability for a specific timeframe. Used instead of start_at &amp; end_at
+    # @option opts [Integer] :duration Duration of the event to schedule. Required if appointment_id isn&#39;t specified
+    # @option opts [Integer] :interval Interval of bookable timeslots starting at x minutes on the hour . Required if appointment_id isn&#39;t specified
+    # @option opts [String] :timezone Timezone of the client. Localizes the available days
+    # @option opts [Integer] :page The requested page of results
+    # @option opts [Integer] :per_page The number of results per page. Only applies when using a date range
+    # @return [CalendarDayCollection]
+    def get_available_dates(opts = {})
+      data, _status_code, _headers = get_available_dates_with_http_info(opts)
+      data
+    end
+
+    # Fetch available days for a user or group
+    # Fetch available calendar days for scheduling or rescheduling an appointment. Availability can be retrieved using a specific start &amp; end date range, or using a timeframe. When using a timeframe, the page parameter can be used to flip through weeks, months, etc.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :filter_user_ids The IDs of users whose availability will be retrieved. UUID Version 4.
+    # @option opts [String] :filter_appointment_id Appointment ID used to fetch availability for an existing order
+    # @option opts [Time] :filter_start_at Returns availability after start_at
+    # @option opts [Time] :filter_end_at Returns availability before end_at
+    # @option opts [Array<String>] :filter_timeframe Returns availability for a specific timeframe. Used instead of start_at &amp; end_at
+    # @option opts [Integer] :duration Duration of the event to schedule. Required if appointment_id isn&#39;t specified
+    # @option opts [Integer] :interval Interval of bookable timeslots starting at x minutes on the hour . Required if appointment_id isn&#39;t specified
+    # @option opts [String] :timezone Timezone of the client. Localizes the available days
+    # @option opts [Integer] :page The requested page of results
+    # @option opts [Integer] :per_page The number of results per page. Only applies when using a date range
+    # @return [Array<(CalendarDayCollection, Integer, Hash)>] CalendarDayCollection data, response status code and response headers
+    def get_available_dates_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: AppointmentsApi.get_available_dates ...'
+      end
+      if @api_client.config.client_side_validation && !opts[:'filter_appointment_id'].nil? && opts[:'filter_appointment_id'].to_s.length > 100
+        fail ArgumentError, 'invalid value for "opts[:"filter_appointment_id"]" when calling AppointmentsApi.get_available_dates, the character length must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_appointment_id'].nil? && opts[:'filter_appointment_id'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"filter_appointment_id"]" when calling AppointmentsApi.get_available_dates, the character length must be great than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_start_at'].nil? && opts[:'filter_start_at'].to_s.length > 100
+        fail ArgumentError, 'invalid value for "opts[:"filter_start_at"]" when calling AppointmentsApi.get_available_dates, the character length must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_start_at'].nil? && opts[:'filter_start_at'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"filter_start_at"]" when calling AppointmentsApi.get_available_dates, the character length must be great than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_end_at'].nil? && opts[:'filter_end_at'].to_s.length > 100
+        fail ArgumentError, 'invalid value for "opts[:"filter_end_at"]" when calling AppointmentsApi.get_available_dates, the character length must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_end_at'].nil? && opts[:'filter_end_at'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"filter_end_at"]" when calling AppointmentsApi.get_available_dates, the character length must be great than or equal to 1.'
+      end
+
+      allowable_values = []
+      if @api_client.config.client_side_validation && opts[:'filter_timeframe'] && !opts[:'filter_timeframe'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"filter_timeframe\", must include one of #{allowable_values}"
+      end
+      if @api_client.config.client_side_validation && !opts[:'filter_timeframe'].nil? && opts[:'filter_timeframe'].to_s.length > 5
+        fail ArgumentError, 'invalid value for "opts[:"filter_timeframe"]" when calling AppointmentsApi.get_available_dates, the character length must be smaller than or equal to 5.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_timeframe'].nil? && opts[:'filter_timeframe'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"filter_timeframe"]" when calling AppointmentsApi.get_available_dates, the character length must be great than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'duration'].nil? && opts[:'duration'].to_s.length > 100
+        fail ArgumentError, 'invalid value for "opts[:"duration"]" when calling AppointmentsApi.get_available_dates, the character length must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'duration'].nil? && opts[:'duration'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"duration"]" when calling AppointmentsApi.get_available_dates, the character length must be great than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'duration'].nil? && opts[:'duration'] > 360
+        fail ArgumentError, 'invalid value for "opts[:"duration"]" when calling AppointmentsApi.get_available_dates, must be smaller than or equal to 360.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'duration'].nil? && opts[:'duration'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"duration"]" when calling AppointmentsApi.get_available_dates, must be greater than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'interval'].nil? && opts[:'interval'].to_s.length > 5
+        fail ArgumentError, 'invalid value for "opts[:"interval"]" when calling AppointmentsApi.get_available_dates, the character length must be smaller than or equal to 5.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'interval'].nil? && opts[:'interval'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"interval"]" when calling AppointmentsApi.get_available_dates, the character length must be great than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'interval'].nil? && opts[:'interval'] > 360
+        fail ArgumentError, 'invalid value for "opts[:"interval"]" when calling AppointmentsApi.get_available_dates, must be smaller than or equal to 360.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'interval'].nil? && opts[:'interval'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"interval"]" when calling AppointmentsApi.get_available_dates, must be greater than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'timezone'].nil? && opts[:'timezone'].to_s.length > 5
+        fail ArgumentError, 'invalid value for "opts[:"timezone"]" when calling AppointmentsApi.get_available_dates, the character length must be smaller than or equal to 5.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'timezone'].nil? && opts[:'timezone'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"timezone"]" when calling AppointmentsApi.get_available_dates, the character length must be great than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page'].nil? && opts[:'page'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page"]" when calling AppointmentsApi.get_available_dates, must be greater than or equal to 1.'
+      end
+
+      # resource path
+      local_var_path = '/scheduling/available-dates'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'filter[user_ids]'] = @api_client.build_collection_param(opts[:'filter_user_ids'], :multi) if !opts[:'filter_user_ids'].nil?
+      query_params[:'filter[appointment_id]'] = opts[:'filter_appointment_id'] if !opts[:'filter_appointment_id'].nil?
+      query_params[:'filter[start_at]'] = opts[:'filter_start_at'] if !opts[:'filter_start_at'].nil?
+      query_params[:'filter[end_at]'] = opts[:'filter_end_at'] if !opts[:'filter_end_at'].nil?
+      query_params[:'filter[timeframe]'] = @api_client.build_collection_param(opts[:'filter_timeframe'], :multi) if !opts[:'filter_timeframe'].nil?
+      query_params[:'duration'] = opts[:'duration'] if !opts[:'duration'].nil?
+      query_params[:'interval'] = opts[:'interval'] if !opts[:'interval'].nil?
+      query_params[:'timezone'] = opts[:'timezone'] if !opts[:'timezone'].nil?
+      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'per_page'] = opts[:'per_page'] if !opts[:'per_page'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'CalendarDayCollection'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"AppointmentsApi.get_available_dates",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: AppointmentsApi#get_available_dates\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Fetch available timeslots for a user or group
+    # Fetch available timeslots for scheduling or rescheduling an appointment. Timeslots can be retrieved using a specific start & end date range, or using a timeframe. When using a timeframe, the page parameter can be used to flip through days or weeks.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
+    # @option opts [String] :filter_appointment_id Appointment ID used to fetch availability for an existing order
+    # @option opts [Time] :filter_start_at Returns availability after start_at
+    # @option opts [Time] :filter_end_at Returns availability before end_at
+    # @option opts [Array<String>] :filter_timeframe Returns availability for a specific timeframe. Used instead of start_at &amp; end_at
+    # @option opts [Integer] :duration Duration of the event to schedule. Required if appointment_id isn&#39;t specified
+    # @option opts [Integer] :interval Interval of bookable timeslots starting at x minutes on the hour . Required if appointment_id isn&#39;t specified
+    # @option opts [Integer] :page The requested page of results
+    # @option opts [Integer] :per_page The number of results per page. Only applies when using a date range
+    # @return [TimeslotCollection]
+    def get_available_timeslots(opts = {})
+      data, _status_code, _headers = get_available_timeslots_with_http_info(opts)
+      data
+    end
+
+    # Fetch available timeslots for a user or group
+    # Fetch available timeslots for scheduling or rescheduling an appointment. Timeslots can be retrieved using a specific start &amp; end date range, or using a timeframe. When using a timeframe, the page parameter can be used to flip through days or weeks.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
+    # @option opts [String] :filter_appointment_id Appointment ID used to fetch availability for an existing order
+    # @option opts [Time] :filter_start_at Returns availability after start_at
+    # @option opts [Time] :filter_end_at Returns availability before end_at
+    # @option opts [Array<String>] :filter_timeframe Returns availability for a specific timeframe. Used instead of start_at &amp; end_at
+    # @option opts [Integer] :duration Duration of the event to schedule. Required if appointment_id isn&#39;t specified
+    # @option opts [Integer] :interval Interval of bookable timeslots starting at x minutes on the hour . Required if appointment_id isn&#39;t specified
+    # @option opts [Integer] :page The requested page of results
+    # @option opts [Integer] :per_page The number of results per page. Only applies when using a date range
+    # @return [Array<(TimeslotCollection, Integer, Hash)>] TimeslotCollection data, response status code and response headers
+    def get_available_timeslots_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: AppointmentsApi.get_available_timeslots ...'
+      end
+      if @api_client.config.client_side_validation && !opts[:'filter_appointment_id'].nil? && opts[:'filter_appointment_id'].to_s.length > 100
+        fail ArgumentError, 'invalid value for "opts[:"filter_appointment_id"]" when calling AppointmentsApi.get_available_timeslots, the character length must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_appointment_id'].nil? && opts[:'filter_appointment_id'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"filter_appointment_id"]" when calling AppointmentsApi.get_available_timeslots, the character length must be great than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_start_at'].nil? && opts[:'filter_start_at'].to_s.length > 100
+        fail ArgumentError, 'invalid value for "opts[:"filter_start_at"]" when calling AppointmentsApi.get_available_timeslots, the character length must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_start_at'].nil? && opts[:'filter_start_at'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"filter_start_at"]" when calling AppointmentsApi.get_available_timeslots, the character length must be great than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_end_at'].nil? && opts[:'filter_end_at'].to_s.length > 100
+        fail ArgumentError, 'invalid value for "opts[:"filter_end_at"]" when calling AppointmentsApi.get_available_timeslots, the character length must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_end_at'].nil? && opts[:'filter_end_at'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"filter_end_at"]" when calling AppointmentsApi.get_available_timeslots, the character length must be great than or equal to 1.'
+      end
+
+      allowable_values = []
+      if @api_client.config.client_side_validation && opts[:'filter_timeframe'] && !opts[:'filter_timeframe'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"filter_timeframe\", must include one of #{allowable_values}"
+      end
+      if @api_client.config.client_side_validation && !opts[:'filter_timeframe'].nil? && opts[:'filter_timeframe'].to_s.length > 5
+        fail ArgumentError, 'invalid value for "opts[:"filter_timeframe"]" when calling AppointmentsApi.get_available_timeslots, the character length must be smaller than or equal to 5.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'filter_timeframe'].nil? && opts[:'filter_timeframe'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"filter_timeframe"]" when calling AppointmentsApi.get_available_timeslots, the character length must be great than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'duration'].nil? && opts[:'duration'].to_s.length > 100
+        fail ArgumentError, 'invalid value for "opts[:"duration"]" when calling AppointmentsApi.get_available_timeslots, the character length must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'duration'].nil? && opts[:'duration'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"duration"]" when calling AppointmentsApi.get_available_timeslots, the character length must be great than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'duration'].nil? && opts[:'duration'] > 360
+        fail ArgumentError, 'invalid value for "opts[:"duration"]" when calling AppointmentsApi.get_available_timeslots, must be smaller than or equal to 360.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'duration'].nil? && opts[:'duration'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"duration"]" when calling AppointmentsApi.get_available_timeslots, must be greater than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'interval'].nil? && opts[:'interval'].to_s.length > 5
+        fail ArgumentError, 'invalid value for "opts[:"interval"]" when calling AppointmentsApi.get_available_timeslots, the character length must be smaller than or equal to 5.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'interval'].nil? && opts[:'interval'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"interval"]" when calling AppointmentsApi.get_available_timeslots, the character length must be great than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'interval'].nil? && opts[:'interval'] > 360
+        fail ArgumentError, 'invalid value for "opts[:"interval"]" when calling AppointmentsApi.get_available_timeslots, must be smaller than or equal to 360.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'interval'].nil? && opts[:'interval'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"interval"]" when calling AppointmentsApi.get_available_timeslots, must be greater than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page'].nil? && opts[:'page'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page"]" when calling AppointmentsApi.get_available_timeslots, must be greater than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'per_page'].nil? && opts[:'per_page'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"per_page"]" when calling AppointmentsApi.get_available_timeslots, must be greater than or equal to 1.'
+      end
+
+      # resource path
+      local_var_path = '/scheduling/available-timeslots'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'filter[user_ids]'] = @api_client.build_collection_param(opts[:'filter_user_ids'], :multi) if !opts[:'filter_user_ids'].nil?
+      query_params[:'filter[appointment_id]'] = opts[:'filter_appointment_id'] if !opts[:'filter_appointment_id'].nil?
+      query_params[:'filter[start_at]'] = opts[:'filter_start_at'] if !opts[:'filter_start_at'].nil?
+      query_params[:'filter[end_at]'] = opts[:'filter_end_at'] if !opts[:'filter_end_at'].nil?
+      query_params[:'filter[timeframe]'] = @api_client.build_collection_param(opts[:'filter_timeframe'], :multi) if !opts[:'filter_timeframe'].nil?
+      query_params[:'duration'] = opts[:'duration'] if !opts[:'duration'].nil?
+      query_params[:'interval'] = opts[:'interval'] if !opts[:'interval'].nil?
+      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'per_page'] = opts[:'per_page'] if !opts[:'per_page'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'TimeslotCollection'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Token']
+
+      new_options = opts.merge(
+        :operation => :"AppointmentsApi.get_available_timeslots",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: AppointmentsApi#get_available_timeslots\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # List all unconfirmed appointments.
     # List all unconfirmed appointments. These are appointments that have not been scheduled. 
     # @param [Hash] opts the optional parameters

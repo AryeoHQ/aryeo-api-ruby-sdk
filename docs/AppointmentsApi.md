@@ -5,6 +5,8 @@ All URIs are relative to *https://api.aryeo.com/v1*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**get_appointments**](AppointmentsApi.md#get_appointments) | **GET** /appointments | List all appointments. |
+| [**get_available_dates**](AppointmentsApi.md#get_available_dates) | **GET** /scheduling/available-dates | Fetch available days for a user or group |
+| [**get_available_timeslots**](AppointmentsApi.md#get_available_timeslots) | **GET** /scheduling/available-timeslots | Fetch available timeslots for a user or group |
 | [**get_unconfirmed_appointments**](AppointmentsApi.md#get_unconfirmed_appointments) | **GET** /unconfirmed-appointments | List all unconfirmed appointments. |
 | [**get_unconfirmed_appointments_id**](AppointmentsApi.md#get_unconfirmed_appointments_id) | **GET** /unconfirmed-appointments/{unconfirmed_appointment_id} | Retrieve an unconfirmed appointment. |
 | [**put_appointments_appointment_id_cancel**](AppointmentsApi.md#put_appointments_appointment_id_cancel) | **PUT** /appointments/{appointment_id}/cancel | Cancel an appointment. |
@@ -85,6 +87,182 @@ end
 ### Return type
 
 [**AppointmentCollection**](AppointmentCollection.md)
+
+### Authorization
+
+[Token](../README.md#Token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_available_dates
+
+> <CalendarDayCollection> get_available_dates(opts)
+
+Fetch available days for a user or group
+
+Fetch available calendar days for scheduling or rescheduling an appointment. Availability can be retrieved using a specific start & end date range, or using a timeframe. When using a timeframe, the page parameter can be used to flip through weeks, months, etc.
+
+### Examples
+
+```ruby
+require 'time'
+require 'aryeo'
+# setup authorization
+Aryeo.configure do |config|
+  # Configure Bearer authorization: Token
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = Aryeo::AppointmentsApi.new
+opts = {
+  filter_user_ids: ['00000000-0000-4000-8000-000000000000'], # Array<String> | The IDs of users whose availability will be retrieved. UUID Version 4.
+  filter_appointment_id: '00000000-0000-4000-8000-000000000000', # String | Appointment ID used to fetch availability for an existing order
+  filter_start_at: Time.parse('2021-01-01T13:00Z'), # Time | Returns availability after start_at
+  filter_end_at: Time.parse('2021-01-02T13:00Z'), # Time | Returns availability before end_at
+  filter_timeframe: ['MONTH'], # Array<String> | Returns availability for a specific timeframe. Used instead of start_at & end_at
+  duration: 60, # Integer | Duration of the event to schedule. Required if appointment_id isn't specified
+  interval: 15, # Integer | Interval of bookable timeslots starting at x minutes on the hour . Required if appointment_id isn't specified
+  timezone: '2', # String | Timezone of the client. Localizes the available days
+  page: 1, # Integer | The requested page of results
+  per_page: 5 # Integer | The number of results per page. Only applies when using a date range
+}
+
+begin
+  # Fetch available days for a user or group
+  result = api_instance.get_available_dates(opts)
+  p result
+rescue Aryeo::ApiError => e
+  puts "Error when calling AppointmentsApi->get_available_dates: #{e}"
+end
+```
+
+#### Using the get_available_dates_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<CalendarDayCollection>, Integer, Hash)> get_available_dates_with_http_info(opts)
+
+```ruby
+begin
+  # Fetch available days for a user or group
+  data, status_code, headers = api_instance.get_available_dates_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <CalendarDayCollection>
+rescue Aryeo::ApiError => e
+  puts "Error when calling AppointmentsApi->get_available_dates_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **filter_user_ids** | [**Array&lt;String&gt;**](String.md) | The IDs of users whose availability will be retrieved. UUID Version 4. | [optional] |
+| **filter_appointment_id** | **String** | Appointment ID used to fetch availability for an existing order | [optional] |
+| **filter_start_at** | **Time** | Returns availability after start_at | [optional] |
+| **filter_end_at** | **Time** | Returns availability before end_at | [optional] |
+| **filter_timeframe** | [**Array&lt;String&gt;**](String.md) | Returns availability for a specific timeframe. Used instead of start_at &amp; end_at | [optional] |
+| **duration** | **Integer** | Duration of the event to schedule. Required if appointment_id isn&#39;t specified | [optional] |
+| **interval** | **Integer** | Interval of bookable timeslots starting at x minutes on the hour . Required if appointment_id isn&#39;t specified | [optional] |
+| **timezone** | **String** | Timezone of the client. Localizes the available days | [optional] |
+| **page** | **Integer** | The requested page of results | [optional] |
+| **per_page** | **Integer** | The number of results per page. Only applies when using a date range | [optional] |
+
+### Return type
+
+[**CalendarDayCollection**](CalendarDayCollection.md)
+
+### Authorization
+
+[Token](../README.md#Token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_available_timeslots
+
+> <TimeslotCollection> get_available_timeslots(opts)
+
+Fetch available timeslots for a user or group
+
+Fetch available timeslots for scheduling or rescheduling an appointment. Timeslots can be retrieved using a specific start & end date range, or using a timeframe. When using a timeframe, the page parameter can be used to flip through days or weeks.
+
+### Examples
+
+```ruby
+require 'time'
+require 'aryeo'
+# setup authorization
+Aryeo.configure do |config|
+  # Configure Bearer authorization: Token
+  config.access_token = 'YOUR_BEARER_TOKEN'
+end
+
+api_instance = Aryeo::AppointmentsApi.new
+opts = {
+  filter_user_ids: ['00000000-0000-4000-8000-000000000000'], # Array<String> | The IDs of users whose appointments will be retrieved. UUID Version 4.
+  filter_appointment_id: '00000000-0000-4000-8000-000000000000', # String | Appointment ID used to fetch availability for an existing order
+  filter_start_at: Time.parse('2021-01-01T13:00Z'), # Time | Returns availability after start_at
+  filter_end_at: Time.parse('2021-01-02T13:00Z'), # Time | Returns availability before end_at
+  filter_timeframe: ['MONTH'], # Array<String> | Returns availability for a specific timeframe. Used instead of start_at & end_at
+  duration: 60, # Integer | Duration of the event to schedule. Required if appointment_id isn't specified
+  interval: 25, # Integer | Interval of bookable timeslots starting at x minutes on the hour . Required if appointment_id isn't specified
+  page: 1, # Integer | The requested page of results
+  per_page: 5 # Integer | The number of results per page. Only applies when using a date range
+}
+
+begin
+  # Fetch available timeslots for a user or group
+  result = api_instance.get_available_timeslots(opts)
+  p result
+rescue Aryeo::ApiError => e
+  puts "Error when calling AppointmentsApi->get_available_timeslots: #{e}"
+end
+```
+
+#### Using the get_available_timeslots_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<TimeslotCollection>, Integer, Hash)> get_available_timeslots_with_http_info(opts)
+
+```ruby
+begin
+  # Fetch available timeslots for a user or group
+  data, status_code, headers = api_instance.get_available_timeslots_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <TimeslotCollection>
+rescue Aryeo::ApiError => e
+  puts "Error when calling AppointmentsApi->get_available_timeslots_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **filter_user_ids** | [**Array&lt;String&gt;**](String.md) | The IDs of users whose appointments will be retrieved. UUID Version 4. | [optional] |
+| **filter_appointment_id** | **String** | Appointment ID used to fetch availability for an existing order | [optional] |
+| **filter_start_at** | **Time** | Returns availability after start_at | [optional] |
+| **filter_end_at** | **Time** | Returns availability before end_at | [optional] |
+| **filter_timeframe** | [**Array&lt;String&gt;**](String.md) | Returns availability for a specific timeframe. Used instead of start_at &amp; end_at | [optional] |
+| **duration** | **Integer** | Duration of the event to schedule. Required if appointment_id isn&#39;t specified | [optional] |
+| **interval** | **Integer** | Interval of bookable timeslots starting at x minutes on the hour . Required if appointment_id isn&#39;t specified | [optional] |
+| **page** | **Integer** | The requested page of results | [optional] |
+| **per_page** | **Integer** | The number of results per page. Only applies when using a date range | [optional] |
+
+### Return type
+
+[**TimeslotCollection**](TimeslotCollection.md)
 
 ### Authorization
 
