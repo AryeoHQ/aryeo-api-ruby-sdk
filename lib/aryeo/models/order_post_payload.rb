@@ -17,9 +17,6 @@ module Aryeo
     # Internal notes that will be attached to the order. Viewable only by the team.
     attr_accessor :internal_notes
 
-    # The payment status of the order. Defaults to \"UNPAID\". 
-    attr_accessor :payment_status
-
     # ID of the address to associate with the order. UUID Version 4.
     attr_accessor :address_id
 
@@ -56,7 +53,6 @@ module Aryeo
       {
         :'fulfillment_status' => :'fulfillment_status',
         :'internal_notes' => :'internal_notes',
-        :'payment_status' => :'payment_status',
         :'address_id' => :'address_id',
         :'customer_id' => :'customer_id',
         :'notify' => :'notify'
@@ -73,7 +69,6 @@ module Aryeo
       {
         :'fulfillment_status' => :'String',
         :'internal_notes' => :'String',
-        :'payment_status' => :'String',
         :'address_id' => :'String',
         :'customer_id' => :'String',
         :'notify' => :'Boolean'
@@ -85,7 +80,6 @@ module Aryeo
       Set.new([
         :'fulfillment_status',
         :'internal_notes',
-        :'payment_status',
         :'notify'
       ])
     end
@@ -111,10 +105,6 @@ module Aryeo
 
       if attributes.key?(:'internal_notes')
         self.internal_notes = attributes[:'internal_notes']
-      end
-
-      if attributes.key?(:'payment_status')
-        self.payment_status = attributes[:'payment_status']
       end
 
       if attributes.key?(:'address_id')
@@ -150,14 +140,6 @@ module Aryeo
         invalid_properties.push('invalid value for "internal_notes", the character length must be great than or equal to 0.')
       end
 
-      if !@payment_status.nil? && @payment_status.to_s.length > 255
-        invalid_properties.push('invalid value for "payment_status", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@payment_status.nil? && @payment_status.to_s.length < 0
-        invalid_properties.push('invalid value for "payment_status", the character length must be great than or equal to 0.')
-      end
-
       if !@address_id.nil? && @address_id.to_s.length > 36
         invalid_properties.push('invalid value for "address_id", the character length must be smaller than or equal to 36.')
       end
@@ -186,10 +168,6 @@ module Aryeo
       return false if !@fulfillment_status.nil? && @fulfillment_status.to_s.length < 0
       return false if !@internal_notes.nil? && @internal_notes.to_s.length > 2550
       return false if !@internal_notes.nil? && @internal_notes.to_s.length < 0
-      payment_status_validator = EnumAttributeValidator.new('String', ["PAID", "UNPAID"])
-      return false unless payment_status_validator.valid?(@payment_status)
-      return false if !@payment_status.nil? && @payment_status.to_s.length > 255
-      return false if !@payment_status.nil? && @payment_status.to_s.length < 0
       return false if !@address_id.nil? && @address_id.to_s.length > 36
       return false if !@address_id.nil? && @address_id.to_s.length < 36
       return false if !@customer_id.nil? && @customer_id.to_s.length > 36
@@ -219,16 +197,6 @@ module Aryeo
       end
 
       @internal_notes = internal_notes
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] payment_status Object to be assigned
-    def payment_status=(payment_status)
-      validator = EnumAttributeValidator.new('String', ["PAID", "UNPAID"])
-      unless validator.valid?(payment_status)
-        fail ArgumentError, "invalid value for \"payment_status\", must be one of #{validator.allowable_values}."
-      end
-      @payment_status = payment_status
     end
 
     # Custom attribute writer method with validation
@@ -266,7 +234,6 @@ module Aryeo
       self.class == o.class &&
           fulfillment_status == o.fulfillment_status &&
           internal_notes == o.internal_notes &&
-          payment_status == o.payment_status &&
           address_id == o.address_id &&
           customer_id == o.customer_id &&
           notify == o.notify
@@ -281,7 +248,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [fulfillment_status, internal_notes, payment_status, address_id, customer_id, notify].hash
+      [fulfillment_status, internal_notes, address_id, customer_id, notify].hash
     end
 
     # Builds the object from hash
