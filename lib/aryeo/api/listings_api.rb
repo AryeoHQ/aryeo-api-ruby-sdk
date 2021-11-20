@@ -22,7 +22,7 @@ module Aryeo
     # @option opts [String] :filter_address Return listings that have an address matching this term.
     # @option opts [String] :filter_list_agent Return listings that have a listing agent or co-listing agent matching this term.
     # @option opts [String] :filter_status Return listings that have a certain status.
-    # @option opts [Boolean] :filter_active Set as true to return listings that have an active status (e.g. active statuses include &#x60;COMING_SOON&#x60;, &#x60;FOR_SALE&#x60;, &#x60;FOR_LEASE&#x60;, &#x60;PENDING_SALE&#x60;, &#x60;PENDING_LEASE&#x60;, &#x60;SOLD&#x60;, &#x60;LEASED&#x60;). 
+    # @option opts [Boolean] :filter_active Set as true to return listings that have an active status (e.g. active statuses include &#x60;COMING_SOON&#x60;, &#x60;FOR_SALE&#x60;, &#x60;FOR_LEASE&#x60;, &#x60;PENDING_SALE&#x60;, &#x60;PENDING_LEASE&#x60;, &#x60;SOLD&#x60;, &#x60;LEASED&#x60;).
     # @option opts [Float] :filter_price_gte Return listings where the price field is greater than or equal to this value.
     # @option opts [Float] :filter_price_lte Return listings where the price field is less than or equal to this value.
     # @option opts [Float] :filter_square_feet_gte Return listings where the square feet field is greater than or equal to this value.
@@ -48,7 +48,7 @@ module Aryeo
     # @option opts [String] :filter_address Return listings that have an address matching this term.
     # @option opts [String] :filter_list_agent Return listings that have a listing agent or co-listing agent matching this term.
     # @option opts [String] :filter_status Return listings that have a certain status.
-    # @option opts [Boolean] :filter_active Set as true to return listings that have an active status (e.g. active statuses include &#x60;COMING_SOON&#x60;, &#x60;FOR_SALE&#x60;, &#x60;FOR_LEASE&#x60;, &#x60;PENDING_SALE&#x60;, &#x60;PENDING_LEASE&#x60;, &#x60;SOLD&#x60;, &#x60;LEASED&#x60;). 
+    # @option opts [Boolean] :filter_active Set as true to return listings that have an active status (e.g. active statuses include &#x60;COMING_SOON&#x60;, &#x60;FOR_SALE&#x60;, &#x60;FOR_LEASE&#x60;, &#x60;PENDING_SALE&#x60;, &#x60;PENDING_LEASE&#x60;, &#x60;SOLD&#x60;, &#x60;LEASED&#x60;).
     # @option opts [Float] :filter_price_gte Return listings where the price field is greater than or equal to this value.
     # @option opts [Float] :filter_price_lte Return listings where the price field is less than or equal to this value.
     # @option opts [Float] :filter_square_feet_gte Return listings where the square feet field is greater than or equal to this value.

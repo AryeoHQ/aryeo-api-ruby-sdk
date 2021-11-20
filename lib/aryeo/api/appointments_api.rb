@@ -483,7 +483,7 @@ module Aryeo
     end
 
     # List all unconfirmed appointments.
-    # List all unconfirmed appointments. These are appointments that have not been scheduled. 
+    # List all unconfirmed appointments. These are appointments that have not been scheduled.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.
     # @option opts [Array<String>] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
@@ -497,7 +497,7 @@ module Aryeo
     end
 
     # List all unconfirmed appointments.
-    # List all unconfirmed appointments. These are appointments that have not been scheduled. 
+    # List all unconfirmed appointments. These are appointments that have not been scheduled.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Comma separated list of optional data to include in the response.
     # @option opts [Array<String>] :filter_user_ids The IDs of users whose appointments will be retrieved. UUID Version 4.
@@ -669,7 +669,7 @@ module Aryeo
     end
 
     # Cancel an appointment.
-    # Cancel an appointment. The appointments order's customer can be optionally notified of this change. 
+    # Cancel an appointment. The appointments order's customer can be optionally notified of this change.
     # @param appointment_id [String] The ID of an appointment.
     # @param [Hash] opts the optional parameters
     # @option opts [AppointmentCancelPutPayload] :appointment_cancel_put_payload 
@@ -680,7 +680,7 @@ module Aryeo
     end
 
     # Cancel an appointment.
-    # Cancel an appointment. The appointments order&#39;s customer can be optionally notified of this change. 
+    # Cancel an appointment. The appointments order&#39;s customer can be optionally notified of this change.
     # @param appointment_id [String] The ID of an appointment.
     # @param [Hash] opts the optional parameters
     # @option opts [AppointmentCancelPutPayload] :appointment_cancel_put_payload 
@@ -744,7 +744,7 @@ module Aryeo
     end
 
     # Reschedule an appointment.
-    # Reschedule an appointment. The appointments order's customer can be optionally notified of this change. 
+    # Reschedule an appointment. The appointments order's customer can be optionally notified of this change.
     # @param appointment_id [String] The ID of an appointment.
     # @param [Hash] opts the optional parameters
     # @option opts [AppointmentReschedulePutPayload] :appointment_reschedule_put_payload 
@@ -755,7 +755,7 @@ module Aryeo
     end
 
     # Reschedule an appointment.
-    # Reschedule an appointment. The appointments order&#39;s customer can be optionally notified of this change. 
+    # Reschedule an appointment. The appointments order&#39;s customer can be optionally notified of this change.
     # @param appointment_id [String] The ID of an appointment.
     # @param [Hash] opts the optional parameters
     # @option opts [AppointmentReschedulePutPayload] :appointment_reschedule_put_payload 

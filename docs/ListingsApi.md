@@ -34,7 +34,7 @@ opts = {
   filter_address: '123 Main St', # String | Return listings that have an address matching this term.
   filter_list_agent: 'John Doe', # String | Return listings that have a listing agent or co-listing agent matching this term.
   filter_status: 'DRAFT', # String | Return listings that have a certain status.
-  filter_active: true, # Boolean | Set as true to return listings that have an active status (e.g. active statuses include `COMING_SOON`, `FOR_SALE`, `FOR_LEASE`, `PENDING_SALE`, `PENDING_LEASE`, `SOLD`, `LEASED`). 
+  filter_active: true, # Boolean | Set as true to return listings that have an active status (e.g. active statuses include `COMING_SOON`, `FOR_SALE`, `FOR_LEASE`, `PENDING_SALE`, `PENDING_LEASE`, `SOLD`, `LEASED`).
   filter_price_gte: 100000, # Float | Return listings where the price field is greater than or equal to this value.
   filter_price_lte: 4000000, # Float | Return listings where the price field is less than or equal to this value.
   filter_square_feet_gte: 1000, # Float | Return listings where the square feet field is greater than or equal to this value.
@@ -84,7 +84,7 @@ end
 | **filter_address** | **String** | Return listings that have an address matching this term. | [optional] |
 | **filter_list_agent** | **String** | Return listings that have a listing agent or co-listing agent matching this term. | [optional] |
 | **filter_status** | **String** | Return listings that have a certain status. | [optional] |
-| **filter_active** | **Boolean** | Set as true to return listings that have an active status (e.g. active statuses include &#x60;COMING_SOON&#x60;, &#x60;FOR_SALE&#x60;, &#x60;FOR_LEASE&#x60;, &#x60;PENDING_SALE&#x60;, &#x60;PENDING_LEASE&#x60;, &#x60;SOLD&#x60;, &#x60;LEASED&#x60;).  | [optional] |
+| **filter_active** | **Boolean** | Set as true to return listings that have an active status (e.g. active statuses include &#x60;COMING_SOON&#x60;, &#x60;FOR_SALE&#x60;, &#x60;FOR_LEASE&#x60;, &#x60;PENDING_SALE&#x60;, &#x60;PENDING_LEASE&#x60;, &#x60;SOLD&#x60;, &#x60;LEASED&#x60;). | [optional] |
 | **filter_price_gte** | **Float** | Return listings where the price field is greater than or equal to this value. | [optional] |
 | **filter_price_lte** | **Float** | Return listings where the price field is less than or equal to this value. | [optional] |
 | **filter_square_feet_gte** | **Float** | Return listings where the square feet field is greater than or equal to this value. | [optional] |

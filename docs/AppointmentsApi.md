@@ -280,7 +280,7 @@ end
 
 List all unconfirmed appointments.
 
-List all unconfirmed appointments. These are appointments that have not been scheduled. 
+List all unconfirmed appointments. These are appointments that have not been scheduled.
 
 ### Examples
 
@@ -432,7 +432,7 @@ end
 
 Cancel an appointment.
 
-Cancel an appointment. The appointments order's customer can be optionally notified of this change. 
+Cancel an appointment. The appointments order's customer can be optionally notified of this change.
 
 ### Examples
 
@@ -505,7 +505,7 @@ end
 
 Reschedule an appointment.
 
-Reschedule an appointment. The appointments order's customer can be optionally notified of this change. 
+Reschedule an appointment. The appointments order's customer can be optionally notified of this change.
 
 ### Examples
 
