@@ -13,6 +13,8 @@
 | **total_amount** | **Integer** | A positive integer in the smallest currency unit (that is, 100 cents for $1.00) representing the total order amount that was or will be charged. This accounts for order items and taxes.  | [optional] |
 | **payment_url** | **String** | A URL of a publicly-accessible webpage to pay for the order. | [optional] |
 | **status_url** | **String** | A URL of a publicly-accessible webpage to see the order&#39;s status. |  |
+| **downloads_allowed** | **Boolean** | Indicates if the current user is allowed to download content from the attached listing. | [optional] |
+| **payments_allowed** | **Boolean** | Indicates if the current user is allowed to make a payment for the order. | [optional] |
 | **address** | [**Address**](Address.md) |  | [optional] |
 | **customer** | [**Group**](Group.md) |  | [optional] |
 | **listing** | [**Listing**](Listing.md) |  | [optional] |
@@ -35,6 +37,8 @@ instance = Aryeo::Order.new(
   total_amount: 2099,
   payment_url: https://www.aryeo.com/v2/stripe/checkout/order/00000000-0000-4000-8000-000000000000?pageType&#x3D;order,
   status_url: https://www.aryeo.com/v2/orders/00000000-0000-4000-8000-000000000000/status/public,
+  downloads_allowed: true,
+  payments_allowed: true,
   address: null,
   customer: null,
   listing: null,

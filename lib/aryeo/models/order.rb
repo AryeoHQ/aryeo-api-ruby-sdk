@@ -38,6 +38,12 @@ module Aryeo
     # A URL of a publicly-accessible webpage to see the order's status.
     attr_accessor :status_url
 
+    # Indicates if the current user is allowed to download content from the attached listing.
+    attr_accessor :downloads_allowed
+
+    # Indicates if the current user is allowed to make a payment for the order.
+    attr_accessor :payments_allowed
+
     attr_accessor :address
 
     attr_accessor :customer
@@ -85,6 +91,8 @@ module Aryeo
         :'total_amount' => :'total_amount',
         :'payment_url' => :'payment_url',
         :'status_url' => :'status_url',
+        :'downloads_allowed' => :'downloads_allowed',
+        :'payments_allowed' => :'payments_allowed',
         :'address' => :'address',
         :'customer' => :'customer',
         :'listing' => :'listing',
@@ -111,6 +119,8 @@ module Aryeo
         :'total_amount' => :'Integer',
         :'payment_url' => :'String',
         :'status_url' => :'String',
+        :'downloads_allowed' => :'Boolean',
+        :'payments_allowed' => :'Boolean',
         :'address' => :'Address',
         :'customer' => :'Group',
         :'listing' => :'Listing',
@@ -177,6 +187,14 @@ module Aryeo
 
       if attributes.key?(:'status_url')
         self.status_url = attributes[:'status_url']
+      end
+
+      if attributes.key?(:'downloads_allowed')
+        self.downloads_allowed = attributes[:'downloads_allowed']
+      end
+
+      if attributes.key?(:'payments_allowed')
+        self.payments_allowed = attributes[:'payments_allowed']
       end
 
       if attributes.key?(:'address')
@@ -447,6 +465,8 @@ module Aryeo
           total_amount == o.total_amount &&
           payment_url == o.payment_url &&
           status_url == o.status_url &&
+          downloads_allowed == o.downloads_allowed &&
+          payments_allowed == o.payments_allowed &&
           address == o.address &&
           customer == o.customer &&
           listing == o.listing &&
@@ -464,7 +484,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, number, title, fulfillment_status, payment_status, currency, total_amount, payment_url, status_url, address, customer, listing, items, appointments, unconfirmed_appointments].hash
+      [id, number, title, fulfillment_status, payment_status, currency, total_amount, payment_url, status_url, downloads_allowed, payments_allowed, address, customer, listing, items, appointments, unconfirmed_appointments].hash
     end
 
     # Builds the object from hash

@@ -26,6 +26,12 @@ module Aryeo
     # Indicates if the customer and creator notifications should be sent when creating the order. Requires an address and customer to be set in order for the notifications to be sent.
     attr_accessor :notify
 
+    # Indicates if the downloads for the attached listing should be locked while there is an outstanding balance on the order.
+    attr_accessor :lock_download_for_payment
+
+    # Indicates if the order will allow payments from the customer before the order is marked as fulfilled.
+    attr_accessor :allow_payments_before_fulfillment
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -55,7 +61,9 @@ module Aryeo
         :'internal_notes' => :'internal_notes',
         :'address_id' => :'address_id',
         :'customer_id' => :'customer_id',
-        :'notify' => :'notify'
+        :'notify' => :'notify',
+        :'lock_download_for_payment' => :'lock_download_for_payment',
+        :'allow_payments_before_fulfillment' => :'allow_payments_before_fulfillment'
       }
     end
 
@@ -71,7 +79,9 @@ module Aryeo
         :'internal_notes' => :'String',
         :'address_id' => :'String',
         :'customer_id' => :'String',
-        :'notify' => :'Boolean'
+        :'notify' => :'Boolean',
+        :'lock_download_for_payment' => :'Boolean',
+        :'allow_payments_before_fulfillment' => :'Boolean'
       }
     end
 
@@ -80,7 +90,9 @@ module Aryeo
       Set.new([
         :'fulfillment_status',
         :'internal_notes',
-        :'notify'
+        :'notify',
+        :'lock_download_for_payment',
+        :'allow_payments_before_fulfillment'
       ])
     end
 
@@ -117,6 +129,14 @@ module Aryeo
 
       if attributes.key?(:'notify')
         self.notify = attributes[:'notify']
+      end
+
+      if attributes.key?(:'lock_download_for_payment')
+        self.lock_download_for_payment = attributes[:'lock_download_for_payment']
+      end
+
+      if attributes.key?(:'allow_payments_before_fulfillment')
+        self.allow_payments_before_fulfillment = attributes[:'allow_payments_before_fulfillment']
       end
     end
 
@@ -236,7 +256,9 @@ module Aryeo
           internal_notes == o.internal_notes &&
           address_id == o.address_id &&
           customer_id == o.customer_id &&
-          notify == o.notify
+          notify == o.notify &&
+          lock_download_for_payment == o.lock_download_for_payment &&
+          allow_payments_before_fulfillment == o.allow_payments_before_fulfillment
     end
 
     # @see the `==` method
@@ -248,7 +270,7 @@ module Aryeo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [fulfillment_status, internal_notes, address_id, customer_id, notify].hash
+      [fulfillment_status, internal_notes, address_id, customer_id, notify, lock_download_for_payment, allow_payments_before_fulfillment].hash
     end
 
     # Builds the object from hash
